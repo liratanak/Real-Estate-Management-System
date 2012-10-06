@@ -17,6 +17,7 @@ Real-Estate-Management-System
 	- Show result (after action search of user the result, Address, Map,are shown as list).
 	- Show detail (when click in one list of the result we'll show you detail such as photos, contact,price ..).
 	- vote house the have been view (decrease & increase).
+	- comment 
 
 **Owner**
 

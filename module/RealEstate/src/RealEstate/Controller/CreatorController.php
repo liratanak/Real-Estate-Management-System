@@ -33,6 +33,9 @@ class CreatorController extends AbstractActionController {
 				$address = new \RealEstate\Entity\Address();
 //				$size = new \RealEstate\Entity\Size();
 
+				$house->setCreatedTime(time());
+				$house->setLastModifiedTime(time());
+				
 				$house->setUser($user);
 				$house->setCreatedUser($user);
 				$house->setLastModifiedUser($user);

@@ -93,46 +93,46 @@ class HouseForm extends Form {
 		));
 
 
-		$this->add(array(
-			'name' => 'village',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'Village',
-			),
-			'attributes' => array(
-			),
-		));
-
-		$this->add(array(
-			'name' => 'district',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'District',
-			),
-			'attributes' => array(
-			),
-		));
-
-
-		$this->add(array(
-			'name' => 'quarter',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'Quarter',
-			),
-			'attributes' => array(
-			),
-		));
-
-		$this->add(array(
-			'name' => 'city',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'City',
-			),
-			'attributes' => array(
-			),
-		));
+//		$this->add(array(
+//			'name' => 'village',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'Village',
+//			),
+//			'attributes' => array(
+//			),
+//		));
+//
+//		$this->add(array(
+//			'name' => 'district',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'District',
+//			),
+//			'attributes' => array(
+//			),
+//		));
+//
+//
+//		$this->add(array(
+//			'name' => 'quarter',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'Quarter',
+//			),
+//			'attributes' => array(
+//			),
+//		));
+//
+//		$this->add(array(
+//			'name' => 'city',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'City',
+//			),
+//			'attributes' => array(
+//			),
+//		));
 
 
 		$this->add(array(
