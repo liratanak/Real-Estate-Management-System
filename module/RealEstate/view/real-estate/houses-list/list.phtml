@@ -11,7 +11,18 @@
         url: "<?php echo $this->url('search') ?>/"
     });
 </script>
-
+<!--Slide show-->
+            <div id="myCarousel" class="carousel slide">
+<!--                 Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item"><img src="/assets/css/images/home.jpg" alt="" /></div>
+                        <div class="item"><img src="/assets/css/images/home2.jpg" alt="" /></div>
+                        <div class="item"><img src="/assets/css/images/home3.jpg" alt="" /></div>
+                </div>
+<!--                 Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+            </div>
 
 <?php
 foreach ($houses as $house) {

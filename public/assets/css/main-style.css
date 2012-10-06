@@ -1,51 +1,59 @@
 #content{
-	margin-top: 50px;
+    margin-top: 50px;
 }
 .footer {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 body {
-	padding-top: 20px;
-	padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    color: #333333;
+    direction: ltr;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    line-height: 1.28;
+    text-align: left;
+
 }
 
 /* Custom container */
 .container-narrow {
-	margin: 0 auto;
-	max-width: 700px;
+    margin: 0 auto;
+    max-width: 700px;
 }
 .container-narrow > hr {
-	margin: 30px 0;
+    margin: 30px 0;
 }
 
 #jquery-live-search{
-	background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 
 /* Main marketing message and sign up button */
 .jumbotron {
-	margin: 60px 0;
-	text-align: center;
+    margin: 60px 0;
+    text-align: center;
 }
 .jumbotron h1 {
-	font-size: 72px;
-	line-height: 1;
+    font-size: 72px;
+    line-height: 1;
 }
 .jumbotron .btn {
-	font-size: 21px;
-	padding: 14px 24px;
+    font-size: 21px;
+    padding: 14px 24px;
 }
 
 /* Supporting marketing content */
 .marketing {
-	margin: 60px 0;
+    margin: 60px 0;
 }
 .marketing p + h4 {
-	margin-top: 28px;
+    margin-top: 28px;
 }
 
 form dd label span {
-	display: inline-block;
-	width: 180px;
+    display: inline-block;
+    width: 180px;
 }

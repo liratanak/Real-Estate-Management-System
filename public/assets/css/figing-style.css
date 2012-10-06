@@ -6,35 +6,61 @@
         Purpose of the stylesheet follows.
 */
 
+
+body {
+/*    font-size: 12px !important;*/
+}
+
+/***********************Home page figing style***********************/
+
+/*slide show*/
+#myCarousel {
+    border: 1px solid #ccc;
+    height: 280px;
+    margin-top: 21px;
+/*    width: 870px;*/
+}
+.item img{
+    height: 280px;
+    width: 100%;
+}
 .form-search {
     margin-bottom: 20px !important;
 }
 
 .element {
+    background-color: #F1F2F6;
     height: 145px;
-    padding: 0 !important;
+    padding: 10px !important;
+     margin-bottom: 10px !important;
+    
+    font-size: 11px;
+/*    padding: 4px;*/
 }
 .small-img{
     float: left;
-    
+
     position: relative;
     border: 1px solid #ccc;
     height: 145px;
     width: 145px;
-    
+
     margin-right: 20px;
 }
 
 .short-info{
     float: left;
     margin-top: 15px;
-    
+
     width: 55%;
 }
 .price-info{
     float: left;
     margin-top: 15px;
-    
+
+}
+.price-info .price {
+    color: red;
 }
 
 .btn-group{
@@ -44,24 +70,147 @@
 
 .rateU{
     float: left;
-/*    margin-left: 145px;*/
+    /*    margin-left: 145px;*/
 }
 
 .ratD{
     float: left;
-/*    margin-left: -150px;*/
-/*    position: absolute;*/
+    /*    margin-left: -150px;*/
+    /*    position: absolute;*/
 }
 
 .rateNegative,
 .ratePositive{
     float: left;
-/*    position: absolute;*/
-/*    margin-left: 70px;*/
+    /*    position: absolute;*/
+    /*    margin-left: 70px;*/
 }
 
 form{
     margin: 0 !important;
-/*    position: absolute;*/
+    /*    position: absolute;*/
 }
 
+/***************************map************************/
+#map {
+    border: 1px solid #ccc;
+}
+
+/***************************Details page***************************/
+
+div#thumbnail {
+    border: 1px solid #ccc;
+    height: 280px;
+    margin-bottom: 20px;
+}
+div#thumbnail .thumImgSmall {
+    float: right;
+    position: relative;
+    width: 100px;
+    height: 280px;
+    border: 1px solid #ccc;
+    float: left;
+    position: relative;
+    
+}
+
+div#thumbnail .thumImgSmall img {
+    border: 1px solid #ccc;
+    float: left;
+    width: 100px;
+    height: 68px;
+}
+
+pre {
+    background-color: #F1F2F6 !important;
+}
+
+#comments {
+    font-size: 11px;
+}
+
+#commentTextarea {
+    /*    margin-top: 20px;*/
+}
+.profileImg {
+    height: 32px;
+    width: 32px;
+
+    float: left;
+    border: solid #ccc 1px;
+}
+.commentContent {
+/*    border: 1px solid #ccc;*/
+/*    width: 700px;*/
+    overflow: auto;
+    padding: 4px 0px 4px 10px;
+    
+     background-color: #F1F2F6;
+     margin-top: 1px;
+}
+label.UserName {
+    float: left;
+    margin-left: 8px;
+    font-weight:bold;
+    color: #3B5998;
+    font-size: 12px;
+}
+
+.commentText {
+/*        float: left;*/
+        margin-left: 90px;
+}
+
+/*Style of Command textArea*/
+#commentTextarea {
+    height: 20px;
+/*    margin-left: 8px;*/
+/*    padding-top: 4px;*/
+/*    padding-bottom: 4px;*/
+padding: 0px 0px 0px 5px;
+    overflow: hidden;
+    
+   -moz-box-sizing: border-box;
+    background-color: transparent;
+    box-shadow: none;
+    border: 0 none;
+    outline: 0 none;
+    color: #777777;
+    resize: none;
+/*    width: 100%;*/
+    width: 100%;
+    font-size: 11px;
+/*    padding: 3px;*/
+}
+#searchBox {
+    border-color: #BDC7D8;
+    border-style: solid;
+    border-width: 1px;
+    float: left;
+    height: 20px;
+    margin-left: 8px;
+    margin-top: 5px;
+    width: 80%;
+}
+
+#commentButton {
+    margin-left: 8px;
+    margin-top: 5px;
+    height: 20px;
+    border-color: #BDC7D8;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 12px;
+    padding: 0;
+    font-size: 11px;
+    width: 70px;
+}
+
+/*Create house page*/
+#ceateHousePage {
+    border: 1px #ccc solid;
+}
+
+#longitude {
+/*    float: left;*/
+}
