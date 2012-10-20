@@ -104,10 +104,22 @@ return array(
 			'search' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/search[/]',
+					'route' => '/search',
 					'defaults' => array(
 						'controller' => 'search',
 						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:term]',
+							'constraints' => array(
+								'term' => '[\/\ \%a-zA-Z0-9_-]+'
+							),
+						)
 					),
 				),
 			),
@@ -260,7 +272,7 @@ return array(
 		'exception_template' => 'error/index',
 		'template_map' => array(
 			'layout/layout' => __DIR__ . '/../view/layout/marketing-narrow.phtml',
-			'error/404' =>	__DIR__ . '/../view/error/404.phtml',
+			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
 		),
 		'template_path_stack' => array(
