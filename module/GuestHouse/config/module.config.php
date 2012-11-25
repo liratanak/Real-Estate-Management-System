@@ -13,7 +13,7 @@ return array(
 			'home' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '[/:lang]/guest-house',
+					'route' => '/',
 					'defaults' => array(
 						'controller' => 'GuestHouse\Controller\House',
 						'action' => 'index',
