@@ -18,12 +18,12 @@ CREATE TABLE `users` (
 	`validTimeStart` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`validTimeEnd` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
-        `firstName` varchar(50) NOT NULL DEFAULT '',
+	`firstName` varchar(50) NOT NULL DEFAULT '',
 	`lastName` varchar(50) NOT NULL DEFAULT '',
-        `sex` boolean,
+	`sex` boolean,
 	`email` varchar(50) NOT NULL DEFAULT '',
 	`lastLoginTime` int(11) UNSIGNED NOT NULL DEFAULT '0',
-        `typeId` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`typeId` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`userName` varchar(50) NOT NULL DEFAULT '',
 	`passWord` varchar(50) NOT NULL DEFAULT '',
 	`phoneNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
@@ -71,7 +71,7 @@ CREATE TABLE `rooms` (
 	`cost` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`available` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
 	`kitchen` tinyint(11) UNSIGNED NOT NULL DEFAULT '0',
-        `idSize` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`sizeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -117,7 +117,7 @@ CREATE TABLE `typesHouse` (
 	`validTimeEnd` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 	`nameType` varchar(50) NOT NULL DEFAULT '',
-	
+
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -143,7 +143,7 @@ CREATE TABLE `address` (
 	`district` varchar(70) NOT NULL DEFAULT '',
 	`quarter` varchar(70) NOT NULL DEFAULT '',
 	`city` varchar(70) NOT NULL DEFAULT '',
-	
+
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -164,10 +164,10 @@ CREATE TABLE `contacts` (
 	`phoneNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`emergencyContacts` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`emailAddress` varchar(70) NOT NULL DEFAULT '',
-	
-	`guestId` int(11) UNSIGNED NOT NULL DEFAULT '0',
-        `userId` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	
+
+	`guestUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`userUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -188,9 +188,9 @@ CREATE TABLE `guests` (
 	`firstname` varchar(50) NOT NULL DEFAULT '',
 	`lastname` varchar(50) NOT NULL DEFAULT '',
 	`sex` boolean ,
-        `age` int(2) UNSIGNED NOT NULL DEFAULT '0',
-        `job` varchar(50) NOT NULL DEFAULT '',
-	
+	`age` int(2) UNSIGNED NOT NULL DEFAULT '0',
+	`job` varchar(50) NOT NULL DEFAULT '',
+
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
