@@ -19,4 +19,19 @@ class HouseController extends AbstractActionController {
 		return new ViewModel();
 	}
 
+	public function helloAction() {
+		return new ViewModel();
+	}
+
+	public function viewAction() {
+		$slug = $this->params('slug');
+		return new ViewModel(array(
+			'slug' => $slug,
+		));
+	}
+
+	public function rssAction() {
+		return new ViewModel();
+	}
+
 }

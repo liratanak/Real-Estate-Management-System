@@ -11,7 +11,7 @@ return array(
 	'router' => array(
 		'routes' => array(
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
@@ -20,11 +20,46 @@ return array(
 					),
 				),
 			),
-			// The following is a route to simplify getting started creating
-			// new controllers and actions without needing to create a new
-			// module. Simply drop new controllers in, and you can access them
-			// using the path /application/:controller/:action
-			
+			'zend' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/hello',
+					'defaults' => array(
+						'controller' => 'GuestHouse\Controller\House',
+						'action' => 'hello',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					// Segment route for viewing one blog post
+					'post' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:slug]',
+							'constraints' => array(
+								'slug' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+								'action' => 'view'
+							)
+						)
+					),
+					// Literal route for viewing blog RSS feed
+					'rss' => array(
+						'type' => 'Zend\Mvc\Router\Http\Literal',
+						'options' => array(
+							'route' => '/rss',
+							'defaults' => array(
+								'action' => 'rss'
+							)
+						)
+					)
+				)
+			),
+		// The following is a route to simplify getting started creating
+		// new controllers and actions without needing to create a new
+		// module. Simply drop new controllers in, and you can access them
+		// using the path /application/:controller/:action
 //			'application' => array(
 //				'type' => 'Literal',
 //				'options' => array(
