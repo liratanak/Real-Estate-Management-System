@@ -243,8 +243,8 @@ CREATE TABLE `address` (
 	`validTimeStart` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`validTimeEnd` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
-	`houseNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	`streetNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`house` varchar(64) NOT NULL DEFAULT '',
+	`street` varchar(64) NOT NULL DEFAULT '',
 	`vilage` varchar(70) NOT NULL DEFAULT '',
 	`longitude` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`latitude` int(11) UNSIGNED NOT NULL DEFAULT '0',
