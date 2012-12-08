@@ -178,7 +178,7 @@ CREATE TABLE `rooms` (
 	`available` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
 	
 	`sizeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
-
+        `houseUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -203,7 +203,6 @@ CREATE TABLE `houses` (
 
 	`userUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`typeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	`roomUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`sizeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`addressUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
@@ -256,3 +255,18 @@ CREATE TABLE `address` (
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+INSERT INTO `address` (`uid`, `pid`, `hidden`, `disabled`, `deleted`, `createdTime`, `createdUserUid`, `lastModifiedTime`, `lastModifiedUserUid`, `validTimeStart`, `validTimeEnd`, `house`, `street`, `vilage`, `longitude`, `latitude`, `district`, `quarter`, `city`) VALUES
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '415', '907', 'tsk', 104.852, 11.6569, 'tsk', 'rsk', 'pp'),
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '538', '217', 'rs', 104.817, 11.4605, 'smj', 'mj', 'pp');
+
+INSERT INTO `houses` (`uid`, `pid`, `hidden`, `disabled`, `deleted`, `createdTime`, `createdUserUid`, `lastModifiedTime`, `lastModifiedUserUid`, `validTimeStart`, `validTimeEnd`, `isRoomRent`, `cost`, `available`, `otherInfo`, `userUid`, `typeUid`, `sizeUid`, `addressUid`) VALUES
+(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, '', 0, 1, 0, 1),
+(2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 1, '', 2, 1, 2, 2);
+
+
+INSERT INTO `sizes` (`uid`, `pid`, `hidden`, `disabled`, `deleted`, `createdTime`, `createdUserUid`, `lastModifiedTime`, `lastModifiedUserUid`, `validTimeStart`, `validTimeEnd`, `width`, `height`, `length`) VALUES (NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '4', '6', '30'), (NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '4', '4', '20');
+
+INSERT INTO `rooms` (`uid`, `pid`, `hidden`, `disabled`, `deleted`, `createdTime`, `createdUserUid`, `lastModifiedTime`, `lastModifiedUserUid`, `validTimeStart`, `validTimeEnd`, `roomNumber`, `cost`, `toilet`, `kitchen`, `available`, `sizeUid`, `houseUid`) VALUES (NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '50', '1', '1', '1', '1', '1'), (NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2', '50', '2', '2', '1', '1', '1');
+
+INSERT INTO `ghms`.`house_types` (`uid`, `pid`, `hidden`, `disabled`, `deleted`, `createdTime`, `createdUserUid`, `lastModifiedTime`, `lastModifiedUserUid`, `validTimeStart`, `validTimeEnd`, `title`) VALUES (NULL, '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', 'flat');
