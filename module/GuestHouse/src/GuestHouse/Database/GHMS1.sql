@@ -1,6 +1,6 @@
-CREATE DATABASE ghms
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci;
+-- CREATE DATABASE ghms
+--   DEFAULT CHARACTER SET utf8
+--   DEFAULT COLLATE utf8_general_ci;
 
 USE ghms;
 
@@ -18,14 +18,14 @@ CREATE TABLE `users` (
 	`validTimeStart` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`validTimeEnd` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
-	`username` varchar(50) NOT NULL DEFAULT '',
-	`password` varchar(50) NOT NULL DEFAULT '',
-	`sex` boolean,
+        `firstName` varchar(50) NOT NULL DEFAULT '',
+	`lastName` varchar(50) NOT NULL DEFAULT '',
+        `sex` boolean,
 	`email` varchar(50) NOT NULL DEFAULT '',
 	`lastLoginTime` int(11) UNSIGNED NOT NULL DEFAULT '0',
-
-	`firstname` varchar(50) NOT NULL DEFAULT '',
-	`lastname` varchar(50) NOT NULL DEFAULT '',
+        `typeId` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`userName` varchar(50) NOT NULL DEFAULT '',
+	`passWord` varchar(50) NOT NULL DEFAULT '',
 	`phoneNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 	PRIMARY KEY (`uid`)
@@ -48,8 +48,6 @@ CREATE TABLE `sizes` (
 	`width` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`height` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`length` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	
-	`roomUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -71,8 +69,9 @@ CREATE TABLE `rooms` (
 	`toilet` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
 	`roomNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`cost` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	`available` tinyint(11) UNSIGNED NOT NULL DEFAULT '0',
+	`available` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
 	`kitchen` tinyint(11) UNSIGNED NOT NULL DEFAULT '0',
+        `idSize` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -95,8 +94,6 @@ CREATE TABLE `houses` (
 	`cost` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`available` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
 	`otherInfo` TEXT  NOT NULL ,
-	
-	`roomUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`usersUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`typesUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`addressUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
@@ -106,7 +103,7 @@ CREATE TABLE `houses` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE `types`;
-CREATE TABLE `types` (
+CREATE TABLE `typesHouse` (
 	`uid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`pid`  int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
@@ -168,7 +165,8 @@ CREATE TABLE `contacts` (
 	`emergencyContacts` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`emailAddress` varchar(70) NOT NULL DEFAULT '',
 	
-	`guestUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`guestId` int(11) UNSIGNED NOT NULL DEFAULT '0',
+        `userId` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -187,13 +185,11 @@ CREATE TABLE `guests` (
 	`validTimeStart` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`validTimeEnd` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
-	`phoneNumber` int(11) UNSIGNED NOT NULL DEFAULT '0',
-	`emergencyContacts` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`firstname` varchar(50) NOT NULL DEFAULT '',
 	`lastname` varchar(50) NOT NULL DEFAULT '',
 	`sex` boolean ,
-	
-	`guestUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+        `age` int(2) UNSIGNED NOT NULL DEFAULT '0',
+        `job` varchar(50) NOT NULL DEFAULT '',
 	
 	PRIMARY KEY (`uid`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
