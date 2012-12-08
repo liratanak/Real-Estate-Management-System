@@ -204,6 +204,7 @@ CREATE TABLE `houses` (
 	`userUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`typeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`roomUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
+	`sizeUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`addressUid` int(11) UNSIGNED NOT NULL DEFAULT '0',
 
 

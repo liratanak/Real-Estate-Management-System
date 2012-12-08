@@ -15,7 +15,7 @@ return array(
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
-						'controller' => 'GuestHouse\Controller\House',
+						'controller' => 'RealEstate\Controller\House',
 						'action' => 'index',
 					),
 				),
@@ -105,7 +105,7 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'GuestHouse\Controller\House' => 'GuestHouse\Controller\HouseController'
+			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController'
 		),
 	),
 	'view_manager' => array(

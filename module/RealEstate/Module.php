@@ -8,10 +8,14 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace GuestHouse;
+namespace RealEstate;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\ResultSet\ResultSet;
+use RealEstate\Model\HouseRepository;
+use RealEstate\Model\House;
 
 class Module {
 
@@ -24,6 +28,24 @@ class Module {
 
 	public function getConfig() {
 		return include __DIR__ . '/config/module.config.php';
+	}
+
+	public function getServiceConfig() {
+		return array(
+			'factories' => array(
+				'RealEstate\Model\HouseRepository' => function($sm) {
+					$tableGateway = $sm->get('HouseGateway');
+					$table = new HouseRepository($tableGateway);
+					return $table;
+				},
+				'HouseGateway' => function ($sm) {
+					$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+					$resultSetPrototype = new ResultSet();
+					$resultSetPrototype->setArrayObjectPrototype(new House());
+					return new TableGateway('houses', $dbAdapter, null, $resultSetPrototype);
+				},
+			),
+		);
 	}
 
 	public function getAutoloaderConfig() {

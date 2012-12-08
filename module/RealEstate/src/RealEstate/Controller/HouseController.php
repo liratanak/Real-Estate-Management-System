@@ -8,15 +8,28 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace GuestHouse\Controller;
+namespace RealEstate\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use RealEstate\Model\HouseRepository;
 
 class HouseController extends AbstractActionController {
 
+	protected $houseRepository;
+
 	public function indexAction() {
-		return new ViewModel();
+		return new ViewModel(array(
+			'houses' => $this->getHouseRepository()->findAll()
+				));
+	}
+
+	public function getHouseRepository() {
+		if (!$this->houseRepository) {
+			$sm = $this->getServiceLocator();
+			$this->houseRepository = $sm->get('RealEstate\Model\HouseRepository');
+		}
+		return $this->houseRepository;
 	}
 
 	public function helloAction() {
@@ -26,8 +39,8 @@ class HouseController extends AbstractActionController {
 	public function viewAction() {
 		$slug = $this->params('slug');
 		return new ViewModel(array(
-			'slug' => $slug,
-		));
+					'slug' => $slug,
+				));
 	}
 
 	public function rssAction() {
