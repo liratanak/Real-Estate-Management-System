@@ -7,3 +7,4 @@ nbproject
 .project
 .settings
 composer.lock
+/config/autoload/local.php
