@@ -20,13 +20,13 @@ return array(
 					),
 				),
 			),
-			'zend' => array(
+			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
-					'route' => '/hello',
+					'route' => '/houses',
 					'defaults' => array(
-						'controller' => 'GuestHouse\Controller\House',
-						'action' => 'hello',
+						'controller' => 'RealEstate\Controller\House',
+						'action' => 'index',
 					),
 				),
 				'may_terminate' => true,
@@ -35,7 +35,7 @@ return array(
 					'post' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:slug]',
+							'route' => '/[:houseUid]',
 							'constraints' => array(
 								'slug' => '[a-zA-Z0-9_-]+'
 							),
@@ -55,6 +55,16 @@ return array(
 						)
 					)
 				)
+			),
+			'hello' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/hello',
+					'defaults' => array(
+						'controller' => 'RealEstate\Controller\Hello',
+						'action' => 'index',
+					),
+				),
 			),
 		// The following is a route to simplify getting started creating
 		// new controllers and actions without needing to create a new
@@ -105,7 +115,8 @@ return array(
 	),
 	'controllers' => array(
 		'invokables' => array(
-			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController'
+			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',
+			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController'
 		),
 	),
 	'view_manager' => array(

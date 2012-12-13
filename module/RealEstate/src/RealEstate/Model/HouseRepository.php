@@ -17,4 +17,8 @@ class HouseRepository {
 		return $resultSet;
 	}
 
+	public function selectByUid($houseUid) {
+
+	}
+
 }

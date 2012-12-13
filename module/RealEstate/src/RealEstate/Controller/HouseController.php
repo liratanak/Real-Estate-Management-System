@@ -32,14 +32,14 @@ class HouseController extends AbstractActionController {
 		return $this->houseRepository;
 	}
 
-	public function helloAction() {
-		return new ViewModel();
-	}
-
 	public function viewAction() {
-		$slug = $this->params('slug');
+		$houseUid = $this->params('houseUid');
+
+
+		$house = $houseUid;
+
 		return new ViewModel(array(
-					'slug' => $slug,
+					'house' => $house,
 				));
 	}
 
