@@ -65,6 +65,13 @@ return array(
 						'action' => 'index',
 					),
 				),
+				'options' => array(
+					'route' => '/view',
+					'defaults' => array(
+						'controller' => 'RealEstate\Controller\Hello',
+						'action' => 'view',
+					),
+				),
 			),
 		// The following is a route to simplify getting started creating
 		// new controllers and actions without needing to create a new
@@ -113,6 +120,7 @@ return array(
 			),
 		),
 	),
+	// add controlor
 	'controllers' => array(
 		'invokables' => array(
 			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',

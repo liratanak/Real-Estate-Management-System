@@ -16,6 +16,6 @@ use RealEstate\Model\HouseRepository;
 
 class HelloController extends AbstractActionController {
 	public function indexAction(){
-		
+
 	}
 }
