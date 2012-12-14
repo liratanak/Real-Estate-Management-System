@@ -5,10 +5,11 @@ Real-Estate-Management-System
 # Requirement #
 
 ##USER##
- in our system need three kinds of user
-		- Administrator
-		- Owner (these two kind have to login before use our system)
-		- Visitor (this kind of user don't need to register & login)
+in our system need three kinds of user
+
+	- Administrator
+	- Owner (these two kind have to login before use our system)
+	- Visitor (this kind of user don't need to register & login)
 
 ##Functionalities##
 **Visitor**
