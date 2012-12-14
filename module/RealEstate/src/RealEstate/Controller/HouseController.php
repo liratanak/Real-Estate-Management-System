@@ -20,7 +20,8 @@ class HouseController extends AbstractActionController {
 
 	public function indexAction() {
 		return new ViewModel(array(
-			'houses' => $this->getHouseRepository()->findAll()
+			'houses' => $this->getHouseRepository()->findAll(),
+			'action' => 'House'
 				));
 	}
 

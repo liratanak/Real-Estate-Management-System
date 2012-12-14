@@ -13,7 +13,9 @@ class HouseRepository {
 	}
 
 	public function findAll() {
+		
 		$resultSet = $this->tableGateway->select();
+		
 		return $resultSet;
 	}
 
