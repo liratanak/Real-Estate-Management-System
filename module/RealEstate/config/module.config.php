@@ -73,6 +73,16 @@ return array(
 					),
 				),
 			),
+                        'housesList' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/houses-list',
+					'defaults' => array(
+						'controller' => 'RealEstate\Controller\HousesList',
+						'action' => 'index',
+					),
+				),
+			),
 		// The following is a route to simplify getting started creating
 		// new controllers and actions without needing to create a new
 		// module. Simply drop new controllers in, and you can access them
@@ -124,7 +134,8 @@ return array(
 	'controllers' => array(
 		'invokables' => array(
 			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',
-			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController'
+			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController',
+                        'RealEstate\Controller\HousesList' => 'RealEstate\Controller\HousesListController'
 		),
 	),
 	'view_manager' => array(
