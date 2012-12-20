@@ -10,16 +10,33 @@
 return array(
 	'router' => array(
 		'routes' => array(
-			'home' => array(
+			'housesList' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
-						'controller' => 'RealEstate\Controller\House',
+						'controller' => 'RealEstate\Controller\HousesList',
 						'action' => 'index',
 					),
 				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					// Segment route for viewing one blog post
+					'post' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '[:action]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+//								'action' => 'view'
+							)
+						)
+					),
+				),
 			),
+			
 			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -56,33 +73,6 @@ return array(
 					)
 				)
 			),
-			'hello' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
-				'options' => array(
-					'route' => '/hello',
-					'defaults' => array(
-						'controller' => 'RealEstate\Controller\Hello',
-						'action' => 'index',
-					),
-				),
-				'options' => array(
-					'route' => '/view',
-					'defaults' => array(
-						'controller' => 'RealEstate\Controller\Hello',
-						'action' => 'view',
-					),
-				),
-			),
-                        'housesList' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
-				'options' => array(
-					'route' => '/',
-					'defaults' => array(
-						'controller' => 'RealEstate\Controller\HousesList',
-						'action' => 'index',
-					),
-				),
-			),
 		),
 	),
 	'service_manager' => array(
@@ -105,7 +95,7 @@ return array(
 		'invokables' => array(
 			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',
 			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController',
-                        'RealEstate\Controller\HousesList' => 'RealEstate\Controller\HousesListController'
+			'RealEstate\Controller\HousesList' => 'RealEstate\Controller\HousesListController'
 		),
 	),
 	'view_manager' => array(
