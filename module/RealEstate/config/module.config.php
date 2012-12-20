@@ -37,14 +37,14 @@ return array(
 						'options' => array(
 							'route' => '/[:houseUid]',
 							'constraints' => array(
-								'slug' => '[a-zA-Z0-9_-]+'
+								'houseUid' => '[a-zA-Z0-9_-]+'
 							),
 							'defaults' => array(
-								'action' => 'view'
+								'action' => 'viewDetail'
 							)
 						)
 					),
-					// Literal route for viewing blog RSS feed
+					// Literal route for viewing blog RSS feed (dynamic)
 					'rss' => array(
 						'type' => 'Zend\Mvc\Router\Http\Literal',
 						'options' => array(
@@ -61,17 +61,23 @@ return array(
 				'options' => array(
 					'route' => '/hello',
 					'defaults' => array(
-						'controller' => 'RealEstate\Controller\Hello',
-						'action' => 'index',
+						'controller' => 'RealEstate\Controller\House',
+						'action' => 'rss',
 					),
-				),
-				'options' => array(
-					'route' => '/view',
-					'defaults' => array(
-						'controller' => 'RealEstate\Controller\Hello',
-						'action' => 'view',
-					),
-				),
+				),'may_terminate' => true,
+				'child_routes' => array(
+
+					// Literal route for viewing blog RSS feed (static)
+					'view' => array(
+						'type' => 'Zend\Mvc\Router\Http\Literal',
+						'options' => array(
+							'route' => '/view',
+							'defaults' => array(
+								'action' => 'view'
+							)
+						)
+					)
+				)
 			),
 		// The following is a route to simplify getting started creating
 		// new controllers and actions without needing to create a new
