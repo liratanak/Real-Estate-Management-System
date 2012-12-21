@@ -36,7 +36,7 @@ class HouseRepository {
 	
 	public function countAll() {
 		$adapter = $this->tableGateway->getAdapter();
-                $sql = 'select count(uid) as count from houses';
+        $sql = 'select count(uid) as count from houses';
 		$statement = $adapter->query($sql);
 		$resultSet = $statement->execute();
 		
