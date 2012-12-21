@@ -10,15 +10,12 @@
 
 namespace Zend\Cache\Storage\Adapter;
 
-use Zend\Cache\Exception\LogicException;
-
 use Memcached as MemcachedResource;
 use stdClass;
 use Traversable;
 use Zend\Cache\Exception;
 use Zend\Cache\Storage\AvailableSpaceCapableInterface;
 use Zend\Cache\Storage\Capabilities;
-use Zend\Cache\Storage\Event;
 use Zend\Cache\Storage\FlushableInterface;
 use Zend\Cache\Storage\TotalSpaceCapableInterface;
 
@@ -56,7 +53,7 @@ class Memcached extends AbstractAdapter implements
     {
         if (static::$extMemcachedMajorVersion === null) {
             $v = (string) phpversion('memcached');
-            static::$extMemcachedMajorVersion = ($v !== '') ? (int)$v[0] : 0;
+            static::$extMemcachedMajorVersion = ($v !== '') ? (int) $v[0] : 0;
         }
 
         if (static::$extMemcachedMajorVersion < 1) {
@@ -528,7 +525,7 @@ class Memcached extends AbstractAdapter implements
     protected function internalDecrementItem(& $normalizedKey, & $value)
     {
         $memc     = $this->getMemcachedResource();
-        $value    = (int)$value;
+        $value    = (int) $value;
         $newValue = $memc->decrement($normalizedKey, $value);
 
         if ($newValue === false) {

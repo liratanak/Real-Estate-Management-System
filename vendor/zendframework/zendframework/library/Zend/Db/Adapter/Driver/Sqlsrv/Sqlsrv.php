@@ -133,16 +133,18 @@ class Sqlsrv implements DriverInterface
     public function createStatement($sqlOrResource = null)
     {
         $statement = clone $this->statementPrototype;
-        if (is_string($sqlOrResource)) {
-            $statement->setSql($sqlOrResource);
+        if (is_resource($sqlOrResource)) {
+            $statement->initialize($sqlOrResource);
+        } else {
             if (!$this->connection->isConnected()) {
                 $this->connection->connect();
             }
             $statement->initialize($this->connection->getResource());
-        } elseif (is_resource($sqlOrResource)) {
-            $statement->initialize($sqlOrResource); // will check the resource type
-        } else {
-            throw new Exception\InvalidArgumentException('createStatement() only accepts an SQL string or a Sqlsrv resource');
+            if (is_string($sqlOrResource)) {
+                $statement->setSql($sqlOrResource);
+            } elseif ($sqlOrResource != null) {
+                throw new Exception\InvalidArgumentException('createStatement() only accepts an SQL string or a Sqlsrv resource');
+            }
         }
         return $statement;
     }

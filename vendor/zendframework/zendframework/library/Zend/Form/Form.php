@@ -356,7 +356,7 @@ class Form extends Fieldset implements FormInterface
      */
     public function bindOnValidate()
     {
-        return (self::BIND_ON_VALIDATE === $this->bindOnValidate);
+        return (static::BIND_ON_VALIDATE === $this->bindOnValidate);
     }
 
     /**
@@ -552,16 +552,17 @@ class Form extends Fieldset implements FormInterface
                 if (isset($data[$key])) {
                     $count = count($data[$key]);
 
-                    for ($i = 0 ; $i != $count ; ++$i) {
+                    for ($i = 0; $i != $count; ++$i) {
                         $values[] = $value;
                     }
                 }
 
                 $value = $values;
             } else {
-                if (isset($data[$key])) {
-                    $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
+                if (!isset($data[$key])) {
+                    $data[$key] = array();
                 }
+                $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
             }
         }
     }
@@ -648,6 +649,14 @@ class Form extends Fieldset implements FormInterface
     {
         $formFactory  = $this->getFormFactory();
         $inputFactory = $formFactory->getInputFilterFactory();
+
+        if ($this instanceof InputFilterProviderInterface) {
+            foreach ($this->getInputFilterSpecification() as $name => $spec) {
+                $input = $inputFactory->createInput($spec);
+                $inputFilter->add($input, $name);
+            }
+        }
+
         foreach ($fieldset->getElements() as $element) {
             $name = $element->getName();
 

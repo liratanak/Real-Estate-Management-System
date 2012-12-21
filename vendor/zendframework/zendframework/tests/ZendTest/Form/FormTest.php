@@ -173,6 +173,15 @@ class FormTest extends TestCase
         $this->assertFalse($fooInput->isRequired());
     }
 
+    public function testInputProviderInterfaceAddsInputFilters()
+    {
+        $form = new TestAsset\InputFilterProvider();
+
+        $inputFilter = $form->getInputFilter();
+        $fooInput = $inputFilter->get('foo');
+        $this->assertTrue($fooInput->isRequired());
+    }
+
     public function testCallingIsValidRaisesExceptionIfNoDataSet()
     {
         $this->setExpectedException('Zend\Form\Exception\DomainException');
@@ -1023,6 +1032,34 @@ class FormTest extends TestCase
         ));
         $this->form->setData($dataWithoutCollection);
         $this->assertTrue($this->form->isValid());
+    }
+
+    public function testFieldsetValidationGroupStillPreparedWhenEmptyData()
+    {
+        $emptyData = array();
+
+        $this->populateForm();
+        $this->form->get('foobar')->add(array(
+            'type' => 'Zend\Form\Element\Collection',
+            'name' => 'categories',
+            'options' => array(
+                'count' => 0,
+                'target_element' => array(
+                    'type' => 'ZendTest\Form\TestAsset\CategoryFieldset'
+                )
+            )
+        ));
+
+        $this->form->setValidationGroup(array(
+            'foobar' => array(
+                'categories' => array(
+                    'name'
+                )
+            )
+        ));
+
+        $this->form->setData($emptyData);
+        $this->assertFalse($this->form->isValid());
     }
 
     public function testApplyObjectInputFilterToBaseFieldsetAndApplyValidationGroup()

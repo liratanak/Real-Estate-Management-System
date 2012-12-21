@@ -10,13 +10,43 @@
 return array(
 	'router' => array(
 		'routes' => array(
-			'home' => array(
+			'housesList' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
-						'controller' => 'RealEstate\Controller\House',
+						'controller' => 'RealEstate\Controller\HousesList',
 						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					// Segment route for viewing one blog post
+					'post' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '[:action]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+//								'action' => 'view'
+							),
+						),
+						'may_terminate' => true,
+							'child_routes' => array(
+								'default' => array(
+									'type' => 'Zend\Mvc\Router\Http\Segment',
+									'options' => array(
+										'route' => '/[:pageNumber]',
+										'constraints' => array(
+											'pageNumber' => '[0-9]*',
+										),
+										'defaults' => array(
+										),
+									),
+								),
+							),
 					),
 				),
 			),
@@ -56,59 +86,6 @@ return array(
 					)
 				)
 			),
-			'hello' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
-				'options' => array(
-					'route' => '/hello',
-					'defaults' => array(
-						'controller' => 'RealEstate\Controller\House',
-						'action' => 'rss',
-					),
-				),'may_terminate' => true,
-				'child_routes' => array(
-
-					// Literal route for viewing blog RSS feed (static)
-					'view' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => '/view',
-							'defaults' => array(
-								'action' => 'view'
-							)
-						)
-					)
-				)
-			),
-		// The following is a route to simplify getting started creating
-		// new controllers and actions without needing to create a new
-		// module. Simply drop new controllers in, and you can access them
-		// using the path /application/:controller/:action
-//			'application' => array(
-//				'type' => 'Literal',
-//				'options' => array(
-//					'route' => '/application',
-//					'defaults' => array(
-//						'__NAMESPACE__' => 'GuestHouse\Controller',
-//						'controller' => 'Index',
-//						'action' => 'index',
-//					),
-//				),
-//				'may_terminate' => true,
-//				'child_routes' => array(
-//					'default' => array(
-//						'type' => 'Segment',
-//						'options' => array(
-//							'route' => '/[:controller[/:action]]',
-//							'constraints' => array(
-//								'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//								'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//							),
-//							'defaults' => array(
-//							),
-//						),
-//					),
-//				),
-//			),
 		),
 	),
 	'service_manager' => array(
@@ -130,7 +107,8 @@ return array(
 	'controllers' => array(
 		'invokables' => array(
 			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',
-			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController'
+			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController',
+			'RealEstate\Controller\HousesList' => 'RealEstate\Controller\HousesListController'
 		),
 	),
 	'view_manager' => array(

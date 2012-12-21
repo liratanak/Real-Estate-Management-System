@@ -8,4 +8,14 @@ $baseDir = dirname($vendorDir);
 return array(
     'Zend\\' => $vendorDir . '/zendframework/zendframework/library/',
     'ZendTest\\' => $vendorDir . '/zendframework/zendframework/tests/',
+    'ZeDb' => $vendorDir . '/zendexperts/ze-db/src/',
+    'Symfony\\Component\\Console\\' => $vendorDir . '/symfony/console/',
+    'Doctrine\\ORM\\' => $vendorDir . '/doctrine/orm/lib/',
+    'Doctrine\\DBAL\\Migrations' => $vendorDir . '/doctrine/migrations/lib',
+    'Doctrine\\DBAL\\' => $vendorDir . '/doctrine/dbal/lib/',
+    'Doctrine\\Common\\DataFixtures' => $vendorDir . '/doctrine/data-fixtures/lib/',
+    'Doctrine\\Common\\' => $vendorDir . '/doctrine/common/lib/',
+    'DoctrineORMModule\\' => $vendorDir . '/doctrine/doctrine-orm-module/src/',
+    'DoctrineORMModuleTest\\' => $vendorDir . '/doctrine/doctrine-orm-module/tests/',
+    'DoctrineModule\\' => $vendorDir . '/doctrine/doctrine-module/src/',
 );
