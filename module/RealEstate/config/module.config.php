@@ -31,12 +31,25 @@ return array(
 							),
 							'defaults' => array(
 //								'action' => 'view'
-							)
-						)
+							),
+						),
+						'may_terminate' => true,
+							'child_routes' => array(
+								'default' => array(
+									'type' => 'Zend\Mvc\Router\Http\Segment',
+									'options' => array(
+										'route' => '/[:pageNumber]',
+										'constraints' => array(
+											'pageNumber' => '[0-9]*',
+										),
+										'defaults' => array(
+										),
+									),
+								),
+							),
 					),
 				),
 			),
-			
 			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
