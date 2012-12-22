@@ -81,7 +81,7 @@
 				<img class="small-img" src="../picture/home.jpg" alt=""/>
 				<div class="price-label">
 					<p>Price : <span class="price"><?php if($house['isRoomRent']==0){echo $house['houseCost'].'$';}elseif($house['isRoomRent']==1){echo $house['roomCostMin'].'$-'.$house['roomCostMax'].'$';} ?>/month</span></p>
-					<p>Post : 21-Dec-2012</p>
+					<p>Post : <?php echo $house['lastModifiedTime'];?></p>
 				</div>
 				<div class="short-info">
 					<p>Address : N<sup>o</sup> <?php echo $house['house'].' / '.$house['street'].' / '.$house['vilage'].' / '.$house['district'].' / '.$house['quarter'].' / '.$house['city']; ?> </p>
