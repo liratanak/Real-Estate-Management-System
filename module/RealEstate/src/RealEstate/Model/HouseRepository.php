@@ -21,7 +21,7 @@ class HouseRepository {
         
         public function listAll() {
 		$adapter = $this->tableGateway->getAdapter();
-                $sql = 'select h.uid,h.isRoomRent,h.lastModifiedTime as lastUpdate,t.title as Type,COUNT(r.uid) as NumberofRooms, h.cost as houseCost, max(r.cost) as roomCostMax, min(r.cost) as roomCostMin, a.*
+                $sql = 'select h.uid,h.isRoomRent, h.isRoomRent,h.lastModifiedTime as lastUpdate,t.title as Type,COUNT(r.uid) as NumberofRooms, h.cost as houseCost, max(r.cost) as roomCostMax, min(r.cost) as roomCostMin, a.*
                         from houses as h
                         left join rooms as r on h.uid = r.houseUid
                         join address as a on h.addressUid = a.uid
