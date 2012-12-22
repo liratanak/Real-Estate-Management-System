@@ -15,7 +15,10 @@ use Zend\View\Model\ViewModel;
 use RealEstate\Model\HouseRepository;
 
 class HelloController extends AbstractActionController {
-	public function indexAction(){
+//	public function indexAction(){
+//
+//	}
+	public function viewAction(){
 
 	}
 }

@@ -20,11 +20,13 @@ class HouseController extends AbstractActionController {
 
 	public function indexAction() {
 		return new ViewModel(array(
+
+						//ownself tell reporcetory to do this funtion
 			'houses' => $this->getHouseRepository()->findAll(),
-			'action' => 'House'
+//			'action' => 'aaa'
 				));
 	}
-
+	//manage all class name
 	public function getHouseRepository() {
 		if (!$this->houseRepository) {
 			$sm = $this->getServiceLocator();
@@ -35,17 +37,23 @@ class HouseController extends AbstractActionController {
 
 	public function viewAction() {
 		$houseUid = $this->params('houseUid');
-
-
-		$house = $houseUid;
-
 		return new ViewModel(array(
-					'house' => $house,
+					'houseUid' => $houseUid,
 				));
 	}
 
 	public function rssAction() {
-		return new ViewModel();
+
 	}
 
+		public function viewDetailAction(){
+			$houseUid = $this->params('houseUid');
+		return new ViewModel(array(
+						//ownself tell reporcetory to do this funtion
+			'house' => $this->getHouseRepository()->selectHouseById($houseUid)->current(),
+			'address' => $this->getHouseRepository()->selectAddressById($houseUid)->current(),
+			'size' => $this->getHouseRepository()->selectSizeById($houseUid)->current(),
+//			'user' => $this->getHouseRepository()->selectUserById($houseUid)->current(),
+		));
+	}
 }
