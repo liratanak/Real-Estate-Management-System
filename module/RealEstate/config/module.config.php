@@ -53,7 +53,7 @@ return array(
 			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
-					'route' => '/houses',
+					'route' => '/house',
 					'defaults' => array(
 						'controller' => 'RealEstate\Controller\House',
 						'action' => 'index',

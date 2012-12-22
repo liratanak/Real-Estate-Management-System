@@ -78,7 +78,7 @@
 			foreach ($houses as $house) {
 			?>
 			<div class="element">
-				<img class="small-img" src="../picture/home.jpg" alt=""/>
+				<a href="/house/<?php echo $house['uid'];?>"><img class="small-img" src="../picture/home.jpg" alt=""/></a>
 				<div class="price-label">
 					<p>Price : <span class="price"><?php if($house['isRoomRent']==0){echo $house['houseCost'].'$';}elseif($house['isRoomRent']==1){echo $house['roomCostMin'].'$-'.$house['roomCostMax'].'$';} ?>/month</span></p>
 					<p>Post : <?php echo $house['lastModifiedTime'];?></p>
