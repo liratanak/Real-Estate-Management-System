@@ -1,0 +1,164 @@
+<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" /> 
+<link rel="stylesheet" type="text/css" media="all" href="../css/text.css" /> 
+<link rel="stylesheet" type="text/css" media="all" href="../css/layout.css" />
+<link rel="stylesheet" type="text/css" media="print" href="../css/print.css" />
+
+<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css' />
+<script type="text/javascript" src="../js/script.js"></script>
+
+<div id="head">
+	<div id="logo">
+		<img src="../picture/logo.png" alt=""/>
+	</div>
+	<div id="Hnav">
+		<ul>
+			<li class="active"><a class="active" href="#home">Home</a></li>
+			<li><a href="#news">News</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="#about">About</a></li>
+			<li><a href="#news">News</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="#about">About</a></li>
+		</ul>
+
+	</div>
+</div>
+
+<div id="main-content">
+	<div id="colum-left">
+		<div class="category">
+			<h2>Category</h2>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+
+			</ul>
+		</div>
+		<div class="category">
+			<h2>Category</h2>
+			<ul>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+
+			</ul>
+		</div>
+
+		<div class="info-img">
+			<img src="../picture/info-img.png" alt=""/>
+		</div>
+		<div class="info-img">
+			<img src="../picture/info-img.png" alt=""/>
+		</div>
+	</div>
+
+
+	<div id="colum-right">
+		<div id="slid-show">
+			<img src="../picture/slid-show-img.png" alt=""/>
+
+		</div>
+		<div class="datable">
+			<div class="conten-head">
+				<ul>
+					<li><a href="#">Flate</a></li>
+					<li><a class="active" href="#">Hotel</a></li>
+				</ul>
+				<input  class="search-box" type="text"/>
+			</div>
+
+			<?php
+			foreach ($houses as $house) {
+			?>
+			<div class="element">
+				<img class="small-img" src="../picture/home.jpg" alt=""/>
+				<div class="price-label">
+					<p>Price : <span class="price"><?php if($house['isRoomRent']==0){echo $house['houseCost'].'$';}elseif($house['isRoomRent']==1){echo $house['roomCostMin'].'$-'.$house['roomCostMax'].'$';} ?>/month</span></p>
+					<p>Post : 21-Dec-2012</p>
+				</div>
+				<div class="short-info">
+					<p>Address : N<sup>o</sup> <?php echo $house['house'].' / '.$house['street'].' / '.$house['vilage'].' / '.$house['district'].' / '.$house['quarter'].' / '.$house['city']; ?> </p>
+
+					<p>Type : <span class="room-type"><?php echo $house['Type']; if($house['isRoomRent']==1){ echo ' Have '.$house['NumberofRooms'].' rooms';} ?></span></p>
+
+
+				</div>
+				<div class="vote">Vote: <span>6</span></div>
+			</div>
+			<?php 
+			}
+			?>
+
+			<div>
+
+				<?php
+				echo ($totalResult['count']) . '</br>';
+//$pageNumber = 29;
+				$totalResult = 30;
+
+				$pageNumber;
+
+				if ($totalResult > 15) {
+					$next = true;
+					if ($pageNumber > 6 && $pageNumber < $totalResult - 4) {
+						$i = $pageNumber - 5;
+						$end1 = $pageNumber;
+						$end2 = $pageNumber + 5;
+						echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
+					} elseif ($pageNumber < 7) {
+						$i = 1;
+						$end1 = $pageNumber;
+						$end2 = 11;
+					} elseif ($pageNumber > $totalResult - 5) {
+						$i = $totalResult - 9;
+						$end1 = $pageNumber;
+						$end2 = $totalResult + 1;
+						$next = false;
+						echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
+					}
+					if ($pageNumber)
+						echo '-';
+					for ($i; $i < $end1; $i++) {
+						echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
+					}
+					echo '<a href="/view/' . $i . '">| ' . $i . ' |</a> - ';
+					$i++;
+					for ($i; $i < $end2; $i++) {
+						echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
+					}
+					if ($next == true) {
+						echo '<a href="/view/' . ($pageNumber + 1) . '">{NEXT}</a>';
+					}
+				} else {
+					
+				}
+				?>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="footer">
+	<div id="footer-nav">
+		<ul>
+			<li class="active"><a  class="active" href="#home">Home &nbsp; |</a></li>
+			<li><a href="#news">News &nbsp; |</a></li>
+			<li><a href="#contact">Contact &nbsp; |</a></li>
+			<li><a href="#about">About &nbsp; |</a></li>
+			<li><a href="#news">News &nbsp; |</a></li>
+			<li><a href="#contact">Contact &nbsp; |</a></li>
+			<li><a href="#about">About</a></li>
+		</ul>
+
+	</div>
+	<p> Copyright<sup>&copy;</sup> by BST Web best solution team.</p>
+</div>
