@@ -16,13 +16,13 @@ return array(
 					'route' => '/',
 					'defaults' => array(
 						'controller' => 'RealEstate\Controller\HousesList',
-						'action' => 'index',
+						'action' => 'view',
 					),
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
 					// Segment route for viewing one blog post
-					'post' => array(
+					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
 							'route' => '[:action]',
