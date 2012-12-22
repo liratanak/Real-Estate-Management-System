@@ -51,8 +51,8 @@ class HouseController extends AbstractActionController {
 		return new ViewModel(array(
 						//ownself tell reporcetory to do this funtion
 			'house' => $this->getHouseRepository()->selectHouseById($houseUid)->current(),
-			'address' => $this->getHouseRepository()->selectAddressById($houseUid)->current(),
-			'size' => $this->getHouseRepository()->selectSizeById($houseUid)->current(),
+//			'address' => $this->getHouseRepository()->selectAddressById($houseUid)->current(),
+//			'size' => $this->getHouseRepository()->selectSizeById($houseUid)->current(),
 //			'user' => $this->getHouseRepository()->selectUserById($houseUid)->current(),
 		));
 	}

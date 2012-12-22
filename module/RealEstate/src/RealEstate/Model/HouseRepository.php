@@ -24,37 +24,39 @@ class HouseRepository {
 		$select = $sql->select();
 
 		$select->from(array('h' => 'houses'))
-//				->join(array('t' => 'house_types'), 'h.typeUid=t.uid')
-//				->join(array('a' => 'address'), 'h.addressUid=a.uid')
-//				->join(array('s' => 'sizes'), 'h.sizeUid=a.uid')
+				->join(array('t' => 'house_types'), 'h.typeUid=t.uid')
+				->join(array('a' => 'address'), 'h.addressUid=a.uid')
+				->join(array('s' => 'sizes'), 'h.sizeUid=a.uid')
+				->join(array('u'=>'users'), 'h.userUid=u.uid')
+				->join(array('p'=>'personal_details'), 'p.userUid=u.uid')
 				->where("h.uid = " . "$houseUid");
 		$statement = $sql->prepareStatementForSqlObject($select);
 		$results = $statement->execute();
 		return $results;
 	}
 
-	public function selectAddressById($houseUid) {
-		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
-		$select = $sql->select();
+//	public function selectAddressById($houseUid) {
+//		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
+//		$select = $sql->select();
+//
+//		$select->from(array('a' => 'address'))
+//				->where("a.uid = " . "$houseUid");
+//		$statement = $sql->prepareStatementForSqlObject($select);
+//		$results = $statement->execute();
+//		return $results;
+//	}
 
-		$select->from(array('a' => 'address'))
-				->where("a.uid = " . "$houseUid");
-		$statement = $sql->prepareStatementForSqlObject($select);
-		$results = $statement->execute();
-		return $results;
-	}
-
-	public function selectSizeById($houseUid) {
-		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
-		$select = $sql->select();
-
-
-		$select->from(array('s' => 'sizes'), array('s.width', 's.height', 's.length'))
-				->where("s.uid = " . "$houseUid");
-		$statement = $sql->prepareStatementForSqlObject($select);
-		$results = $statement->execute();
-		return $results;
-	}
+//	public function selectSizeById($houseUid) {
+//		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
+//		$select = $sql->select();
+//
+//
+//		$select->from(array('s' => 'sizes'), array('s.width', 's.height', 's.length'))
+//				->where("s.uid = " . "$houseUid");
+//		$statement = $sql->prepareStatementForSqlObject($select);
+//		$results = $statement->execute();
+//		return $results;
+//	}
 
 	public function listAll() {
 		$adapter = $this->tableGateway->getAdapter();
@@ -84,8 +86,8 @@ class HouseRepository {
 //		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
 //		$select = $sql->select();
 //
-//		$select->from(array('u'=>'users'),
-//						array('u'=>'users'))
+//		$select->from(array('p'=>'personal_details'))
+//				->join(array('u'=>'users'), 'p.userUid=u.uid' )
 //				->where("u.uid = " . "$houseUid");
 //		$statement = $sql->prepareStatementForSqlObject($select);
 //		$results = $statement->execute();
