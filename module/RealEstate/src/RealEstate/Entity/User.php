@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * User
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class Address
+class User
 {
     /**
      * @var integer
@@ -94,58 +94,40 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="username", type="string", length=50, nullable=false)
      */
-    private $house;
+    private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\Column(name="password", type="string", length=50, nullable=false)
      */
-    private $street;
+    private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
+     * @ORM\Column(name="email", type="string", length=50, nullable=false)
      */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
+    private $email;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
+     * @ORM\Column(name="lastLoginTime", type="integer", nullable=false)
      */
-    private $longitude;
+    private $lastlogintime;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Group
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Group")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="group", referencedColumnName="uid")
+     * })
      */
-    private $latitude;
+    private $group;
 
 
 
@@ -163,7 +145,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return User
      */
     public function setPid($pid)
     {
@@ -186,7 +168,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return User
      */
     public function setHidden($hidden)
     {
@@ -209,7 +191,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return User
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +214,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return User
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +237,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return User
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +260,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return User
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +283,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return User
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +306,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return User
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +329,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return User
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +352,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return User
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +372,117 @@ class Address
     }
 
     /**
-     * Set house
+     * Set username
      *
-     * @param string $house
-     * @return Address
+     * @param string $username
+     * @return User
      */
-    public function setHouse($house)
+    public function setUsername($username)
     {
-        $this->house = $house;
+        $this->username = $username;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get username
      *
      * @return string 
      */
-    public function getHouse()
+    public function getUsername()
     {
-        return $this->house;
+        return $this->username;
     }
 
     /**
-     * Set street
+     * Set password
      *
-     * @param string $street
-     * @return Address
+     * @param string $password
+     * @return User
      */
-    public function setStreet($street)
+    public function setPassword($password)
     {
-        $this->street = $street;
+        $this->password = $password;
     
         return $this;
     }
 
     /**
-     * Get street
+     * Get password
      *
      * @return string 
      */
-    public function getStreet()
+    public function getPassword()
     {
-        return $this->street;
+        return $this->password;
     }
 
     /**
-     * Set vilage
+     * Set email
      *
-     * @param string $vilage
-     * @return Address
+     * @param string $email
+     * @return User
      */
-    public function setVilage($vilage)
+    public function setEmail($email)
     {
-        $this->vilage = $vilage;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get vilage
+     * Get email
      *
      * @return string 
      */
-    public function getVilage()
+    public function getEmail()
     {
-        return $this->vilage;
+        return $this->email;
     }
 
     /**
-     * Set district
+     * Set lastlogintime
      *
-     * @param string $district
-     * @return Address
+     * @param integer $lastlogintime
+     * @return User
      */
-    public function setDistrict($district)
+    public function setLastlogintime($lastlogintime)
     {
-        $this->district = $district;
+        $this->lastlogintime = $lastlogintime;
     
         return $this;
     }
 
     /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
+     * Get lastlogintime
      *
      * @return integer 
      */
-    public function getLongitude()
+    public function getLastlogintime()
     {
-        return $this->longitude;
+        return $this->lastlogintime;
     }
 
     /**
-     * Set latitude
+     * Set group
      *
-     * @param integer $latitude
-     * @return Address
+     * @param \RealEstate\Entity\Group $group
+     * @return User
      */
-    public function setLatitude($latitude)
+    public function setGroup(\RealEstate\Entity\Group $group = null)
     {
-        $this->latitude = $latitude;
+        $this->group = $group;
     
         return $this;
     }
 
     /**
-     * Get latitude
+     * Get group
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Group 
      */
-    public function getLatitude()
+    public function getGroup()
     {
-        return $this->latitude;
+        return $this->group;
     }
 }

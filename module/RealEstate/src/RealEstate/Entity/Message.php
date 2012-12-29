@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * Message
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="message")
  * @ORM\Entity
  */
-class Address
+class Message
 {
     /**
      * @var integer
@@ -92,60 +92,31 @@ class Address
     private $validtimeend;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="content", type="boolean", nullable=false)
      */
-    private $house;
+    private $content;
 
     /**
-     * @var string
+     * @var \RealEstate\Entity\User
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="uid")
+     * })
      */
-    private $street;
+    private $fromuser;
 
     /**
-     * @var string
+     * @var \RealEstate\Entity\User
      *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="toUser", referencedColumnName="uid")
+     * })
      */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
-     */
-    private $longitude;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
-     */
-    private $latitude;
+    private $touser;
 
 
 
@@ -163,7 +134,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return Message
      */
     public function setPid($pid)
     {
@@ -186,7 +157,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return Message
      */
     public function setHidden($hidden)
     {
@@ -209,7 +180,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return Message
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +203,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return Message
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +226,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return Message
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +249,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return Message
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +272,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return Message
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +295,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return Message
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +318,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return Message
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +341,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return Message
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +361,71 @@ class Address
     }
 
     /**
-     * Set house
+     * Set content
      *
-     * @param string $house
-     * @return Address
+     * @param boolean $content
+     * @return Message
      */
-    public function setHouse($house)
+    public function setContent($content)
     {
-        $this->house = $house;
+        $this->content = $content;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get content
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getHouse()
+    public function getContent()
     {
-        return $this->house;
+        return $this->content;
     }
 
     /**
-     * Set street
+     * Set fromuser
      *
-     * @param string $street
-     * @return Address
+     * @param \RealEstate\Entity\User $fromuser
+     * @return Message
      */
-    public function setStreet($street)
+    public function setFromuser(\RealEstate\Entity\User $fromuser = null)
     {
-        $this->street = $street;
+        $this->fromuser = $fromuser;
     
         return $this;
     }
 
     /**
-     * Get street
+     * Get fromuser
      *
-     * @return string 
+     * @return \RealEstate\Entity\User 
      */
-    public function getStreet()
+    public function getFromuser()
     {
-        return $this->street;
+        return $this->fromuser;
     }
 
     /**
-     * Set vilage
+     * Set touser
      *
-     * @param string $vilage
-     * @return Address
+     * @param \RealEstate\Entity\User $touser
+     * @return Message
      */
-    public function setVilage($vilage)
+    public function setTouser(\RealEstate\Entity\User $touser = null)
     {
-        $this->vilage = $vilage;
+        $this->touser = $touser;
     
         return $this;
     }
 
     /**
-     * Get vilage
+     * Get touser
      *
-     * @return string 
+     * @return \RealEstate\Entity\User 
      */
-    public function getVilage()
+    public function getTouser()
     {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return integer 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return integer 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
+        return $this->touser;
     }
 }

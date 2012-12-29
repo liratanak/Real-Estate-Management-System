@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * HouseType
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="house_type")
  * @ORM\Entity
  */
-class Address
+class HouseType
 {
     /**
      * @var integer
@@ -94,58 +94,9 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="title", type="string", length=50, nullable=false)
      */
-    private $house;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
-     */
-    private $street;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
-     */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
-     */
-    private $longitude;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
-     */
-    private $latitude;
+    private $title;
 
 
 
@@ -163,7 +114,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return HouseType
      */
     public function setPid($pid)
     {
@@ -186,7 +137,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return HouseType
      */
     public function setHidden($hidden)
     {
@@ -209,7 +160,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return HouseType
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +183,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return HouseType
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +206,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return HouseType
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +229,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return HouseType
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +252,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return HouseType
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +275,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return HouseType
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +298,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return HouseType
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +321,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return HouseType
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +341,25 @@ class Address
     }
 
     /**
-     * Set house
+     * Set title
      *
-     * @param string $house
-     * @return Address
+     * @param string $title
+     * @return HouseType
      */
-    public function setHouse($house)
+    public function setTitle($title)
     {
-        $this->house = $house;
+        $this->title = $title;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get title
      *
      * @return string 
      */
-    public function getHouse()
+    public function getTitle()
     {
-        return $this->house;
-    }
-
-    /**
-     * Set street
-     *
-     * @param string $street
-     * @return Address
-     */
-    public function setStreet($street)
-    {
-        $this->street = $street;
-    
-        return $this;
-    }
-
-    /**
-     * Get street
-     *
-     * @return string 
-     */
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set vilage
-     *
-     * @param string $vilage
-     * @return Address
-     */
-    public function setVilage($vilage)
-    {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return integer 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return integer 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
+        return $this->title;
     }
 }

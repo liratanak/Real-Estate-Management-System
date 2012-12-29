@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * PersonalDetail
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="personal_detail")
  * @ORM\Entity
  */
-class Address
+class PersonalDetail
 {
     /**
      * @var integer
@@ -94,58 +94,85 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
      */
-    private $house;
+    private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
      */
-    private $street;
+    private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
+     * @ORM\Column(name="gender", type="string", length=1, nullable=false)
      */
-    private $vilage;
+    private $gender;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
+     * @ORM\Column(name="job", type="string", length=50, nullable=false)
      */
-    private $district;
+    private $job;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="age", type="boolean", nullable=false)
+     */
+    private $age;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
+     * @ORM\Column(name="email", type="string", length=50, nullable=false)
      */
-    private $quarter;
+    private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
+     * @ORM\Column(name="phoneNumber1", type="string", length=50, nullable=false)
      */
-    private $city;
+    private $phonenumber1;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
+     * @ORM\Column(name="phoneNumber2", type="string", length=50, nullable=false)
      */
-    private $longitude;
+    private $phonenumber2;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
+     * @ORM\Column(name="others", type="text", nullable=false)
      */
-    private $latitude;
+    private $others;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="uid")
+     * })
+     */
+    private $user;
+
+    /**
+     * @var \RealEstate\Entity\PersonalType
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\PersonalType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type", referencedColumnName="uid")
+     * })
+     */
+    private $type;
 
 
 
@@ -163,7 +190,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return PersonalDetail
      */
     public function setPid($pid)
     {
@@ -186,7 +213,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return PersonalDetail
      */
     public function setHidden($hidden)
     {
@@ -209,7 +236,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return PersonalDetail
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +259,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return PersonalDetail
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +282,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return PersonalDetail
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +305,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return PersonalDetail
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +328,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return PersonalDetail
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +351,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return PersonalDetail
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +374,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return PersonalDetail
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +397,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return PersonalDetail
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +417,255 @@ class Address
     }
 
     /**
-     * Set house
+     * Set firstname
      *
-     * @param string $house
-     * @return Address
+     * @param string $firstname
+     * @return PersonalDetail
      */
-    public function setHouse($house)
+    public function setFirstname($firstname)
     {
-        $this->house = $house;
+        $this->firstname = $firstname;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get firstname
      *
      * @return string 
      */
-    public function getHouse()
+    public function getFirstname()
     {
-        return $this->house;
+        return $this->firstname;
     }
 
     /**
-     * Set street
+     * Set lastname
      *
-     * @param string $street
-     * @return Address
+     * @param string $lastname
+     * @return PersonalDetail
      */
-    public function setStreet($street)
+    public function setLastname($lastname)
     {
-        $this->street = $street;
+        $this->lastname = $lastname;
     
         return $this;
     }
 
     /**
-     * Get street
+     * Get lastname
      *
      * @return string 
      */
-    public function getStreet()
+    public function getLastname()
     {
-        return $this->street;
+        return $this->lastname;
     }
 
     /**
-     * Set vilage
+     * Set gender
      *
-     * @param string $vilage
-     * @return Address
+     * @param string $gender
+     * @return PersonalDetail
      */
-    public function setVilage($vilage)
+    public function setGender($gender)
     {
-        $this->vilage = $vilage;
+        $this->gender = $gender;
     
         return $this;
     }
 
     /**
-     * Get vilage
+     * Get gender
      *
      * @return string 
      */
-    public function getVilage()
+    public function getGender()
     {
-        return $this->vilage;
+        return $this->gender;
     }
 
     /**
-     * Set district
+     * Set job
      *
-     * @param string $district
-     * @return Address
+     * @param string $job
+     * @return PersonalDetail
      */
-    public function setDistrict($district)
+    public function setJob($job)
     {
-        $this->district = $district;
+        $this->job = $job;
     
         return $this;
     }
 
     /**
-     * Get district
+     * Get job
      *
      * @return string 
      */
-    public function getDistrict()
+    public function getJob()
     {
-        return $this->district;
+        return $this->job;
     }
 
     /**
-     * Set quarter
+     * Set age
      *
-     * @param string $quarter
-     * @return Address
+     * @param boolean $age
+     * @return PersonalDetail
      */
-    public function setQuarter($quarter)
+    public function setAge($age)
     {
-        $this->quarter = $quarter;
+        $this->age = $age;
     
         return $this;
     }
 
     /**
-     * Get quarter
+     * Get age
+     *
+     * @return boolean 
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return PersonalDetail
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
      *
      * @return string 
      */
-    public function getQuarter()
+    public function getEmail()
     {
-        return $this->quarter;
+        return $this->email;
     }
 
     /**
-     * Set city
+     * Set phonenumber1
      *
-     * @param string $city
-     * @return Address
+     * @param string $phonenumber1
+     * @return PersonalDetail
      */
-    public function setCity($city)
+    public function setPhonenumber1($phonenumber1)
     {
-        $this->city = $city;
+        $this->phonenumber1 = $phonenumber1;
     
         return $this;
     }
 
     /**
-     * Get city
+     * Get phonenumber1
      *
      * @return string 
      */
-    public function getCity()
+    public function getPhonenumber1()
     {
-        return $this->city;
+        return $this->phonenumber1;
     }
 
     /**
-     * Set longitude
+     * Set phonenumber2
      *
-     * @param integer $longitude
-     * @return Address
+     * @param string $phonenumber2
+     * @return PersonalDetail
      */
-    public function setLongitude($longitude)
+    public function setPhonenumber2($phonenumber2)
     {
-        $this->longitude = $longitude;
+        $this->phonenumber2 = $phonenumber2;
     
         return $this;
     }
 
     /**
-     * Get longitude
+     * Get phonenumber2
      *
-     * @return integer 
+     * @return string 
      */
-    public function getLongitude()
+    public function getPhonenumber2()
     {
-        return $this->longitude;
+        return $this->phonenumber2;
     }
 
     /**
-     * Set latitude
+     * Set others
      *
-     * @param integer $latitude
-     * @return Address
+     * @param string $others
+     * @return PersonalDetail
      */
-    public function setLatitude($latitude)
+    public function setOthers($others)
     {
-        $this->latitude = $latitude;
+        $this->others = $others;
     
         return $this;
     }
 
     /**
-     * Get latitude
+     * Get others
      *
-     * @return integer 
+     * @return string 
      */
-    public function getLatitude()
+    public function getOthers()
     {
-        return $this->latitude;
+        return $this->others;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \RealEstate\Entity\User $user
+     * @return PersonalDetail
+     */
+    public function setUser(\RealEstate\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \RealEstate\Entity\PersonalType $type
+     * @return PersonalDetail
+     */
+    public function setType(\RealEstate\Entity\PersonalType $type = null)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \RealEstate\Entity\PersonalType 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

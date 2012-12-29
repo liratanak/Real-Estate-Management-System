@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * Group
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="group")
  * @ORM\Entity
  */
-class Address
+class Group
 {
     /**
      * @var integer
@@ -94,60 +94,33 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="title", type="string", length=64, nullable=false)
      */
-    private $house;
+    private $title;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Permission", inversedBy="group")
+     * @ORM\JoinTable(name="group_permission",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="group", referencedColumnName="uid")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="permission", referencedColumnName="uid")
+     *   }
+     * )
      */
-    private $street;
+    private $permission;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
+     * Constructor
      */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
-     */
-    private $longitude;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
-     */
-    private $latitude;
-
-
+    public function __construct()
+    {
+        $this->permission = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get uid
@@ -163,7 +136,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return Group
      */
     public function setPid($pid)
     {
@@ -186,7 +159,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return Group
      */
     public function setHidden($hidden)
     {
@@ -209,7 +182,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return Group
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +205,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return Group
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +228,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return Group
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +251,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return Group
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +274,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return Group
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +297,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return Group
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +320,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return Group
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +343,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return Group
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +363,58 @@ class Address
     }
 
     /**
-     * Set house
+     * Set title
      *
-     * @param string $house
-     * @return Address
+     * @param string $title
+     * @return Group
      */
-    public function setHouse($house)
+    public function setTitle($title)
     {
-        $this->house = $house;
+        $this->title = $title;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get title
      *
      * @return string 
      */
-    public function getHouse()
+    public function getTitle()
     {
-        return $this->house;
+        return $this->title;
     }
 
     /**
-     * Set street
+     * Add permission
      *
-     * @param string $street
-     * @return Address
+     * @param \RealEstate\Entity\Permission $permission
+     * @return Group
      */
-    public function setStreet($street)
+    public function addPermission(\RealEstate\Entity\Permission $permission)
     {
-        $this->street = $street;
+        $this->permission[] = $permission;
     
         return $this;
     }
 
     /**
-     * Get street
+     * Remove permission
      *
-     * @return string 
+     * @param \RealEstate\Entity\Permission $permission
      */
-    public function getStreet()
+    public function removePermission(\RealEstate\Entity\Permission $permission)
     {
-        return $this->street;
+        $this->permission->removeElement($permission);
     }
 
     /**
-     * Set vilage
+     * Get permission
      *
-     * @param string $vilage
-     * @return Address
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function setVilage($vilage)
+    public function getPermission()
     {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return integer 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return integer 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
+        return $this->permission;
     }
 }

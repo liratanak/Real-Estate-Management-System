@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * Image
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="image")
  * @ORM\Entity
  */
-class Address
+class Image
 {
     /**
      * @var integer
@@ -94,58 +94,16 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="originalFileName", type="string", length=255, nullable=false)
      */
-    private $house;
+    private $originalfilename;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\Column(name="path", type="string", length=255, nullable=false)
      */
-    private $street;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
-     */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
-     */
-    private $longitude;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
-     */
-    private $latitude;
+    private $path;
 
 
 
@@ -163,7 +121,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return Image
      */
     public function setPid($pid)
     {
@@ -186,7 +144,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return Image
      */
     public function setHidden($hidden)
     {
@@ -209,7 +167,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return Image
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +190,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return Image
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +213,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return Image
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +236,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return Image
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +259,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return Image
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +282,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return Image
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +305,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return Image
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +328,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return Image
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +348,48 @@ class Address
     }
 
     /**
-     * Set house
+     * Set originalfilename
      *
-     * @param string $house
-     * @return Address
+     * @param string $originalfilename
+     * @return Image
      */
-    public function setHouse($house)
+    public function setOriginalfilename($originalfilename)
     {
-        $this->house = $house;
+        $this->originalfilename = $originalfilename;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get originalfilename
      *
      * @return string 
      */
-    public function getHouse()
+    public function getOriginalfilename()
     {
-        return $this->house;
+        return $this->originalfilename;
     }
 
     /**
-     * Set street
+     * Set path
      *
-     * @param string $street
-     * @return Address
+     * @param string $path
+     * @return Image
      */
-    public function setStreet($street)
+    public function setPath($path)
     {
-        $this->street = $street;
+        $this->path = $path;
     
         return $this;
     }
 
     /**
-     * Get street
+     * Get path
      *
      * @return string 
      */
-    public function getStreet()
+    public function getPath()
     {
-        return $this->street;
-    }
-
-    /**
-     * Set vilage
-     *
-     * @param string $vilage
-     * @return Address
-     */
-    public function setVilage($vilage)
-    {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return integer 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return integer 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
+        return $this->path;
     }
 }

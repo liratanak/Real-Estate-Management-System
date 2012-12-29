@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * House
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="house")
  * @ORM\Entity
  */
-class Address
+class House
 {
     /**
      * @var integer
@@ -92,60 +92,79 @@ class Address
     private $validtimeend;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="isRoomRent", type="boolean", nullable=false)
      */
-    private $house;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
-     */
-    private $street;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
-     */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
+    private $isroomrent;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
+     * @ORM\Column(name="cost", type="integer", nullable=false)
      */
-    private $longitude;
+    private $cost;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
+     * @ORM\Column(name="available", type="boolean", nullable=false)
      */
-    private $latitude;
+    private $available;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="imagePathJsonStringList", type="text", nullable=false)
+     */
+    private $imagepathjsonstringlist;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otherInfo", type="text", nullable=false)
+     */
+    private $otherinfo;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user", referencedColumnName="uid")
+     * })
+     */
+    private $user;
+
+    /**
+     * @var \RealEstate\Entity\HouseType
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\HouseType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type", referencedColumnName="uid")
+     * })
+     */
+    private $type;
+
+    /**
+     * @var \RealEstate\Entity\Size
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Size")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="size", referencedColumnName="uid")
+     * })
+     */
+    private $size;
+
+    /**
+     * @var \RealEstate\Entity\Address
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Address")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="address", referencedColumnName="uid")
+     * })
+     */
+    private $address;
 
 
 
@@ -163,7 +182,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return House
      */
     public function setPid($pid)
     {
@@ -186,7 +205,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return House
      */
     public function setHidden($hidden)
     {
@@ -209,7 +228,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return House
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +251,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return House
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +274,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return House
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +297,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return House
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +320,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return House
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +343,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return House
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +366,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return House
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +389,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return House
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +409,209 @@ class Address
     }
 
     /**
-     * Set house
+     * Set isroomrent
      *
-     * @param string $house
-     * @return Address
+     * @param boolean $isroomrent
+     * @return House
      */
-    public function setHouse($house)
+    public function setIsroomrent($isroomrent)
     {
-        $this->house = $house;
+        $this->isroomrent = $isroomrent;
     
         return $this;
     }
 
     /**
-     * Get house
+     * Get isroomrent
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getHouse()
+    public function getIsroomrent()
     {
-        return $this->house;
+        return $this->isroomrent;
     }
 
     /**
-     * Set street
+     * Set cost
      *
-     * @param string $street
-     * @return Address
+     * @param integer $cost
+     * @return House
      */
-    public function setStreet($street)
+    public function setCost($cost)
     {
-        $this->street = $street;
+        $this->cost = $cost;
     
         return $this;
     }
 
     /**
-     * Get street
-     *
-     * @return string 
-     */
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set vilage
-     *
-     * @param string $vilage
-     * @return Address
-     */
-    public function setVilage($vilage)
-    {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
+     * Get cost
      *
      * @return integer 
      */
-    public function getLongitude()
+    public function getCost()
     {
-        return $this->longitude;
+        return $this->cost;
     }
 
     /**
-     * Set latitude
+     * Set available
      *
-     * @param integer $latitude
-     * @return Address
+     * @param boolean $available
+     * @return House
      */
-    public function setLatitude($latitude)
+    public function setAvailable($available)
     {
-        $this->latitude = $latitude;
+        $this->available = $available;
     
         return $this;
     }
 
     /**
-     * Get latitude
+     * Get available
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getLatitude()
+    public function getAvailable()
     {
-        return $this->latitude;
+        return $this->available;
+    }
+
+    /**
+     * Set imagepathjsonstringlist
+     *
+     * @param string $imagepathjsonstringlist
+     * @return House
+     */
+    public function setImagepathjsonstringlist($imagepathjsonstringlist)
+    {
+        $this->imagepathjsonstringlist = $imagepathjsonstringlist;
+    
+        return $this;
+    }
+
+    /**
+     * Get imagepathjsonstringlist
+     *
+     * @return string 
+     */
+    public function getImagepathjsonstringlist()
+    {
+        return $this->imagepathjsonstringlist;
+    }
+
+    /**
+     * Set otherinfo
+     *
+     * @param string $otherinfo
+     * @return House
+     */
+    public function setOtherinfo($otherinfo)
+    {
+        $this->otherinfo = $otherinfo;
+    
+        return $this;
+    }
+
+    /**
+     * Get otherinfo
+     *
+     * @return string 
+     */
+    public function getOtherinfo()
+    {
+        return $this->otherinfo;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \RealEstate\Entity\User $user
+     * @return House
+     */
+    public function setUser(\RealEstate\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \RealEstate\Entity\HouseType $type
+     * @return House
+     */
+    public function setType(\RealEstate\Entity\HouseType $type = null)
+    {
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \RealEstate\Entity\HouseType 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set size
+     *
+     * @param \RealEstate\Entity\Size $size
+     * @return House
+     */
+    public function setSize(\RealEstate\Entity\Size $size = null)
+    {
+        $this->size = $size;
+    
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return \RealEstate\Entity\Size 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set address
+     *
+     * @param \RealEstate\Entity\Address $address
+     * @return House
+     */
+    public function setAddress(\RealEstate\Entity\Address $address = null)
+    {
+        $this->address = $address;
+    
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return \RealEstate\Entity\Address 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

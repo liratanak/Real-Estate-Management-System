@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * Size
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="size")
  * @ORM\Entity
  */
-class Address
+class Size
 {
     /**
      * @var integer
@@ -92,60 +92,25 @@ class Address
     private $validtimeend;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="width", type="integer", nullable=false)
      */
-    private $house;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
-     */
-    private $street;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
-     */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
+    private $width;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
+     * @ORM\Column(name="height", type="integer", nullable=false)
      */
-    private $longitude;
+    private $height;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
+     * @ORM\Column(name="length", type="integer", nullable=false)
      */
-    private $latitude;
+    private $length;
 
 
 
@@ -163,7 +128,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return Size
      */
     public function setPid($pid)
     {
@@ -186,7 +151,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return Size
      */
     public function setHidden($hidden)
     {
@@ -209,7 +174,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return Size
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +197,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return Size
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +220,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return Size
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +243,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return Size
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +266,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return Size
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +289,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return Size
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +312,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return Size
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +335,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return Size
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,186 +355,71 @@ class Address
     }
 
     /**
-     * Set house
+     * Set width
      *
-     * @param string $house
-     * @return Address
+     * @param integer $width
+     * @return Size
      */
-    public function setHouse($house)
+    public function setWidth($width)
     {
-        $this->house = $house;
+        $this->width = $width;
     
         return $this;
     }
 
     /**
-     * Get house
-     *
-     * @return string 
-     */
-    public function getHouse()
-    {
-        return $this->house;
-    }
-
-    /**
-     * Set street
-     *
-     * @param string $street
-     * @return Address
-     */
-    public function setStreet($street)
-    {
-        $this->street = $street;
-    
-        return $this;
-    }
-
-    /**
-     * Get street
-     *
-     * @return string 
-     */
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set vilage
-     *
-     * @param string $vilage
-     * @return Address
-     */
-    public function setVilage($vilage)
-    {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
+     * Get width
      *
      * @return integer 
      */
-    public function getLongitude()
+    public function getWidth()
     {
-        return $this->longitude;
+        return $this->width;
     }
 
     /**
-     * Set latitude
+     * Set height
      *
-     * @param integer $latitude
-     * @return Address
+     * @param integer $height
+     * @return Size
      */
-    public function setLatitude($latitude)
+    public function setHeight($height)
     {
-        $this->latitude = $latitude;
+        $this->height = $height;
     
         return $this;
     }
 
     /**
-     * Get latitude
+     * Get height
      *
      * @return integer 
      */
-    public function getLatitude()
+    public function getHeight()
     {
-        return $this->latitude;
+        return $this->height;
+    }
+
+    /**
+     * Set length
+     *
+     * @param integer $length
+     * @return Size
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+    
+        return $this;
+    }
+
+    /**
+     * Get length
+     *
+     * @return integer 
+     */
+    public function getLength()
+    {
+        return $this->length;
     }
 }

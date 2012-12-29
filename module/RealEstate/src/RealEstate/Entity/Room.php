@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Address
+ * Room
  *
- * @ORM\Table(name="address")
+ * @ORM\Table(name="room")
  * @ORM\Entity
  */
-class Address
+class Room
 {
     /**
      * @var integer
@@ -92,60 +92,66 @@ class Address
     private $validtimeend;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="roomNumber", type="integer", nullable=false)
+     */
+    private $roomnumber;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cost", type="integer", nullable=false)
+     */
+    private $cost;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="toilet", type="boolean", nullable=false)
+     */
+    private $toilet;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="kitchen", type="boolean", nullable=false)
+     */
+    private $kitchen;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="available", type="boolean", nullable=false)
+     */
+    private $available;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="imagePathJsonStringList", type="text", nullable=false)
+     */
+    private $imagepathjsonstringlist;
+
+    /**
+     * @var \RealEstate\Entity\Size
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Size")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="size", referencedColumnName="uid")
+     * })
+     */
+    private $size;
+
+    /**
+     * @var \RealEstate\Entity\House
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\House")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="house", referencedColumnName="uid")
+     * })
      */
     private $house;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
-     */
-    private $street;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="vilage", type="string", length=70, nullable=false)
-     */
-    private $vilage;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
-     */
-    private $city;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
-     */
-    private $longitude;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
-     */
-    private $latitude;
 
 
 
@@ -163,7 +169,7 @@ class Address
      * Set pid
      *
      * @param integer $pid
-     * @return Address
+     * @return Room
      */
     public function setPid($pid)
     {
@@ -186,7 +192,7 @@ class Address
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Address
+     * @return Room
      */
     public function setHidden($hidden)
     {
@@ -209,7 +215,7 @@ class Address
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Address
+     * @return Room
      */
     public function setDisabled($disabled)
     {
@@ -232,7 +238,7 @@ class Address
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Address
+     * @return Room
      */
     public function setDeleted($deleted)
     {
@@ -255,7 +261,7 @@ class Address
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return Address
+     * @return Room
      */
     public function setCreatedtime($createdtime)
     {
@@ -278,7 +284,7 @@ class Address
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return Address
+     * @return Room
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -301,7 +307,7 @@ class Address
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return Address
+     * @return Room
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -324,7 +330,7 @@ class Address
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return Address
+     * @return Room
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -347,7 +353,7 @@ class Address
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return Address
+     * @return Room
      */
     public function setValidtimestart($validtimestart)
     {
@@ -370,7 +376,7 @@ class Address
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return Address
+     * @return Room
      */
     public function setValidtimeend($validtimeend)
     {
@@ -390,12 +396,173 @@ class Address
     }
 
     /**
+     * Set roomnumber
+     *
+     * @param integer $roomnumber
+     * @return Room
+     */
+    public function setRoomnumber($roomnumber)
+    {
+        $this->roomnumber = $roomnumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get roomnumber
+     *
+     * @return integer 
+     */
+    public function getRoomnumber()
+    {
+        return $this->roomnumber;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param integer $cost
+     * @return Room
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+    
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return integer 
+     */
+    public function getCost()
+    {
+        return $this->cost;
+    }
+
+    /**
+     * Set toilet
+     *
+     * @param boolean $toilet
+     * @return Room
+     */
+    public function setToilet($toilet)
+    {
+        $this->toilet = $toilet;
+    
+        return $this;
+    }
+
+    /**
+     * Get toilet
+     *
+     * @return boolean 
+     */
+    public function getToilet()
+    {
+        return $this->toilet;
+    }
+
+    /**
+     * Set kitchen
+     *
+     * @param boolean $kitchen
+     * @return Room
+     */
+    public function setKitchen($kitchen)
+    {
+        $this->kitchen = $kitchen;
+    
+        return $this;
+    }
+
+    /**
+     * Get kitchen
+     *
+     * @return boolean 
+     */
+    public function getKitchen()
+    {
+        return $this->kitchen;
+    }
+
+    /**
+     * Set available
+     *
+     * @param boolean $available
+     * @return Room
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+    
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean 
+     */
+    public function getAvailable()
+    {
+        return $this->available;
+    }
+
+    /**
+     * Set imagepathjsonstringlist
+     *
+     * @param string $imagepathjsonstringlist
+     * @return Room
+     */
+    public function setImagepathjsonstringlist($imagepathjsonstringlist)
+    {
+        $this->imagepathjsonstringlist = $imagepathjsonstringlist;
+    
+        return $this;
+    }
+
+    /**
+     * Get imagepathjsonstringlist
+     *
+     * @return string 
+     */
+    public function getImagepathjsonstringlist()
+    {
+        return $this->imagepathjsonstringlist;
+    }
+
+    /**
+     * Set size
+     *
+     * @param \RealEstate\Entity\Size $size
+     * @return Room
+     */
+    public function setSize(\RealEstate\Entity\Size $size = null)
+    {
+        $this->size = $size;
+    
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return \RealEstate\Entity\Size 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
      * Set house
      *
-     * @param string $house
-     * @return Address
+     * @param \RealEstate\Entity\House $house
+     * @return Room
      */
-    public function setHouse($house)
+    public function setHouse(\RealEstate\Entity\House $house = null)
     {
         $this->house = $house;
     
@@ -405,171 +572,10 @@ class Address
     /**
      * Get house
      *
-     * @return string 
+     * @return \RealEstate\Entity\House 
      */
     public function getHouse()
     {
         return $this->house;
-    }
-
-    /**
-     * Set street
-     *
-     * @param string $street
-     * @return Address
-     */
-    public function setStreet($street)
-    {
-        $this->street = $street;
-    
-        return $this;
-    }
-
-    /**
-     * Get street
-     *
-     * @return string 
-     */
-    public function getStreet()
-    {
-        return $this->street;
-    }
-
-    /**
-     * Set vilage
-     *
-     * @param string $vilage
-     * @return Address
-     */
-    public function setVilage($vilage)
-    {
-        $this->vilage = $vilage;
-    
-        return $this;
-    }
-
-    /**
-     * Get vilage
-     *
-     * @return string 
-     */
-    public function getVilage()
-    {
-        return $this->vilage;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param integer $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return integer 
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param integer $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-    
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return integer 
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
     }
 }
