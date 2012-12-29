@@ -1,36 +1,26 @@
-Real-Estate-Management-System
-==============================
+ZF2 Doctrine Tutorial
+=======================
+
+Introduction
+------------
+This is a learning exercise for me in using Doctrine ORM with Zend Framework 2. It uses Rob Allen's album tutorial and the ZF2 Skeleton as a base, and is built using Jason Grimes's blog post as a heavy inspiration.
 
 
-# Requirement #
+Installation
+------------
 
-##USER##
-in our system need three kinds of user
+To install this project, you should clone it out to your local machine and invoke `composer` using the shipped `composer.phar`:
 
-	- Administrator
-	- Owner (these two kind have to login before use our system)
-	- Visitor (this kind of user don't need to register & login)
+    cd my/project/dir
+    git clone git://github.com/shanethehat/zf2-doctrine-tutorial.git
+    cd zf2-doctrine-tutorial
+    php composer.phar self-update
+    php composer.phar update
 
-##Functionalities##
-**Visitor**
-
-	- Search (all key word that related to house attribute).
-	- Show result (after action search of user the result, Address, Map,are shown as list).
-	- Show detail (when click in one list of the result we'll show you detail such as photos, contact,price ..).
-	- vote house the have been view (decrease & increase).
-
-**Owner**
-
-	- Create owner profile
-	- Create house (insert house info, upload photos and owner contact)
-	- View house (Show result, Show detail)
-	- Update (they can change their house info & upload new photos)
-	- Delete house
-
-**Administrator**
-
-	- View owner profile
-	- Delete owner profile
-	- Allow users' authorities
+(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
+available.)
 
 
+Virtual Host
+------------
+Afterwards, set up a virtual host to point to the public/ directory of the project and you should be ready to go!
