@@ -1,9 +1,9 @@
-DROP DATABASE ghms;
-CREATE DATABASE ghms
+DROP DATABASE rems;
+CREATE DATABASE rems
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
 
-USE ghms;
+USE rems;
 
 DROP TABLE `users`;
 CREATE TABLE `users` (
