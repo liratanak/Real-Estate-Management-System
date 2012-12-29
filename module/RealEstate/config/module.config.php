@@ -18,13 +18,12 @@ return array(
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
-						'controller' => 'RealEstate\Controller\HousesList',
+						'controller' => 'houseList',
 						'action' => 'view',
 					),
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
-					// Segment route for viewing one blog post
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
@@ -33,7 +32,6 @@ return array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
 							'defaults' => array(
-//								'action' => 'view'
 							),
 						),
 						'may_terminate' => true,
@@ -58,14 +56,13 @@ return array(
 				'options' => array(
 					'route' => '/house',
 					'defaults' => array(
-						'controller' => 'RealEstate\Controller\House',
+						'controller' => 'house',
 						'action' => 'index',
 					),
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
-					// Segment route for viewing one blog post
-					'post' => array(
+					'houseUid' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
 							'route' => '/[:houseUid]',
@@ -77,17 +74,17 @@ return array(
 							)
 						)
 					),
-					// Literal route for viewing blog RSS feed (dynamic)
-					'rss' => array(
-						'type' => 'Zend\Mvc\Router\Http\Literal',
-						'options' => array(
-							'route' => '/rss',
-							'defaults' => array(
-								'action' => 'rss'
-							)
-						)
-					)
-				)
+				),
+			),
+			'search' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/search',
+					'defaults' => array(
+						'controller' => 'search',
+						'action' => 'index',
+					),
+				),
 			),
 		),
 	),
@@ -109,9 +106,9 @@ return array(
 	// add controlor
 	'controllers' => array(
 		'invokables' => array(
-			'RealEstate\Controller\House' => 'RealEstate\Controller\HouseController',
-			'RealEstate\Controller\Hello' => 'RealEstate\Controller\HelloController',
-			'RealEstate\Controller\HousesList' => 'RealEstate\Controller\HousesListController'
+			'house' => 'RealEstate\Controller\HouseController',
+			'houseList' => 'RealEstate\Controller\HousesListController',
+			'search' => 'RealEstate\Controller\SearchController',
 		),
 	),
 	'view_manager' => array(
