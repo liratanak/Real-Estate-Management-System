@@ -25,7 +25,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `address`
 --
-
 DROP DATABASE rems;
 CREATE DATABASE rems
   DEFAULT CHARACTER SET utf8
