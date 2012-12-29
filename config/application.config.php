@@ -1,7 +1,8 @@
 <?php
 return array(
     'modules' => array(
-        'Application',
+		'DoctrineModule',
+        'DoctrineORMModule',
 		'RealEstate',
     ),
     'module_listener_options' => array(

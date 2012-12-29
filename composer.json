@@ -6,12 +6,12 @@
         "framework",
         "zf2"
     ],
+    "minimum-stability": "alpha",
     "homepage": "http://framework.zend.com/",
-	"minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "dev-master",
-		"doctrine/doctrine-orm-module": "dev-master",
-		"zendexperts/ze-db": "dev-master"
+        "zendframework/zendframework": "2.*",
+        "doctrine/doctrine-orm-module": "0.*",
+		"heartsentwined/zf2-doctrine": "1.*"
     }
 }
