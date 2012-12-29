@@ -155,16 +155,22 @@ class PersonalDetails
     private $others;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Users
      *
-     * @ORM\Column(name="userUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userUid", referencedColumnName="uid")
+     * })
      */
     private $useruid;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\PersonalTypes
      *
-     * @ORM\Column(name="personalTypeUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\PersonalTypes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="personalTypeUid", referencedColumnName="uid")
+     * })
      */
     private $personaltypeuid;
 
@@ -620,10 +626,10 @@ class PersonalDetails
     /**
      * Set useruid
      *
-     * @param integer $useruid
+     * @param \RealEstate\Entity\Users $useruid
      * @return PersonalDetails
      */
-    public function setUseruid($useruid)
+    public function setUseruid(\RealEstate\Entity\Users $useruid = null)
     {
         $this->useruid = $useruid;
     
@@ -633,7 +639,7 @@ class PersonalDetails
     /**
      * Get useruid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Users 
      */
     public function getUseruid()
     {
@@ -643,10 +649,10 @@ class PersonalDetails
     /**
      * Set personaltypeuid
      *
-     * @param integer $personaltypeuid
+     * @param \RealEstate\Entity\PersonalTypes $personaltypeuid
      * @return PersonalDetails
      */
-    public function setPersonaltypeuid($personaltypeuid)
+    public function setPersonaltypeuid(\RealEstate\Entity\PersonalTypes $personaltypeuid = null)
     {
         $this->personaltypeuid = $personaltypeuid;
     
@@ -656,7 +662,7 @@ class PersonalDetails
     /**
      * Get personaltypeuid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\PersonalTypes 
      */
     public function getPersonaltypeuid()
     {

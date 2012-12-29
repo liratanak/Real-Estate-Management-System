@@ -115,35 +115,54 @@ class Houses
     /**
      * @var string
      *
+     * @ORM\Column(name="imagePathJsonStringList", type="text", nullable=false)
+     */
+    private $imagepathjsonstringlist;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="otherInfo", type="text", nullable=false)
      */
     private $otherinfo;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Users
      *
-     * @ORM\Column(name="userUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userUid", referencedColumnName="uid")
+     * })
      */
     private $useruid;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\HouseTypes
      *
-     * @ORM\Column(name="typeUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\HouseTypes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="typeUid", referencedColumnName="uid")
+     * })
      */
     private $typeuid;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Sizes
      *
-     * @ORM\Column(name="sizeUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Sizes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sizeUid", referencedColumnName="uid")
+     * })
      */
     private $sizeuid;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Address
      *
-     * @ORM\Column(name="addressUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Address")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="addressUid", referencedColumnName="uid")
+     * })
      */
     private $addressuid;
 
@@ -459,6 +478,29 @@ class Houses
     }
 
     /**
+     * Set imagepathjsonstringlist
+     *
+     * @param string $imagepathjsonstringlist
+     * @return Houses
+     */
+    public function setImagepathjsonstringlist($imagepathjsonstringlist)
+    {
+        $this->imagepathjsonstringlist = $imagepathjsonstringlist;
+    
+        return $this;
+    }
+
+    /**
+     * Get imagepathjsonstringlist
+     *
+     * @return string 
+     */
+    public function getImagepathjsonstringlist()
+    {
+        return $this->imagepathjsonstringlist;
+    }
+
+    /**
      * Set otherinfo
      *
      * @param string $otherinfo
@@ -484,10 +526,10 @@ class Houses
     /**
      * Set useruid
      *
-     * @param integer $useruid
+     * @param \RealEstate\Entity\Users $useruid
      * @return Houses
      */
-    public function setUseruid($useruid)
+    public function setUseruid(\RealEstate\Entity\Users $useruid = null)
     {
         $this->useruid = $useruid;
     
@@ -497,7 +539,7 @@ class Houses
     /**
      * Get useruid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Users 
      */
     public function getUseruid()
     {
@@ -507,10 +549,10 @@ class Houses
     /**
      * Set typeuid
      *
-     * @param integer $typeuid
+     * @param \RealEstate\Entity\HouseTypes $typeuid
      * @return Houses
      */
-    public function setTypeuid($typeuid)
+    public function setTypeuid(\RealEstate\Entity\HouseTypes $typeuid = null)
     {
         $this->typeuid = $typeuid;
     
@@ -520,7 +562,7 @@ class Houses
     /**
      * Get typeuid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\HouseTypes 
      */
     public function getTypeuid()
     {
@@ -530,10 +572,10 @@ class Houses
     /**
      * Set sizeuid
      *
-     * @param integer $sizeuid
+     * @param \RealEstate\Entity\Sizes $sizeuid
      * @return Houses
      */
-    public function setSizeuid($sizeuid)
+    public function setSizeuid(\RealEstate\Entity\Sizes $sizeuid = null)
     {
         $this->sizeuid = $sizeuid;
     
@@ -543,7 +585,7 @@ class Houses
     /**
      * Get sizeuid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Sizes 
      */
     public function getSizeuid()
     {
@@ -553,10 +595,10 @@ class Houses
     /**
      * Set addressuid
      *
-     * @param integer $addressuid
+     * @param \RealEstate\Entity\Address $addressuid
      * @return Houses
      */
-    public function setAddressuid($addressuid)
+    public function setAddressuid(\RealEstate\Entity\Address $addressuid = null)
     {
         $this->addressuid = $addressuid;
     
@@ -566,7 +608,7 @@ class Houses
     /**
      * Get addressuid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Address 
      */
     public function getAddressuid()
     {

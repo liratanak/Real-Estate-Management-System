@@ -120,9 +120,12 @@ class Users
     private $lastlogintime;
 
     /**
-     * @var integer
+     * @var \RealEstate\Entity\Groups
      *
-     * @ORM\Column(name="groupUid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Groups")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="groupUid", referencedColumnName="uid")
+     * })
      */
     private $groupuid;
 
@@ -463,10 +466,10 @@ class Users
     /**
      * Set groupuid
      *
-     * @param integer $groupuid
+     * @param \RealEstate\Entity\Groups $groupuid
      * @return Users
      */
-    public function setGroupuid($groupuid)
+    public function setGroupuid(\RealEstate\Entity\Groups $groupuid = null)
     {
         $this->groupuid = $groupuid;
     
@@ -476,7 +479,7 @@ class Users
     /**
      * Get groupuid
      *
-     * @return integer 
+     * @return \RealEstate\Entity\Groups 
      */
     public function getGroupuid()
     {

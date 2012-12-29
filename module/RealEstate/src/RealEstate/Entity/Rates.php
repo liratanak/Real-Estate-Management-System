@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * GroupsPermissions
+ * Rates
  *
- * @ORM\Table(name="groups_permissions")
+ * @ORM\Table(name="rates")
  * @ORM\Entity
  */
-class GroupsPermissions
+class Rates
 {
     /**
      * @var integer
@@ -92,24 +92,31 @@ class GroupsPermissions
     private $validtimeend;
 
     /**
-     * @var \RealEstate\Entity\Groups
+     * @var boolean
      *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Groups")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="groupUid", referencedColumnName="uid")
-     * })
+     * @ORM\Column(name="value", type="boolean", nullable=false)
      */
-    private $groupuid;
+    private $value;
 
     /**
-     * @var \RealEstate\Entity\Permissions
+     * @var \RealEstate\Entity\Users
      *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Permissions")
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Users")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="permissionsUid", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="userUid", referencedColumnName="uid")
      * })
      */
-    private $permissionsuid;
+    private $useruid;
+
+    /**
+     * @var \RealEstate\Entity\Houses
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Houses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="houseUid", referencedColumnName="uid")
+     * })
+     */
+    private $houseuid;
 
 
 
@@ -127,7 +134,7 @@ class GroupsPermissions
      * Set pid
      *
      * @param integer $pid
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setPid($pid)
     {
@@ -150,7 +157,7 @@ class GroupsPermissions
      * Set hidden
      *
      * @param boolean $hidden
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setHidden($hidden)
     {
@@ -173,7 +180,7 @@ class GroupsPermissions
      * Set disabled
      *
      * @param boolean $disabled
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setDisabled($disabled)
     {
@@ -196,7 +203,7 @@ class GroupsPermissions
      * Set deleted
      *
      * @param boolean $deleted
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setDeleted($deleted)
     {
@@ -219,7 +226,7 @@ class GroupsPermissions
      * Set createdtime
      *
      * @param integer $createdtime
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setCreatedtime($createdtime)
     {
@@ -242,7 +249,7 @@ class GroupsPermissions
      * Set createduseruid
      *
      * @param integer $createduseruid
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setCreateduseruid($createduseruid)
     {
@@ -265,7 +272,7 @@ class GroupsPermissions
      * Set lastmodifiedtime
      *
      * @param integer $lastmodifiedtime
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setLastmodifiedtime($lastmodifiedtime)
     {
@@ -288,7 +295,7 @@ class GroupsPermissions
      * Set lastmodifieduseruid
      *
      * @param integer $lastmodifieduseruid
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setLastmodifieduseruid($lastmodifieduseruid)
     {
@@ -311,7 +318,7 @@ class GroupsPermissions
      * Set validtimestart
      *
      * @param integer $validtimestart
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setValidtimestart($validtimestart)
     {
@@ -334,7 +341,7 @@ class GroupsPermissions
      * Set validtimeend
      *
      * @param integer $validtimeend
-     * @return GroupsPermissions
+     * @return Rates
      */
     public function setValidtimeend($validtimeend)
     {
@@ -354,48 +361,71 @@ class GroupsPermissions
     }
 
     /**
-     * Set groupuid
+     * Set value
      *
-     * @param \RealEstate\Entity\Groups $groupuid
-     * @return GroupsPermissions
+     * @param boolean $value
+     * @return Rates
      */
-    public function setGroupuid(\RealEstate\Entity\Groups $groupuid = null)
+    public function setValue($value)
     {
-        $this->groupuid = $groupuid;
+        $this->value = $value;
     
         return $this;
     }
 
     /**
-     * Get groupuid
+     * Get value
      *
-     * @return \RealEstate\Entity\Groups 
+     * @return boolean 
      */
-    public function getGroupuid()
+    public function getValue()
     {
-        return $this->groupuid;
+        return $this->value;
     }
 
     /**
-     * Set permissionsuid
+     * Set useruid
      *
-     * @param \RealEstate\Entity\Permissions $permissionsuid
-     * @return GroupsPermissions
+     * @param \RealEstate\Entity\Users $useruid
+     * @return Rates
      */
-    public function setPermissionsuid(\RealEstate\Entity\Permissions $permissionsuid = null)
+    public function setUseruid(\RealEstate\Entity\Users $useruid = null)
     {
-        $this->permissionsuid = $permissionsuid;
+        $this->useruid = $useruid;
     
         return $this;
     }
 
     /**
-     * Get permissionsuid
+     * Get useruid
      *
-     * @return \RealEstate\Entity\Permissions 
+     * @return \RealEstate\Entity\Users 
      */
-    public function getPermissionsuid()
+    public function getUseruid()
     {
-        return $this->permissionsuid;
+        return $this->useruid;
+    }
+
+    /**
+     * Set houseuid
+     *
+     * @param \RealEstate\Entity\Houses $houseuid
+     * @return Rates
+     */
+    public function setHouseuid(\RealEstate\Entity\Houses $houseuid = null)
+    {
+        $this->houseuid = $houseuid;
+    
+        return $this;
+    }
+
+    /**
+     * Get houseuid
+     *
+     * @return \RealEstate\Entity\Houses 
+     */
+    public function getHouseuid()
+    {
+        return $this->houseuid;
     }
 }
