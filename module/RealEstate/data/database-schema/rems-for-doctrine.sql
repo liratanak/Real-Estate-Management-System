@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_modified_user` int(11) unsigned NOT NULL DEFAULT '0',
   `valid_time_start` int(11) unsigned NOT NULL DEFAULT '0',
   `valid_time_end` int(11) unsigned NOT NULL DEFAULT '0',
+  FOREIGN KEY (`created_user`) REFERENCES `user`(`id`) ,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user`(`id`) ,
 
   `username` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(50) NOT NULL DEFAULT '',
@@ -41,6 +43,8 @@ CREATE TABLE IF NOT EXISTS `group` (
   `last_modified_user` int(11) unsigned NOT NULL DEFAULT '0',
   `valid_time_start` int(11) unsigned NOT NULL DEFAULT '0',
   `valid_time_end` int(11) unsigned NOT NULL DEFAULT '0',
+  FOREIGN KEY (`created_user`) REFERENCES `user`(`id`) ,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user`(`id`) ,
 
   `title` varchar(64) NOT NULL DEFAULT '',
 
@@ -48,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_fk_1` FOREIGN KEY (`group`) REFERENCES `group` (`id`);
+  ADD CONSTRAINT `user_fk_1` FOREIGN KEY (`group`) REFERENCES `group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 CREATE TABLE IF NOT EXISTS `permission` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
