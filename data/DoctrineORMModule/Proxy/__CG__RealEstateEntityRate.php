@@ -99,76 +99,52 @@ class Rate extends \RealEstate\Entity\Rate implements \Doctrine\ORM\Proxy\Proxy
         return parent::getDeleted();
     }
 
-    public function setCreatedtime($createdtime)
+    public function setCreatedTime($createdTime)
     {
         $this->__load();
-        return parent::setCreatedtime($createdtime);
+        return parent::setCreatedTime($createdTime);
     }
 
-    public function getCreatedtime()
+    public function getCreatedTime()
     {
         $this->__load();
-        return parent::getCreatedtime();
+        return parent::getCreatedTime();
     }
 
-    public function setCreateduseruid($createduseruid)
+    public function setLastModifiedTime($lastModifiedTime)
     {
         $this->__load();
-        return parent::setCreateduseruid($createduseruid);
+        return parent::setLastModifiedTime($lastModifiedTime);
     }
 
-    public function getCreateduseruid()
+    public function getLastModifiedTime()
     {
         $this->__load();
-        return parent::getCreateduseruid();
+        return parent::getLastModifiedTime();
     }
 
-    public function setLastmodifiedtime($lastmodifiedtime)
+    public function setValidTimeStart($validTimeStart)
     {
         $this->__load();
-        return parent::setLastmodifiedtime($lastmodifiedtime);
+        return parent::setValidTimeStart($validTimeStart);
     }
 
-    public function getLastmodifiedtime()
+    public function getValidTimeStart()
     {
         $this->__load();
-        return parent::getLastmodifiedtime();
+        return parent::getValidTimeStart();
     }
 
-    public function setLastmodifieduseruid($lastmodifieduseruid)
+    public function setValidTimeEnd($validTimeEnd)
     {
         $this->__load();
-        return parent::setLastmodifieduseruid($lastmodifieduseruid);
+        return parent::setValidTimeEnd($validTimeEnd);
     }
 
-    public function getLastmodifieduseruid()
+    public function getValidTimeEnd()
     {
         $this->__load();
-        return parent::getLastmodifieduseruid();
-    }
-
-    public function setValidtimestart($validtimestart)
-    {
-        $this->__load();
-        return parent::setValidtimestart($validtimestart);
-    }
-
-    public function getValidtimestart()
-    {
-        $this->__load();
-        return parent::getValidtimestart();
-    }
-
-    public function setValidtimeend($validtimeend)
-    {
-        $this->__load();
-        return parent::setValidtimeend($validtimeend);
-    }
-
-    public function getValidtimeend()
-    {
-        $this->__load();
-        return parent::getValidtimeend();
+        return parent::getValidTimeEnd();
     }
 
     public function setValue($value)
@@ -181,6 +157,30 @@ class Rate extends \RealEstate\Entity\Rate implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getValue();
+    }
+
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
+    {
+        $this->__load();
+        return parent::setCreatedUser($createdUser);
+    }
+
+    public function getCreatedUser()
+    {
+        $this->__load();
+        return parent::getCreatedUser();
+    }
+
+    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = NULL)
+    {
+        $this->__load();
+        return parent::setLastModifiedUser($lastModifiedUser);
+    }
+
+    public function getLastModifiedUser()
+    {
+        $this->__load();
+        return parent::getLastModifiedUser();
     }
 
     public function setUser(\RealEstate\Entity\User $user = NULL)
@@ -210,7 +210,7 @@ class Rate extends \RealEstate\Entity\Rate implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'value', 'user', 'house');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'value', 'createdUser', 'lastModifiedUser', 'user', 'house');
     }
 
     public function __clone()

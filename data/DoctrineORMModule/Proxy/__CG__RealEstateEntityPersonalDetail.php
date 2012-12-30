@@ -99,76 +99,52 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
         return parent::getDeleted();
     }
 
-    public function setCreatedtime($createdtime)
+    public function setCreatedTime($createdTime)
     {
         $this->__load();
-        return parent::setCreatedtime($createdtime);
+        return parent::setCreatedTime($createdTime);
     }
 
-    public function getCreatedtime()
+    public function getCreatedTime()
     {
         $this->__load();
-        return parent::getCreatedtime();
+        return parent::getCreatedTime();
     }
 
-    public function setCreateduseruid($createduseruid)
+    public function setLastModifiedTime($lastModifiedTime)
     {
         $this->__load();
-        return parent::setCreateduseruid($createduseruid);
+        return parent::setLastModifiedTime($lastModifiedTime);
     }
 
-    public function getCreateduseruid()
+    public function getLastModifiedTime()
     {
         $this->__load();
-        return parent::getCreateduseruid();
+        return parent::getLastModifiedTime();
     }
 
-    public function setLastmodifiedtime($lastmodifiedtime)
+    public function setValidTimeStart($validTimeStart)
     {
         $this->__load();
-        return parent::setLastmodifiedtime($lastmodifiedtime);
+        return parent::setValidTimeStart($validTimeStart);
     }
 
-    public function getLastmodifiedtime()
+    public function getValidTimeStart()
     {
         $this->__load();
-        return parent::getLastmodifiedtime();
+        return parent::getValidTimeStart();
     }
 
-    public function setLastmodifieduseruid($lastmodifieduseruid)
+    public function setValidTimeEnd($validTimeEnd)
     {
         $this->__load();
-        return parent::setLastmodifieduseruid($lastmodifieduseruid);
+        return parent::setValidTimeEnd($validTimeEnd);
     }
 
-    public function getLastmodifieduseruid()
+    public function getValidTimeEnd()
     {
         $this->__load();
-        return parent::getLastmodifieduseruid();
-    }
-
-    public function setValidtimestart($validtimestart)
-    {
-        $this->__load();
-        return parent::setValidtimestart($validtimestart);
-    }
-
-    public function getValidtimestart()
-    {
-        $this->__load();
-        return parent::getValidtimestart();
-    }
-
-    public function setValidtimeend($validtimeend)
-    {
-        $this->__load();
-        return parent::setValidtimeend($validtimeend);
-    }
-
-    public function getValidtimeend()
-    {
-        $this->__load();
-        return parent::getValidtimeend();
+        return parent::getValidTimeEnd();
     }
 
     public function setFirstname($firstname)
@@ -243,28 +219,28 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
         return parent::getEmail();
     }
 
-    public function setPhonenumber1($phonenumber1)
+    public function setPhoneNumber1($phoneNumber1)
     {
         $this->__load();
-        return parent::setPhonenumber1($phonenumber1);
+        return parent::setPhoneNumber1($phoneNumber1);
     }
 
-    public function getPhonenumber1()
+    public function getPhoneNumber1()
     {
         $this->__load();
-        return parent::getPhonenumber1();
+        return parent::getPhoneNumber1();
     }
 
-    public function setPhonenumber2($phonenumber2)
+    public function setPhoneNumber2($phoneNumber2)
     {
         $this->__load();
-        return parent::setPhonenumber2($phonenumber2);
+        return parent::setPhoneNumber2($phoneNumber2);
     }
 
-    public function getPhonenumber2()
+    public function getPhoneNumber2()
     {
         $this->__load();
-        return parent::getPhonenumber2();
+        return parent::getPhoneNumber2();
     }
 
     public function setOthers($others)
@@ -277,6 +253,30 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
     {
         $this->__load();
         return parent::getOthers();
+    }
+
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
+    {
+        $this->__load();
+        return parent::setCreatedUser($createdUser);
+    }
+
+    public function getCreatedUser()
+    {
+        $this->__load();
+        return parent::getCreatedUser();
+    }
+
+    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = NULL)
+    {
+        $this->__load();
+        return parent::setLastModifiedUser($lastModifiedUser);
+    }
+
+    public function getLastModifiedUser()
+    {
+        $this->__load();
+        return parent::getLastModifiedUser();
     }
 
     public function setUser(\RealEstate\Entity\User $user = NULL)
@@ -306,7 +306,7 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'firstname', 'lastname', 'gender', 'job', 'age', 'email', 'phonenumber1', 'phonenumber2', 'others', 'user', 'type');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'firstname', 'lastname', 'gender', 'job', 'age', 'email', 'phoneNumber1', 'phoneNumber2', 'others', 'createdUser', 'lastModifiedUser', 'user', 'type');
     }
 
     public function __clone()

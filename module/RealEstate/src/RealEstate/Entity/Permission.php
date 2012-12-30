@@ -52,44 +52,30 @@ class Permission
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdTime", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=false)
      */
-    private $createdtime;
+    private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
      */
-    private $createduseruid;
+    private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedTime", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
      */
-    private $lastmodifiedtime;
+    private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
      */
-    private $lastmodifieduseruid;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeStart", type="integer", nullable=false)
-     */
-    private $validtimestart;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeEnd", type="integer", nullable=false)
-     */
-    private $validtimeend;
+    private $validTimeEnd;
 
     /**
      * @var integer
@@ -104,6 +90,26 @@ class Permission
      * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Group", mappedBy="permission")
      */
     private $group;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
+     * })
+     */
+    private $createdUser;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     * })
+     */
+    private $lastModifiedUser;
 
     /**
      * Constructor
@@ -217,141 +223,95 @@ class Permission
     }
 
     /**
-     * Set createdtime
+     * Set createdTime
      *
-     * @param integer $createdtime
+     * @param integer $createdTime
      * @return Permission
      */
-    public function setCreatedtime($createdtime)
+    public function setCreatedTime($createdTime)
     {
-        $this->createdtime = $createdtime;
+        $this->createdTime = $createdTime;
     
         return $this;
     }
 
     /**
-     * Get createdtime
+     * Get createdTime
      *
      * @return integer 
      */
-    public function getCreatedtime()
+    public function getCreatedTime()
     {
-        return $this->createdtime;
+        return $this->createdTime;
     }
 
     /**
-     * Set createduseruid
+     * Set lastModifiedTime
      *
-     * @param integer $createduseruid
+     * @param integer $lastModifiedTime
      * @return Permission
      */
-    public function setCreateduseruid($createduseruid)
+    public function setLastModifiedTime($lastModifiedTime)
     {
-        $this->createduseruid = $createduseruid;
+        $this->lastModifiedTime = $lastModifiedTime;
     
         return $this;
     }
 
     /**
-     * Get createduseruid
+     * Get lastModifiedTime
      *
      * @return integer 
      */
-    public function getCreateduseruid()
+    public function getLastModifiedTime()
     {
-        return $this->createduseruid;
+        return $this->lastModifiedTime;
     }
 
     /**
-     * Set lastmodifiedtime
+     * Set validTimeStart
      *
-     * @param integer $lastmodifiedtime
+     * @param integer $validTimeStart
      * @return Permission
      */
-    public function setLastmodifiedtime($lastmodifiedtime)
+    public function setValidTimeStart($validTimeStart)
     {
-        $this->lastmodifiedtime = $lastmodifiedtime;
+        $this->validTimeStart = $validTimeStart;
     
         return $this;
     }
 
     /**
-     * Get lastmodifiedtime
+     * Get validTimeStart
      *
      * @return integer 
      */
-    public function getLastmodifiedtime()
+    public function getValidTimeStart()
     {
-        return $this->lastmodifiedtime;
+        return $this->validTimeStart;
     }
 
     /**
-     * Set lastmodifieduseruid
+     * Set validTimeEnd
      *
-     * @param integer $lastmodifieduseruid
+     * @param integer $validTimeEnd
      * @return Permission
      */
-    public function setLastmodifieduseruid($lastmodifieduseruid)
+    public function setValidTimeEnd($validTimeEnd)
     {
-        $this->lastmodifieduseruid = $lastmodifieduseruid;
+        $this->validTimeEnd = $validTimeEnd;
     
         return $this;
     }
 
     /**
-     * Get lastmodifieduseruid
+     * Get validTimeEnd
      *
      * @return integer 
      */
-    public function getLastmodifieduseruid()
+    public function getValidTimeEnd()
     {
-        return $this->lastmodifieduseruid;
-    }
-
-    /**
-     * Set validtimestart
-     *
-     * @param integer $validtimestart
-     * @return Permission
-     */
-    public function setValidtimestart($validtimestart)
-    {
-        $this->validtimestart = $validtimestart;
-    
-        return $this;
-    }
-
-    /**
-     * Get validtimestart
-     *
-     * @return integer 
-     */
-    public function getValidtimestart()
-    {
-        return $this->validtimestart;
-    }
-
-    /**
-     * Set validtimeend
-     *
-     * @param integer $validtimeend
-     * @return Permission
-     */
-    public function setValidtimeend($validtimeend)
-    {
-        $this->validtimeend = $validtimeend;
-    
-        return $this;
-    }
-
-    /**
-     * Get validtimeend
-     *
-     * @return integer 
-     */
-    public function getValidtimeend()
-    {
-        return $this->validtimeend;
+        return $this->validTimeEnd;
     }
 
     /**
@@ -408,5 +368,51 @@ class Permission
     public function getGroup()
     {
         return $this->group;
+    }
+
+    /**
+     * Set createdUser
+     *
+     * @param \RealEstate\Entity\User $createdUser
+     * @return Permission
+     */
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
+    }
+
+    /**
+     * Set lastModifiedUser
+     *
+     * @param \RealEstate\Entity\User $lastModifiedUser
+     * @return Permission
+     */
+    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
+    {
+        $this->lastModifiedUser = $lastModifiedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getLastModifiedUser()
+    {
+        return $this->lastModifiedUser;
     }
 }

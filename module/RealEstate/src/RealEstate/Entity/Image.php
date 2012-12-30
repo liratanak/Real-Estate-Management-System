@@ -52,51 +52,37 @@ class Image
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdTime", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=false)
      */
-    private $createdtime;
+    private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
      */
-    private $createduseruid;
+    private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedTime", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
      */
-    private $lastmodifiedtime;
+    private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
      */
-    private $lastmodifieduseruid;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeStart", type="integer", nullable=false)
-     */
-    private $validtimestart;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeEnd", type="integer", nullable=false)
-     */
-    private $validtimeend;
+    private $validTimeEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="originalFileName", type="string", length=255, nullable=false)
+     * @ORM\Column(name="original_file_name", type="string", length=255, nullable=false)
      */
-    private $originalfilename;
+    private $originalFileName;
 
     /**
      * @var string
@@ -104,6 +90,26 @@ class Image
      * @ORM\Column(name="path", type="string", length=255, nullable=false)
      */
     private $path;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
+     * })
+     */
+    private $createdUser;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     * })
+     */
+    private $lastModifiedUser;
 
 
 
@@ -210,164 +216,118 @@ class Image
     }
 
     /**
-     * Set createdtime
+     * Set createdTime
      *
-     * @param integer $createdtime
+     * @param integer $createdTime
      * @return Image
      */
-    public function setCreatedtime($createdtime)
+    public function setCreatedTime($createdTime)
     {
-        $this->createdtime = $createdtime;
+        $this->createdTime = $createdTime;
     
         return $this;
     }
 
     /**
-     * Get createdtime
+     * Get createdTime
      *
      * @return integer 
      */
-    public function getCreatedtime()
+    public function getCreatedTime()
     {
-        return $this->createdtime;
+        return $this->createdTime;
     }
 
     /**
-     * Set createduseruid
+     * Set lastModifiedTime
      *
-     * @param integer $createduseruid
+     * @param integer $lastModifiedTime
      * @return Image
      */
-    public function setCreateduseruid($createduseruid)
+    public function setLastModifiedTime($lastModifiedTime)
     {
-        $this->createduseruid = $createduseruid;
+        $this->lastModifiedTime = $lastModifiedTime;
     
         return $this;
     }
 
     /**
-     * Get createduseruid
+     * Get lastModifiedTime
      *
      * @return integer 
      */
-    public function getCreateduseruid()
+    public function getLastModifiedTime()
     {
-        return $this->createduseruid;
+        return $this->lastModifiedTime;
     }
 
     /**
-     * Set lastmodifiedtime
+     * Set validTimeStart
      *
-     * @param integer $lastmodifiedtime
+     * @param integer $validTimeStart
      * @return Image
      */
-    public function setLastmodifiedtime($lastmodifiedtime)
+    public function setValidTimeStart($validTimeStart)
     {
-        $this->lastmodifiedtime = $lastmodifiedtime;
+        $this->validTimeStart = $validTimeStart;
     
         return $this;
     }
 
     /**
-     * Get lastmodifiedtime
+     * Get validTimeStart
      *
      * @return integer 
      */
-    public function getLastmodifiedtime()
+    public function getValidTimeStart()
     {
-        return $this->lastmodifiedtime;
+        return $this->validTimeStart;
     }
 
     /**
-     * Set lastmodifieduseruid
+     * Set validTimeEnd
      *
-     * @param integer $lastmodifieduseruid
+     * @param integer $validTimeEnd
      * @return Image
      */
-    public function setLastmodifieduseruid($lastmodifieduseruid)
+    public function setValidTimeEnd($validTimeEnd)
     {
-        $this->lastmodifieduseruid = $lastmodifieduseruid;
+        $this->validTimeEnd = $validTimeEnd;
     
         return $this;
     }
 
     /**
-     * Get lastmodifieduseruid
+     * Get validTimeEnd
      *
      * @return integer 
      */
-    public function getLastmodifieduseruid()
+    public function getValidTimeEnd()
     {
-        return $this->lastmodifieduseruid;
+        return $this->validTimeEnd;
     }
 
     /**
-     * Set validtimestart
+     * Set originalFileName
      *
-     * @param integer $validtimestart
+     * @param string $originalFileName
      * @return Image
      */
-    public function setValidtimestart($validtimestart)
+    public function setOriginalFileName($originalFileName)
     {
-        $this->validtimestart = $validtimestart;
+        $this->originalFileName = $originalFileName;
     
         return $this;
     }
 
     /**
-     * Get validtimestart
-     *
-     * @return integer 
-     */
-    public function getValidtimestart()
-    {
-        return $this->validtimestart;
-    }
-
-    /**
-     * Set validtimeend
-     *
-     * @param integer $validtimeend
-     * @return Image
-     */
-    public function setValidtimeend($validtimeend)
-    {
-        $this->validtimeend = $validtimeend;
-    
-        return $this;
-    }
-
-    /**
-     * Get validtimeend
-     *
-     * @return integer 
-     */
-    public function getValidtimeend()
-    {
-        return $this->validtimeend;
-    }
-
-    /**
-     * Set originalfilename
-     *
-     * @param string $originalfilename
-     * @return Image
-     */
-    public function setOriginalfilename($originalfilename)
-    {
-        $this->originalfilename = $originalfilename;
-    
-        return $this;
-    }
-
-    /**
-     * Get originalfilename
+     * Get originalFileName
      *
      * @return string 
      */
-    public function getOriginalfilename()
+    public function getOriginalFileName()
     {
-        return $this->originalfilename;
+        return $this->originalFileName;
     }
 
     /**
@@ -391,5 +351,51 @@ class Image
     public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * Set createdUser
+     *
+     * @param \RealEstate\Entity\User $createdUser
+     * @return Image
+     */
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
+    }
+
+    /**
+     * Set lastModifiedUser
+     *
+     * @param \RealEstate\Entity\User $lastModifiedUser
+     * @return Image
+     */
+    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
+    {
+        $this->lastModifiedUser = $lastModifiedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getLastModifiedUser()
+    {
+        return $this->lastModifiedUser;
     }
 }

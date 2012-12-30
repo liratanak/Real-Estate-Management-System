@@ -52,44 +52,30 @@ class PersonalDetail
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdTime", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=false)
      */
-    private $createdtime;
+    private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="createdUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
      */
-    private $createduseruid;
+    private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedTime", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
      */
-    private $lastmodifiedtime;
+    private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="lastModifiedUserUid", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
      */
-    private $lastmodifieduseruid;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeStart", type="integer", nullable=false)
-     */
-    private $validtimestart;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="validTimeEnd", type="integer", nullable=false)
-     */
-    private $validtimeend;
+    private $validTimeEnd;
 
     /**
      * @var string
@@ -136,16 +122,16 @@ class PersonalDetail
     /**
      * @var string
      *
-     * @ORM\Column(name="phoneNumber1", type="string", length=50, nullable=false)
+     * @ORM\Column(name="phone_number_1", type="string", length=50, nullable=false)
      */
-    private $phonenumber1;
+    private $phoneNumber1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phoneNumber2", type="string", length=50, nullable=false)
+     * @ORM\Column(name="phone_number_2", type="string", length=50, nullable=false)
      */
-    private $phonenumber2;
+    private $phoneNumber2;
 
     /**
      * @var string
@@ -153,6 +139,26 @@ class PersonalDetail
      * @ORM\Column(name="others", type="text", nullable=false)
      */
     private $others;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
+     * })
+     */
+    private $createdUser;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     * })
+     */
+    private $lastModifiedUser;
 
     /**
      * @var \RealEstate\Entity\User
@@ -279,141 +285,95 @@ class PersonalDetail
     }
 
     /**
-     * Set createdtime
+     * Set createdTime
      *
-     * @param integer $createdtime
+     * @param integer $createdTime
      * @return PersonalDetail
      */
-    public function setCreatedtime($createdtime)
+    public function setCreatedTime($createdTime)
     {
-        $this->createdtime = $createdtime;
+        $this->createdTime = $createdTime;
     
         return $this;
     }
 
     /**
-     * Get createdtime
+     * Get createdTime
      *
      * @return integer 
      */
-    public function getCreatedtime()
+    public function getCreatedTime()
     {
-        return $this->createdtime;
+        return $this->createdTime;
     }
 
     /**
-     * Set createduseruid
+     * Set lastModifiedTime
      *
-     * @param integer $createduseruid
+     * @param integer $lastModifiedTime
      * @return PersonalDetail
      */
-    public function setCreateduseruid($createduseruid)
+    public function setLastModifiedTime($lastModifiedTime)
     {
-        $this->createduseruid = $createduseruid;
+        $this->lastModifiedTime = $lastModifiedTime;
     
         return $this;
     }
 
     /**
-     * Get createduseruid
+     * Get lastModifiedTime
      *
      * @return integer 
      */
-    public function getCreateduseruid()
+    public function getLastModifiedTime()
     {
-        return $this->createduseruid;
+        return $this->lastModifiedTime;
     }
 
     /**
-     * Set lastmodifiedtime
+     * Set validTimeStart
      *
-     * @param integer $lastmodifiedtime
+     * @param integer $validTimeStart
      * @return PersonalDetail
      */
-    public function setLastmodifiedtime($lastmodifiedtime)
+    public function setValidTimeStart($validTimeStart)
     {
-        $this->lastmodifiedtime = $lastmodifiedtime;
+        $this->validTimeStart = $validTimeStart;
     
         return $this;
     }
 
     /**
-     * Get lastmodifiedtime
+     * Get validTimeStart
      *
      * @return integer 
      */
-    public function getLastmodifiedtime()
+    public function getValidTimeStart()
     {
-        return $this->lastmodifiedtime;
+        return $this->validTimeStart;
     }
 
     /**
-     * Set lastmodifieduseruid
+     * Set validTimeEnd
      *
-     * @param integer $lastmodifieduseruid
+     * @param integer $validTimeEnd
      * @return PersonalDetail
      */
-    public function setLastmodifieduseruid($lastmodifieduseruid)
+    public function setValidTimeEnd($validTimeEnd)
     {
-        $this->lastmodifieduseruid = $lastmodifieduseruid;
+        $this->validTimeEnd = $validTimeEnd;
     
         return $this;
     }
 
     /**
-     * Get lastmodifieduseruid
+     * Get validTimeEnd
      *
      * @return integer 
      */
-    public function getLastmodifieduseruid()
+    public function getValidTimeEnd()
     {
-        return $this->lastmodifieduseruid;
-    }
-
-    /**
-     * Set validtimestart
-     *
-     * @param integer $validtimestart
-     * @return PersonalDetail
-     */
-    public function setValidtimestart($validtimestart)
-    {
-        $this->validtimestart = $validtimestart;
-    
-        return $this;
-    }
-
-    /**
-     * Get validtimestart
-     *
-     * @return integer 
-     */
-    public function getValidtimestart()
-    {
-        return $this->validtimestart;
-    }
-
-    /**
-     * Set validtimeend
-     *
-     * @param integer $validtimeend
-     * @return PersonalDetail
-     */
-    public function setValidtimeend($validtimeend)
-    {
-        $this->validtimeend = $validtimeend;
-    
-        return $this;
-    }
-
-    /**
-     * Get validtimeend
-     *
-     * @return integer 
-     */
-    public function getValidtimeend()
-    {
-        return $this->validtimeend;
+        return $this->validTimeEnd;
     }
 
     /**
@@ -555,49 +515,49 @@ class PersonalDetail
     }
 
     /**
-     * Set phonenumber1
+     * Set phoneNumber1
      *
-     * @param string $phonenumber1
+     * @param string $phoneNumber1
      * @return PersonalDetail
      */
-    public function setPhonenumber1($phonenumber1)
+    public function setPhoneNumber1($phoneNumber1)
     {
-        $this->phonenumber1 = $phonenumber1;
+        $this->phoneNumber1 = $phoneNumber1;
     
         return $this;
     }
 
     /**
-     * Get phonenumber1
+     * Get phoneNumber1
      *
      * @return string 
      */
-    public function getPhonenumber1()
+    public function getPhoneNumber1()
     {
-        return $this->phonenumber1;
+        return $this->phoneNumber1;
     }
 
     /**
-     * Set phonenumber2
+     * Set phoneNumber2
      *
-     * @param string $phonenumber2
+     * @param string $phoneNumber2
      * @return PersonalDetail
      */
-    public function setPhonenumber2($phonenumber2)
+    public function setPhoneNumber2($phoneNumber2)
     {
-        $this->phonenumber2 = $phonenumber2;
+        $this->phoneNumber2 = $phoneNumber2;
     
         return $this;
     }
 
     /**
-     * Get phonenumber2
+     * Get phoneNumber2
      *
      * @return string 
      */
-    public function getPhonenumber2()
+    public function getPhoneNumber2()
     {
-        return $this->phonenumber2;
+        return $this->phoneNumber2;
     }
 
     /**
@@ -621,6 +581,52 @@ class PersonalDetail
     public function getOthers()
     {
         return $this->others;
+    }
+
+    /**
+     * Set createdUser
+     *
+     * @param \RealEstate\Entity\User $createdUser
+     * @return PersonalDetail
+     */
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
+    }
+
+    /**
+     * Set lastModifiedUser
+     *
+     * @param \RealEstate\Entity\User $lastModifiedUser
+     * @return PersonalDetail
+     */
+    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
+    {
+        $this->lastModifiedUser = $lastModifiedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getLastModifiedUser()
+    {
+        return $this->lastModifiedUser;
     }
 
     /**
