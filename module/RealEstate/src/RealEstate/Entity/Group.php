@@ -15,11 +15,11 @@ class Group
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $uid;
+    private $id;
 
     /**
      * @var integer
@@ -104,10 +104,10 @@ class Group
      * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Permission", inversedBy="group")
      * @ORM\JoinTable(name="group_permission",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="group", referencedColumnName="uid")
+     *     @ORM\JoinColumn(name="group", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="permission", referencedColumnName="uid")
+     *     @ORM\JoinColumn(name="permission", referencedColumnName="id")
      *   }
      * )
      */
@@ -123,13 +123,13 @@ class Group
     
 
     /**
-     * Get uid
+     * Get id
      *
      * @return integer 
      */
-    public function getUid()
+    public function getId()
     {
-        return $this->uid;
+        return $this->id;
     }
 
     /**

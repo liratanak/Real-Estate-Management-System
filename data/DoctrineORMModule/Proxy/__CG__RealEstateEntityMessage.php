@@ -42,13 +42,13 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
     }
 
     
-    public function getUid()
+    public function getId()
     {
         if ($this->__isInitialized__ === false) {
-            return (int) $this->_identifier["uid"];
+            return (int) $this->_identifier["id"];
         }
         $this->__load();
-        return parent::getUid();
+        return parent::getId();
     }
 
     public function setPid($pid)
@@ -210,7 +210,7 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'uid', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'content', 'fromuser', 'touser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'content', 'fromuser', 'touser');
     }
 
     public function __clone()

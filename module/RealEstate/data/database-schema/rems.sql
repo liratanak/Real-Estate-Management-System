@@ -5,7 +5,7 @@ CREATE DATABASE rems
 USE rems;
 
 CREATE TABLE IF NOT EXISTS `image` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS `image` (
   `originalFileName` varchar(255) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -44,11 +44,11 @@ CREATE TABLE IF NOT EXISTS `address` (
 
   `longitude` int(11) unsigned NOT NULL DEFAULT '0',
   `latitude` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `group` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -62,11 +62,11 @@ CREATE TABLE IF NOT EXISTS `group` (
 
   `title` varchar(64) NOT NULL DEFAULT '',
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 CREATE TABLE IF NOT EXISTS `permission` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -78,20 +78,20 @@ CREATE TABLE IF NOT EXISTS `permission` (
   `validTimeStart` int(11) unsigned NOT NULL DEFAULT '0',
   `validTimeEnd` int(11) unsigned NOT NULL DEFAULT '0',
   `title` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `group_permission` (
   `group` int(11) unsigned NOT NULL DEFAULT '0',
   `permission` int(11) unsigned NOT NULL DEFAULT '0',
   
-  FOREIGN KEY (`group`) REFERENCES `group`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`permission`) REFERENCES `permission`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`group`) REFERENCES `group`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`permission`) REFERENCES `permission`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   PRIMARY KEY(`group`, `permission`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -110,13 +110,13 @@ CREATE TABLE IF NOT EXISTS `user` (
 
   `group` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`group`) REFERENCES `group`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`group`) REFERENCES `group`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `house_type` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -130,11 +130,11 @@ CREATE TABLE IF NOT EXISTS `house_type` (
 
   `title` varchar(50) NOT NULL DEFAULT '',
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `size` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -148,11 +148,11 @@ CREATE TABLE IF NOT EXISTS `size` (
   `width` int(11) unsigned NOT NULL DEFAULT '0',
   `height` int(11) unsigned NOT NULL DEFAULT '0',
   `length` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `house` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -175,16 +175,16 @@ CREATE TABLE IF NOT EXISTS `house` (
   `size` int(11) unsigned NOT NULL DEFAULT '0',
   `address` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`type`) REFERENCES `house_type`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`size`) REFERENCES `size`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`address`) REFERENCES `address`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`type`) REFERENCES `house_type`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`address`) REFERENCES `address`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `personal_type` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -196,11 +196,11 @@ CREATE TABLE IF NOT EXISTS `personal_type` (
   `validTimeStart` int(11) unsigned NOT NULL DEFAULT '0',
   `validTimeEnd` int(11) unsigned NOT NULL DEFAULT '0',
   `title` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `personal_detail` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -225,14 +225,14 @@ CREATE TABLE IF NOT EXISTS `personal_detail` (
   `user` int(11) unsigned NOT NULL DEFAULT '0',
   `type` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`type`) REFERENCES `personal_type`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`type`) REFERENCES `personal_type`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `room` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -254,14 +254,14 @@ CREATE TABLE IF NOT EXISTS `room` (
   `size` int(11) unsigned NOT NULL DEFAULT '0',
   `house` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`size`) REFERENCES `size`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`house`) REFERENCES `house`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `comment` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -278,14 +278,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `user` int(11) unsigned NOT NULL DEFAULT '0',
   `house` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`house`) REFERENCES `house`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `rate` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -302,14 +302,14 @@ CREATE TABLE IF NOT EXISTS `rate` (
   `user` int(11) unsigned NOT NULL DEFAULT '0',
   `house` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`house`) REFERENCES `house`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`user`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `message` (
-  `uid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `disabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -326,8 +326,8 @@ CREATE TABLE IF NOT EXISTS `message` (
   `fromUser` int(11) unsigned NOT NULL DEFAULT '0',
   `toUser` int(11) unsigned NOT NULL DEFAULT '0',
 
-  FOREIGN KEY (`fromUser`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`toUser`) REFERENCES `user`(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`fromUser`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`toUser`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
-  PRIMARY KEY (`uid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

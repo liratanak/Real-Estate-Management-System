@@ -15,11 +15,11 @@ class Rate
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $uid;
+    private $id;
 
     /**
      * @var integer
@@ -103,7 +103,7 @@ class Rate
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
      */
     private $user;
@@ -113,7 +113,7 @@ class Rate
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\House")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="house", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="house", referencedColumnName="id")
      * })
      */
     private $house;
@@ -121,13 +121,13 @@ class Rate
 
 
     /**
-     * Get uid
+     * Get id
      *
      * @return integer 
      */
-    public function getUid()
+    public function getId()
     {
-        return $this->uid;
+        return $this->id;
     }
 
     /**

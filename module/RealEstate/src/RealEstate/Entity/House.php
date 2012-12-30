@@ -15,11 +15,11 @@ class House
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $uid;
+    private $id;
 
     /**
      * @var integer
@@ -131,7 +131,7 @@ class House
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
      * })
      */
     private $user;
@@ -141,7 +141,7 @@ class House
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\HouseType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="type", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="type", referencedColumnName="id")
      * })
      */
     private $type;
@@ -151,7 +151,7 @@ class House
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Size")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="size", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="size", referencedColumnName="id")
      * })
      */
     private $size;
@@ -161,7 +161,7 @@ class House
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Address")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="address", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="address", referencedColumnName="id")
      * })
      */
     private $address;
@@ -169,13 +169,13 @@ class House
 
 
     /**
-     * Get uid
+     * Get id
      *
      * @return integer 
      */
-    public function getUid()
+    public function getId()
     {
-        return $this->uid;
+        return $this->id;
     }
 
     /**

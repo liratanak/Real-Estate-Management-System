@@ -15,11 +15,11 @@ class Message
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $uid;
+    private $id;
 
     /**
      * @var integer
@@ -103,7 +103,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="id")
      * })
      */
     private $fromuser;
@@ -113,7 +113,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="toUser", referencedColumnName="uid")
+     *   @ORM\JoinColumn(name="toUser", referencedColumnName="id")
      * })
      */
     private $touser;
@@ -121,13 +121,13 @@ class Message
 
 
     /**
-     * Get uid
+     * Get id
      *
      * @return integer 
      */
-    public function getUid()
+    public function getId()
     {
-        return $this->uid;
+        return $this->id;
     }
 
     /**

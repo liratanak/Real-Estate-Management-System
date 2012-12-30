@@ -42,13 +42,13 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
     }
 
     
-    public function getUid()
+    public function getId()
     {
         if ($this->__isInitialized__ === false) {
-            return (int) $this->_identifier["uid"];
+            return (int) $this->_identifier["id"];
         }
         $this->__load();
-        return parent::getUid();
+        return parent::getId();
     }
 
     public function setPid($pid)
@@ -306,7 +306,7 @@ class PersonalDetail extends \RealEstate\Entity\PersonalDetail implements \Doctr
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'uid', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'firstname', 'lastname', 'gender', 'job', 'age', 'email', 'phonenumber1', 'phonenumber2', 'others', 'user', 'type');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdtime', 'createduseruid', 'lastmodifiedtime', 'lastmodifieduseruid', 'validtimestart', 'validtimeend', 'firstname', 'lastname', 'gender', 'job', 'age', 'email', 'phonenumber1', 'phonenumber2', 'others', 'user', 'type');
     }
 
     public function __clone()

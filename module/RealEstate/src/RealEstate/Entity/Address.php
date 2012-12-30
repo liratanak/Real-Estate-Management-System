@@ -15,11 +15,11 @@ class Address
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $uid;
+    private $id;
 
     /**
      * @var integer
@@ -150,13 +150,13 @@ class Address
 
 
     /**
-     * Get uid
+     * Get id
      *
      * @return integer 
      */
-    public function getUid()
+    public function getId()
     {
-        return $this->uid;
+        return $this->id;
     }
 
     /**
