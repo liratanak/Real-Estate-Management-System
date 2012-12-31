@@ -8,14 +8,9 @@ use Zend\View\Model\ViewModel;
 class SearchController extends AbstractActionController {
 
 	public function indexAction() {
-		$username = 'speeder' ;
 		return new ViewModel(array(
-					'user' => $this
-							->getEntityManager()
-							->getRepository('RealEstate\Entity\Group')
-							->findAllUsers(2),
-						)
-		);
+					'user' => $this->getEntityManager()->find('RealEstate\Entity\User', 2),
+				));
 	}
 
 	/**
