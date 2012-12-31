@@ -86,6 +86,31 @@ return array(
 					),
 				),
 			),
+			'create' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/new',
+					'defaults' => array(
+						'controller' => 'creator',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'houseUid' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:action]',
+							'constraints' => array(
+								'entity' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+								'action' => 'index'
+							)
+						)
+					),
+				),
+			),
 		),
 	),
 	'service_manager' => array(
@@ -109,6 +134,7 @@ return array(
 			'house' => 'RealEstate\Controller\HouseController',
 			'houseList' => 'RealEstate\Controller\HousesListController',
 			'search' => 'RealEstate\Controller\SearchController',
+			'creator' => 'RealEstate\Controller\CreatorController',
 		),
 	),
 	'view_manager' => array(
