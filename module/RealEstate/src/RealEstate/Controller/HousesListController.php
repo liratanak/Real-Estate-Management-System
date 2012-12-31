@@ -15,29 +15,30 @@ use Zend\View\Model\ViewModel;
 use RealEstate\Model\HouseRepository;
 
 class HousesListController extends AbstractActionController {
-    
-        protected $houseRepository;
-        public function indexAction(){
-            		return new ViewModel(array(
+
+	protected $houseRepository;
+
+	public function indexAction() {
+		return new ViewModel(array(
 					'houses' => $this->getHouseRepository()->listAll()
 				));
 	}
-        
-        public function viewAction(){
-				$pnb = $this->params('pageNumber');
-				$tRes = $this->getHouseRepository()->countAll();
-                return new ViewModel(
-						array('pageNumber'=>$pnb,'totalResult'=>$tRes->current(),
-							  'houses' => $this->getHouseRepository()->listAll())
-				);
-        }
 
+	public function viewAction() {
+		$pnb = $this->params('pageNumber');
+		$tRes = $this->getHouseRepository()->countAll();
+		return new ViewModel(array(
+					'pageNumber' => $pnb, 'totalResult' => $tRes->current(),
+					'houses' => $this->getHouseRepository()->listAll())
+		);
+	}
 
-        public function getHouseRepository() {
+	public function getHouseRepository() {
 		if (!$this->houseRepository) {
 			$sm = $this->getServiceLocator();
 			$this->houseRepository = $sm->get('RealEstate\Model\HouseRepository');
 		}
 		return $this->houseRepository;
 	}
+
 }

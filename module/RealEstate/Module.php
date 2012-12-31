@@ -12,10 +12,10 @@ namespace RealEstate;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
-use RealEstate\Model\HouseRepository;
+use Zend\Db\TableGateway\TableGateway;
 use RealEstate\Model\House;
+use RealEstate\Model\HouseRepository;
 
 class Module {
 
@@ -42,7 +42,7 @@ class Module {
 					$dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 					$resultSetPrototype = new ResultSet();
 					$resultSetPrototype->setArrayObjectPrototype(new House());
-					return new TableGateway('houses', $dbAdapter, null, $resultSetPrototype);
+					return new TableGateway('house', $dbAdapter, null, $resultSetPrototype);
 				},
 			),
 		);

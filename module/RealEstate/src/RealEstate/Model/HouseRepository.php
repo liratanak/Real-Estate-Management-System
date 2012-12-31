@@ -23,13 +23,13 @@ class HouseRepository {
 		$sql = new \Zend\Db\Sql\Sql($this->tableGateway->getAdapter());
 		$select = $sql->select();
 
-		$select->from(array('h' => 'houses'))
-				->join(array('t' => 'house_types'), 'h.typeUid=t.uid')
-				->join(array('a' => 'address'), 'h.addressUid=a.uid')
-				->join(array('s' => 'sizes'), 'h.sizeUid=a.uid')
-				->join(array('u'=>'users'), 'h.userUid=u.uid')
-				->join(array('p'=>'personal_details'), 'p.userUid=u.uid')
-				->where("h.uid = " . "$houseUid");
+		$select->from(array('h' => 'house'))
+				->join(array('t' => 'house_type'), 'h.type=t.id')
+				->join(array('a' => 'address'), 'h.address=a.id')
+				->join(array('s' => 'size'), 'h.size=a.id')
+				->join(array('u'=>'user'), 'h.user=u.id')
+				->join(array('p'=>'personal_detail'), 'p.user=u.id')
+				->where("h.id = " . "$houseUid");
 		$statement = $sql->prepareStatementForSqlObject($select);
 		$results = $statement->execute();
 		return $results;
@@ -40,7 +40,7 @@ class HouseRepository {
 		$select = $sql->select();
 
 		$select->from(array('a' => 'address'))
-				->where("a.uid = " . "$houseUid");
+				->where("a.id = " . "$houseUid");
 		$statement = $sql->prepareStatementForSqlObject($select);
 		$results = $statement->execute();
 		return $results;
@@ -52,7 +52,7 @@ class HouseRepository {
 
 
 		$select->from(array('s' => 'sizes'), array('s.width', 's.height', 's.length'))
-				->where("s.uid = " . "$houseUid");
+				->where("s.id = " . "$houseUid");
 		$statement = $sql->prepareStatementForSqlObject($select);
 		$results = $statement->execute();
 		return $results;
@@ -60,13 +60,13 @@ class HouseRepository {
 
 	public function listAll() {
 		$adapter = $this->tableGateway->getAdapter();
-		$sql = 'select h.uid,h.isRoomRent, h.isRoomRent,h.lastModifiedTime as lastUpdate,t.title as Type,COUNT(r.uid) as NumberofRooms, h.cost as houseCost, max(r.cost) as roomCostMax, min(r.cost) as roomCostMin, a.*
-							from houses as h
-							left join rooms as r on h.uid = r.houseUid
-							join address as a on h.addressUid = a.uid
-							join house_types as t on h.typeUid = t.uid
-							group by r.houseUid
-							order by h.lastModifiedTime';
+		$sql = 'select h.id,h.is_room_rent, h.is_room_rent,h.last_modified_time as last_Update,t.title as Type,COUNT(r.id) as NumberofRooms, h.cost as houseCost, max(r.cost) as roomCostMax, min(r.cost) as roomCostMin, a.*
+							from house as h
+							left join room as r on h.id = r.house
+							join address as a on h.address = a.id
+							join house_type as t on h.type = t.id
+							group by r.house
+							order by h.last_modified_time';
 		$statement = $adapter->query($sql);
 		$resultSet = $statement->execute();
 		return $resultSet;
@@ -74,7 +74,7 @@ class HouseRepository {
 
 	public function countAll() {
 		$adapter = $this->tableGateway->getAdapter();
-		$sql = 'select count(uid) as count from houses';
+		$sql = 'select count(id) as count from house';
 		$statement = $adapter->query($sql);
 		$resultSet = $statement->execute();
 
@@ -86,8 +86,8 @@ class HouseRepository {
 //		$select = $sql->select();
 //
 //		$select->from(array('p'=>'personal_details'))
-//				->join(array('u'=>'users'), 'p.userUid=u.uid' )
-//				->where("u.uid = " . "$houseUid");
+//				->join(array('u'=>'users'), 'p.userUid=u.id' )
+//				->where("u.id = " . "$houseUid");
 //		$statement = $sql->prepareStatementForSqlObject($select);
 //		$results = $statement->execute();
 //		return $results;
