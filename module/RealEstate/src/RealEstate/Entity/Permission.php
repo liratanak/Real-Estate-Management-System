@@ -24,72 +24,72 @@ class Permission
     /**
      * @var integer
      *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @ORM\Column(name="pid", type="integer", nullable=true)
      */
     private $pid;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="hidden", type="boolean", nullable=false)
+     * @ORM\Column(name="hidden", type="boolean", nullable=true)
      */
     private $hidden;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     * @ORM\Column(name="disabled", type="boolean", nullable=true)
      */
     private $disabled;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="created_time", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=true)
      */
     private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=true)
      */
     private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=true)
      */
     private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=true)
      */
     private $validTimeEnd;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="title", type="integer", nullable=false)
+     * @ORM\Column(name="title", type="integer", nullable=true)
      */
     private $title;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Group", mappedBy="permission")
+     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Role", mappedBy="permission")
      */
-    private $group;
+    private $role;
 
     /**
      * @var \RealEstate\Entity\User
@@ -116,7 +116,7 @@ class Permission
      */
     public function __construct()
     {
-        $this->group = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->role = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 
@@ -338,36 +338,36 @@ class Permission
     }
 
     /**
-     * Add group
+     * Add role
      *
-     * @param \RealEstate\Entity\Group $group
+     * @param \RealEstate\Entity\Role $role
      * @return Permission
      */
-    public function addGroup(\RealEstate\Entity\Group $group)
+    public function addRole(\RealEstate\Entity\Role $role)
     {
-        $this->group[] = $group;
+        $this->role[] = $role;
     
         return $this;
     }
 
     /**
-     * Remove group
+     * Remove role
      *
-     * @param \RealEstate\Entity\Group $group
+     * @param \RealEstate\Entity\Role $role
      */
-    public function removeGroup(\RealEstate\Entity\Group $group)
+    public function removeRole(\RealEstate\Entity\Role $role)
     {
-        $this->group->removeElement($group);
+        $this->role->removeElement($role);
     }
 
     /**
-     * Get group
+     * Get role
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGroup()
+    public function getRole()
     {
-        return $this->group;
+        return $this->role;
     }
 
     /**

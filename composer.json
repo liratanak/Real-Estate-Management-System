@@ -6,12 +6,12 @@
         "framework",
         "zf2"
     ],
-    "minimum-stability": "alpha",
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
         "doctrine/doctrine-orm-module": "0.*",
-		"heartsentwined/zf2-doctrine": "1.*"
+		"heartsentwined/zf2-doctrine": "1.*",
+		"zf-commons/Zfc-user-doctrine-orm" : "*"
     }
 }

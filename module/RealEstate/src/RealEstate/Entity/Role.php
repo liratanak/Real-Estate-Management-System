@@ -5,12 +5,12 @@ namespace RealEstate\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Image
+ * Role
  *
- * @ORM\Table(name="image")
+ * @ORM\Table(name="role")
  * @ORM\Entity
  */
-class Image
+class Role
 {
     /**
      * @var integer
@@ -80,16 +80,34 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="original_file_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", length=64, nullable=true)
      */
-    private $originalFileName;
+    private $title;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="path", type="string", length=255, nullable=true)
+     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Permission", inversedBy="role")
+     * @ORM\JoinTable(name="role_permission",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="role", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="permission", referencedColumnName="id")
+     *   }
+     * )
      */
-    private $path;
+    private $permission;
+
+    /**
+     * @var \RealEstate\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     * })
+     */
+    private $lastModifiedUser;
 
     /**
      * @var \RealEstate\Entity\User
@@ -102,16 +120,13 @@ class Image
     private $createdUser;
 
     /**
-     * @var \RealEstate\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
-     * })
+     * Constructor
      */
-    private $lastModifiedUser;
-
-
+    public function __construct()
+    {
+        $this->permission = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -127,7 +142,7 @@ class Image
      * Set pid
      *
      * @param integer $pid
-     * @return Image
+     * @return Role
      */
     public function setPid($pid)
     {
@@ -150,7 +165,7 @@ class Image
      * Set hidden
      *
      * @param boolean $hidden
-     * @return Image
+     * @return Role
      */
     public function setHidden($hidden)
     {
@@ -173,7 +188,7 @@ class Image
      * Set disabled
      *
      * @param boolean $disabled
-     * @return Image
+     * @return Role
      */
     public function setDisabled($disabled)
     {
@@ -196,7 +211,7 @@ class Image
      * Set deleted
      *
      * @param boolean $deleted
-     * @return Image
+     * @return Role
      */
     public function setDeleted($deleted)
     {
@@ -219,7 +234,7 @@ class Image
      * Set createdTime
      *
      * @param integer $createdTime
-     * @return Image
+     * @return Role
      */
     public function setCreatedTime($createdTime)
     {
@@ -242,7 +257,7 @@ class Image
      * Set lastModifiedTime
      *
      * @param integer $lastModifiedTime
-     * @return Image
+     * @return Role
      */
     public function setLastModifiedTime($lastModifiedTime)
     {
@@ -265,7 +280,7 @@ class Image
      * Set validTimeStart
      *
      * @param integer $validTimeStart
-     * @return Image
+     * @return Role
      */
     public function setValidTimeStart($validTimeStart)
     {
@@ -288,7 +303,7 @@ class Image
      * Set validTimeEnd
      *
      * @param integer $validTimeEnd
-     * @return Image
+     * @return Role
      */
     public function setValidTimeEnd($validTimeEnd)
     {
@@ -308,79 +323,66 @@ class Image
     }
 
     /**
-     * Set originalFileName
+     * Set title
      *
-     * @param string $originalFileName
-     * @return Image
+     * @param string $title
+     * @return Role
      */
-    public function setOriginalFileName($originalFileName)
+    public function setTitle($title)
     {
-        $this->originalFileName = $originalFileName;
+        $this->title = $title;
     
         return $this;
     }
 
     /**
-     * Get originalFileName
+     * Get title
      *
      * @return string 
      */
-    public function getOriginalFileName()
+    public function getTitle()
     {
-        return $this->originalFileName;
+        return $this->title;
     }
 
     /**
-     * Set path
+     * Add permission
      *
-     * @param string $path
-     * @return Image
+     * @param \RealEstate\Entity\Permission $permission
+     * @return Role
      */
-    public function setPath($path)
+    public function addPermission(\RealEstate\Entity\Permission $permission)
     {
-        $this->path = $path;
+        $this->permission[] = $permission;
     
         return $this;
     }
 
     /**
-     * Get path
+     * Remove permission
      *
-     * @return string 
+     * @param \RealEstate\Entity\Permission $permission
      */
-    public function getPath()
+    public function removePermission(\RealEstate\Entity\Permission $permission)
     {
-        return $this->path;
+        $this->permission->removeElement($permission);
     }
 
     /**
-     * Set createdUser
+     * Get permission
      *
-     * @param \RealEstate\Entity\User $createdUser
-     * @return Image
+     * @return \Doctrine\Common\Collections\Collection 
      */
-    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
+    public function getPermission()
     {
-        $this->createdUser = $createdUser;
-    
-        return $this;
-    }
-
-    /**
-     * Get createdUser
-     *
-     * @return \RealEstate\Entity\User 
-     */
-    public function getCreatedUser()
-    {
-        return $this->createdUser;
+        return $this->permission;
     }
 
     /**
      * Set lastModifiedUser
      *
      * @param \RealEstate\Entity\User $lastModifiedUser
-     * @return Image
+     * @return Role
      */
     public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
     {
@@ -397,5 +399,28 @@ class Image
     public function getLastModifiedUser()
     {
         return $this->lastModifiedUser;
+    }
+
+    /**
+     * Set createdUser
+     *
+     * @param \RealEstate\Entity\User $createdUser
+     * @return Role
+     */
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return \RealEstate\Entity\User 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
     }
 }

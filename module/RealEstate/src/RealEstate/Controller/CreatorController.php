@@ -18,14 +18,21 @@ class CreatorController extends AbstractActionController {
 		$group = new Group();
 		
 		$group->setTitle('Owner');
-		$group->setCreatedUser($this->getEntityManager()->find('RealEstate\Entity\User',2));
-		$group->setLastModifiedUser($this->getEntityManager()->find('RealEstate\Entity\User',2));
 		
-		var_dump($group);			
+		var_dump($group);	
 		
-		$this->getEntityManager()->persist($group);
-//		$this->getEntityManager()->flush();
+		$this->getEntityManager()->remove($group);
+		$this->getEntityManager()->flush();
 		return new ViewModel();
+	}
+	
+	public function roleAction(){
+		$role = new \RealEstate\Entity\Role();
+		
+		
+		
+		$this->getEntityManager()->persist($role);
+		$this->getEntityManager()->flush();
 	}
 
 	/**

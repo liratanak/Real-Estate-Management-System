@@ -97,7 +97,7 @@ return array(
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
-					'houseUid' => array(
+					'actions' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
 							'route' => '/[:action]',

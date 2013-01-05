@@ -159,22 +159,22 @@ class Permission extends \RealEstate\Entity\Permission implements \Doctrine\ORM\
         return parent::getTitle();
     }
 
-    public function addGroup(\RealEstate\Entity\Group $group)
+    public function addRole(\RealEstate\Entity\Role $role)
     {
         $this->__load();
-        return parent::addGroup($group);
+        return parent::addRole($role);
     }
 
-    public function removeGroup(\RealEstate\Entity\Group $group)
+    public function removeRole(\RealEstate\Entity\Role $role)
     {
         $this->__load();
-        return parent::removeGroup($group);
+        return parent::removeRole($role);
     }
 
-    public function getGroup()
+    public function getRole()
     {
         $this->__load();
-        return parent::getGroup();
+        return parent::getRole();
     }
 
     public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
@@ -204,7 +204,7 @@ class Permission extends \RealEstate\Entity\Permission implements \Doctrine\ORM\
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'title', 'group', 'createdUser', 'lastModifiedUser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'title', 'role', 'createdUser', 'lastModifiedUser');
     }
 
     public function __clone()

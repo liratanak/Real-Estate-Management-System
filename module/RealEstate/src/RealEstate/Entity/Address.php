@@ -24,112 +24,112 @@ class Address
     /**
      * @var integer
      *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @ORM\Column(name="pid", type="integer", nullable=true)
      */
     private $pid;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="hidden", type="boolean", nullable=false)
+     * @ORM\Column(name="hidden", type="boolean", nullable=true)
      */
     private $hidden;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     * @ORM\Column(name="disabled", type="boolean", nullable=true)
      */
     private $disabled;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="created_time", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=true)
      */
     private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=true)
      */
     private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=true)
      */
     private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=true)
      */
     private $validTimeEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="house", type="string", length=64, nullable=false)
+     * @ORM\Column(name="house", type="string", length=64, nullable=true)
      */
     private $house;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=64, nullable=false)
+     * @ORM\Column(name="street", type="string", length=64, nullable=true)
      */
     private $street;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="vilege", type="string", length=70, nullable=false)
+     * @ORM\Column(name="vilege", type="string", length=70, nullable=true)
      */
     private $vilege;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="district", type="string", length=70, nullable=false)
+     * @ORM\Column(name="district", type="string", length=70, nullable=true)
      */
     private $district;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=false)
+     * @ORM\Column(name="quarter", type="string", length=70, nullable=true)
      */
     private $quarter;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=70, nullable=false)
+     * @ORM\Column(name="city", type="string", length=70, nullable=true)
      */
     private $city;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=false)
+     * @ORM\Column(name="longitude", type="integer", nullable=true)
      */
     private $longitude;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=false)
+     * @ORM\Column(name="latitude", type="integer", nullable=true)
      */
     private $latitude;
 

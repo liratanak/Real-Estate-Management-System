@@ -24,112 +24,112 @@ class PersonalDetail
     /**
      * @var integer
      *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @ORM\Column(name="pid", type="integer", nullable=true)
      */
     private $pid;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="hidden", type="boolean", nullable=false)
+     * @ORM\Column(name="hidden", type="boolean", nullable=true)
      */
     private $hidden;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     * @ORM\Column(name="disabled", type="boolean", nullable=true)
      */
     private $disabled;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="created_time", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=true)
      */
     private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=true)
      */
     private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=true)
      */
     private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=true)
      */
     private $validTimeEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=50, nullable=false)
+     * @ORM\Column(name="firstname", type="string", length=50, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=50, nullable=false)
+     * @ORM\Column(name="lastname", type="string", length=50, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=1, nullable=false)
+     * @ORM\Column(name="gender", type="string", length=1, nullable=true)
      */
     private $gender;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="job", type="string", length=50, nullable=false)
+     * @ORM\Column(name="job", type="string", length=50, nullable=true)
      */
     private $job;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="age", type="boolean", nullable=false)
+     * @ORM\Column(name="age", type="boolean", nullable=true)
      */
     private $age;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     * @ORM\Column(name="email", type="string", length=50, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number_1", type="string", length=50, nullable=false)
+     * @ORM\Column(name="phone_number_1", type="string", length=50, nullable=true)
      */
     private $phoneNumber1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone_number_2", type="string", length=50, nullable=false)
+     * @ORM\Column(name="phone_number_2", type="string", length=50, nullable=true)
      */
     private $phoneNumber2;
 

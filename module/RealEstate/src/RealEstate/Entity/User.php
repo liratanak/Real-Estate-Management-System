@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="RealEstate\Repository\UserRepository")
+ * @ORM\Entity
  */
 class User
 {
@@ -24,116 +24,110 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="pid", type="integer", nullable=false)
+     * @ORM\Column(name="pid", type="integer", nullable=true)
      */
     private $pid;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="hidden", type="boolean", nullable=false)
+     * @ORM\Column(name="hidden", type="boolean", nullable=true)
      */
     private $hidden;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="disabled", type="boolean", nullable=false)
+     * @ORM\Column(name="disabled", type="boolean", nullable=true)
      */
     private $disabled;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     * @ORM\Column(name="deleted", type="boolean", nullable=true)
      */
     private $deleted;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="created_time", type="integer", nullable=false)
+     * @ORM\Column(name="created_time", type="integer", nullable=true)
      */
     private $createdTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="last_modified_time", type="integer", nullable=false)
+     * @ORM\Column(name="created_user", type="integer", nullable=true)
+     */
+    private $createdUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="last_modified_time", type="integer", nullable=true)
      */
     private $lastModifiedTime;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_start", type="integer", nullable=false)
+     * @ORM\Column(name="last_modified_user", type="integer", nullable=true)
+     */
+    private $lastModifiedUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="valid_time_start", type="integer", nullable=true)
      */
     private $validTimeStart;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="valid_time_end", type="integer", nullable=false)
+     * @ORM\Column(name="valid_time_end", type="integer", nullable=true)
      */
     private $validTimeEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=50, nullable=false)
+     * @ORM\Column(name="username", type="string", length=50, nullable=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=50, nullable=false)
+     * @ORM\Column(name="password", type="string", length=50, nullable=true)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=50, nullable=false)
+     * @ORM\Column(name="email", type="string", length=50, nullable=true)
      */
     private $email;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="last_login_time", type="integer", nullable=false)
+     * @ORM\Column(name="last_login_time", type="integer", nullable=true)
      */
     private $lastLoginTime;
 
     /**
-     * @var \RealEstate\Entity\Group
+     * @var \RealEstate\Entity\Role
      *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Group")
+     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Role")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="group", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="role", referencedColumnName="id")
      * })
      */
-    private $group;
-
-    /**
-     * @var \RealEstate\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
-     * })
-     */
-    private $createdUser;
-
-    /**
-     * @var \RealEstate\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
-     * })
-     */
-    private $lastModifiedUser;
+    private $role;
 
 
 
@@ -263,6 +257,29 @@ class User
     }
 
     /**
+     * Set createdUser
+     *
+     * @param integer $createdUser
+     * @return User
+     */
+    public function setCreatedUser($createdUser)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return integer 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
+    }
+
+    /**
      * Set lastModifiedTime
      *
      * @param integer $lastModifiedTime
@@ -283,6 +300,29 @@ class User
     public function getLastModifiedTime()
     {
         return $this->lastModifiedTime;
+    }
+
+    /**
+     * Set lastModifiedUser
+     *
+     * @param integer $lastModifiedUser
+     * @return User
+     */
+    public function setLastModifiedUser($lastModifiedUser)
+    {
+        $this->lastModifiedUser = $lastModifiedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedUser
+     *
+     * @return integer 
+     */
+    public function getLastModifiedUser()
+    {
+        return $this->lastModifiedUser;
     }
 
     /**
@@ -424,71 +464,25 @@ class User
     }
 
     /**
-     * Set group
+     * Set role
      *
-     * @param \RealEstate\Entity\Group $group
+     * @param \RealEstate\Entity\Role $role
      * @return User
      */
-    public function setGroup(\RealEstate\Entity\Group $group = null)
+    public function setRole(\RealEstate\Entity\Role $role = null)
     {
-        $this->group = $group;
+        $this->role = $role;
     
         return $this;
     }
 
     /**
-     * Get group
+     * Get role
      *
-     * @return \RealEstate\Entity\Group 
+     * @return \RealEstate\Entity\Role 
      */
-    public function getGroup()
+    public function getRole()
     {
-        return $this->group;
-    }
-
-    /**
-     * Set createdUser
-     *
-     * @param \RealEstate\Entity\User $createdUser
-     * @return User
-     */
-    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
-    {
-        $this->createdUser = $createdUser;
-    
-        return $this;
-    }
-
-    /**
-     * Get createdUser
-     *
-     * @return \RealEstate\Entity\User 
-     */
-    public function getCreatedUser()
-    {
-        return $this->createdUser;
-    }
-
-    /**
-     * Set lastModifiedUser
-     *
-     * @param \RealEstate\Entity\User $lastModifiedUser
-     * @return User
-     */
-    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
-    {
-        $this->lastModifiedUser = $lastModifiedUser;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastModifiedUser
-     *
-     * @return \RealEstate\Entity\User 
-     */
-    public function getLastModifiedUser()
-    {
-        return $this->lastModifiedUser;
+        return $this->role;
     }
 }
