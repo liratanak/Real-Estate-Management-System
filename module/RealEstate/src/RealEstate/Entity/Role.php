@@ -59,9 +59,23 @@ class Role
     /**
      * @var integer
      *
+     * @ORM\Column(name="created_user", type="integer", nullable=true)
+     */
+    private $createdUser;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="last_modified_time", type="integer", nullable=true)
      */
     private $lastModifiedTime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="last_modified_user", type="integer", nullable=true)
+     */
+    private $lastModifiedUser;
 
     /**
      * @var integer
@@ -98,26 +112,6 @@ class Role
      * )
      */
     private $permission;
-
-    /**
-     * @var \RealEstate\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
-     * })
-     */
-    private $lastModifiedUser;
-
-    /**
-     * @var \RealEstate\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
-     * })
-     */
-    private $createdUser;
 
     /**
      * Constructor
@@ -254,6 +248,29 @@ class Role
     }
 
     /**
+     * Set createdUser
+     *
+     * @param integer $createdUser
+     * @return Role
+     */
+    public function setCreatedUser($createdUser)
+    {
+        $this->createdUser = $createdUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdUser
+     *
+     * @return integer 
+     */
+    public function getCreatedUser()
+    {
+        return $this->createdUser;
+    }
+
+    /**
      * Set lastModifiedTime
      *
      * @param integer $lastModifiedTime
@@ -274,6 +291,29 @@ class Role
     public function getLastModifiedTime()
     {
         return $this->lastModifiedTime;
+    }
+
+    /**
+     * Set lastModifiedUser
+     *
+     * @param integer $lastModifiedUser
+     * @return Role
+     */
+    public function setLastModifiedUser($lastModifiedUser)
+    {
+        $this->lastModifiedUser = $lastModifiedUser;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastModifiedUser
+     *
+     * @return integer 
+     */
+    public function getLastModifiedUser()
+    {
+        return $this->lastModifiedUser;
     }
 
     /**
@@ -376,51 +416,5 @@ class Role
     public function getPermission()
     {
         return $this->permission;
-    }
-
-    /**
-     * Set lastModifiedUser
-     *
-     * @param \RealEstate\Entity\User $lastModifiedUser
-     * @return Role
-     */
-    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null)
-    {
-        $this->lastModifiedUser = $lastModifiedUser;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastModifiedUser
-     *
-     * @return \RealEstate\Entity\User 
-     */
-    public function getLastModifiedUser()
-    {
-        return $this->lastModifiedUser;
-    }
-
-    /**
-     * Set createdUser
-     *
-     * @param \RealEstate\Entity\User $createdUser
-     * @return Role
-     */
-    public function setCreatedUser(\RealEstate\Entity\User $createdUser = null)
-    {
-        $this->createdUser = $createdUser;
-    
-        return $this;
-    }
-
-    /**
-     * Get createdUser
-     *
-     * @return \RealEstate\Entity\User 
-     */
-    public function getCreatedUser()
-    {
-        return $this->createdUser;
     }
 }

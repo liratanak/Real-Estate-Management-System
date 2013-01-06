@@ -138,7 +138,7 @@ class Address
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="created_user", referencedColumnName="user_id")
      * })
      */
     private $createdUser;
@@ -148,7 +148,7 @@ class Address
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="user_id")
      * })
      */
     private $lastModifiedUser;

@@ -89,7 +89,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="created_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="created_user", referencedColumnName="user_id")
      * })
      */
     private $createdUser;
@@ -99,7 +99,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="user_id")
      * })
      */
     private $lastModifiedUser;
@@ -109,7 +109,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="user_id")
      * })
      */
     private $fromuser;
@@ -119,7 +119,7 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="toUser", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="toUser", referencedColumnName="user_id")
      * })
      */
     private $touser;

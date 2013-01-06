@@ -15,11 +15,11 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    private $userId;
 
     /**
      * @var integer
@@ -120,25 +120,51 @@ class User
     private $lastLoginTime;
 
     /**
-     * @var \RealEstate\Entity\Role
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="RealEstate\Entity\Role")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="role", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="display_name", type="string", length=50, nullable=true)
+     */
+    private $displayName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="state", type="smallint", nullable=true)
+     */
+    private $state;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\UserRole", inversedBy="user")
+     * @ORM\JoinTable(name="user_role_linker",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="role_id", referencedColumnName="role_id")
+     *   }
+     * )
      */
     private $role;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->role = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
-     * Get id
+     * Get userId
      *
      * @return integer 
      */
-    public function getId()
+    public function getUserId()
     {
-        return $this->id;
+        return $this->userId;
     }
 
     /**
@@ -464,22 +490,78 @@ class User
     }
 
     /**
-     * Set role
+     * Set displayName
      *
-     * @param \RealEstate\Entity\Role $role
+     * @param string $displayName
      * @return User
      */
-    public function setRole(\RealEstate\Entity\Role $role = null)
+    public function setDisplayName($displayName)
     {
-        $this->role = $role;
+        $this->displayName = $displayName;
     
         return $this;
     }
 
     /**
+     * Get displayName
+     *
+     * @return string 
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
+    }
+
+    /**
+     * Set state
+     *
+     * @param integer $state
+     * @return User
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return integer 
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Add role
+     *
+     * @param \RealEstate\Entity\UserRole $role
+     * @return User
+     */
+    public function addRole(\RealEstate\Entity\UserRole $role)
+    {
+        $this->role[] = $role;
+    
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param \RealEstate\Entity\UserRole $role
+     */
+    public function removeRole(\RealEstate\Entity\UserRole $role)
+    {
+        $this->role->removeElement($role);
+    }
+
+    /**
      * Get role
      *
-     * @return \RealEstate\Entity\Role 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getRole()
     {
