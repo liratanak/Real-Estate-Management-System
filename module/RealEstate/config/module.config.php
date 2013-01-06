@@ -27,7 +27,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '[:action]',
+							'route' => '/[:action]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
@@ -97,7 +97,7 @@ return array(
 				),
 				'may_terminate' => true,
 				'child_routes' => array(
-					'actions' => array(
+					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
 							'route' => '/[:action]',

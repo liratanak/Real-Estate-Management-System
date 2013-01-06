@@ -111,6 +111,18 @@ class Role extends \RealEstate\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
         return parent::getCreatedTime();
     }
 
+    public function setCreatedUser($createdUser)
+    {
+        $this->__load();
+        return parent::setCreatedUser($createdUser);
+    }
+
+    public function getCreatedUser()
+    {
+        $this->__load();
+        return parent::getCreatedUser();
+    }
+
     public function setLastModifiedTime($lastModifiedTime)
     {
         $this->__load();
@@ -121,6 +133,18 @@ class Role extends \RealEstate\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getLastModifiedTime();
+    }
+
+    public function setLastModifiedUser($lastModifiedUser)
+    {
+        $this->__load();
+        return parent::setLastModifiedUser($lastModifiedUser);
+    }
+
+    public function getLastModifiedUser()
+    {
+        $this->__load();
+        return parent::getLastModifiedUser();
     }
 
     public function setValidTimeStart($validTimeStart)
@@ -177,34 +201,10 @@ class Role extends \RealEstate\Entity\Role implements \Doctrine\ORM\Proxy\Proxy
         return parent::getPermission();
     }
 
-    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = NULL)
-    {
-        $this->__load();
-        return parent::setLastModifiedUser($lastModifiedUser);
-    }
-
-    public function getLastModifiedUser()
-    {
-        $this->__load();
-        return parent::getLastModifiedUser();
-    }
-
-    public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
-    {
-        $this->__load();
-        return parent::setCreatedUser($createdUser);
-    }
-
-    public function getCreatedUser()
-    {
-        $this->__load();
-        return parent::getCreatedUser();
-    }
-
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'title', 'permission', 'lastModifiedUser', 'createdUser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'createdUser', 'lastModifiedTime', 'lastModifiedUser', 'validTimeStart', 'validTimeEnd', 'title', 'permission');
     }
 
     public function __clone()

@@ -94,21 +94,21 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=50, nullable=true)
+     * @ORM\Column(name="username", type="string", length=64, nullable=true)
      */
     private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=50, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=50, nullable=true)
+     * @ORM\Column(name="email", type="string", length=64, nullable=true)
      */
     private $email;
 

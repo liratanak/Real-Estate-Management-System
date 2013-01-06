@@ -31,8 +31,12 @@ class CreatorController extends AbstractActionController {
 		
 		
 		
-		$this->getEntityManager()->persist($role);
-		$this->getEntityManager()->flush();
+//		$this->getEntityManager()->persist($role);
+//		$this->getEntityManager()->flush();
+	}
+	
+	public function createRoleAction(){
+		
 	}
 
 	/**

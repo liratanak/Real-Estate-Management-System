@@ -42,13 +42,13 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
-    public function getId()
+    public function getUserId()
     {
         if ($this->__isInitialized__ === false) {
-            return (int) $this->_identifier["id"];
+            return (int) $this->_identifier["userId"];
         }
         $this->__load();
-        return parent::getId();
+        return parent::getUserId();
     }
 
     public function setPid($pid)
@@ -219,10 +219,40 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getLastLoginTime();
     }
 
-    public function setRole(\RealEstate\Entity\Role $role = NULL)
+    public function setDisplayName($displayName)
     {
         $this->__load();
-        return parent::setRole($role);
+        return parent::setDisplayName($displayName);
+    }
+
+    public function getDisplayName()
+    {
+        $this->__load();
+        return parent::getDisplayName();
+    }
+
+    public function setState($state)
+    {
+        $this->__load();
+        return parent::setState($state);
+    }
+
+    public function getState()
+    {
+        $this->__load();
+        return parent::getState();
+    }
+
+    public function addRole(\RealEstate\Entity\UserRole $role)
+    {
+        $this->__load();
+        return parent::addRole($role);
+    }
+
+    public function removeRole(\RealEstate\Entity\UserRole $role)
+    {
+        $this->__load();
+        return parent::removeRole($role);
     }
 
     public function getRole()
@@ -234,7 +264,7 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'createdUser', 'lastModifiedTime', 'lastModifiedUser', 'validTimeStart', 'validTimeEnd', 'username', 'password', 'email', 'lastLoginTime', 'role');
+        return array('__isInitialized__', 'userId', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'createdUser', 'lastModifiedTime', 'lastModifiedUser', 'validTimeStart', 'validTimeEnd', 'username', 'password', 'email', 'lastLoginTime', 'displayName', 'state', 'role');
     }
 
     public function __clone()
