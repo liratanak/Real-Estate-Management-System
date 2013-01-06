@@ -1,18 +1,24 @@
 <?php
+
 return array(
-    'modules' => array(
-        'DoctrineModule',
-        'DoctrineORMModule',
+	'modules' => array(
+		'ZfcBase',
+		'ZfcUser',
+		'BjyAuthorize',
+		'DoctrineModule',
+		'DoctrineORMModule',
+		'ZfcUserDoctrineORM',
+		'ZfcAdmin',
+		'ZfcUserAdmin',
 		'RealEstate',
-		//'Album',
-    ),
-    'module_listener_options' => array(
-        'config_glob_paths'    => array(
-            'config/autoload/{,*.}{global,local}.php',
-        ),
-        'module_paths' => array(
-            './module',
-            './vendor',
-        ),
-    ),
+	),
+	'module_listener_options' => array(
+		'config_glob_paths' => array(
+			'config/autoload/{,*.}{global,local}.php',
+		),
+		'module_paths' => array(
+			'./module',
+			'./vendor',
+		),
+	),
 );
