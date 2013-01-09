@@ -4,7 +4,7 @@
  * to the application root now.
  */
 chdir(dirname(__DIR__));
-
+define("MAIN_MODULE_NAME", 'RealEstate');
 // Setup autoloading
 require 'init_autoloader.php';
 
