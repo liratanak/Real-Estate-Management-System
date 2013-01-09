@@ -19,24 +19,25 @@ CREATE TABLE IF NOT EXISTS `user` (
 
   `username` varchar(64) DEFAULT '',
   `password` varchar(255) DEFAULT '',
+  `display_name` VARCHAR(50) DEFAULT '',
+  `gender` CHAR(10) DEFAULT NULL,
   `email` varchar(64) DEFAULT '',
   `last_login_time` int(11) unsigned DEFAULT '0',
-  `display_name` VARCHAR(50) DEFAULT NULL,
   `state` SMALLINT,
 
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `user_role` (
-  `role_id` varchar(255) NOT NULL,
-  `default` tinyint(1) NOT NULL,
+  `role_id` varchar(255)  ,
+  `default` tinyint(1)  ,
   `parent` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `user_role_linker` (
-  `user_id` int(11) unsigned NOT NULL,
-  `role_id` varchar(255) NOT NULL,
+  `user_id` int(11) unsigned  ,
+  `role_id` varchar(255)  ,
   PRIMARY KEY (`user_id`,`role_id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`role_id`) REFERENCES `user_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -48,34 +49,6 @@ ALTER TABLE `user`
   ADD CONSTRAINT `user_fk_1` FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`);
 ALTER TABLE `user`
   ADD CONSTRAINT `user_fk_2` FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`);
-
-CREATE TABLE IF NOT EXISTS `permission` (
-  `id` int(11) unsigned AUTO_INCREMENT,
-  `pid` int(11) unsigned DEFAULT '0',
-  `hidden` tinyint(1) unsigned DEFAULT '0',
-  `disabled` tinyint(1) unsigned DEFAULT '0',
-  `deleted` tinyint(1) unsigned DEFAULT '0',
-  `created_time` int(11) unsigned DEFAULT '0',
-  `created_user` int(11) unsigned DEFAULT '0',
-  `last_modified_time` int(11) unsigned DEFAULT '0',
-  `last_modified_user` int(11) unsigned DEFAULT '0',
-  `valid_time_start` int(11) unsigned DEFAULT '0',
-  `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
-
-  `title` int(11) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `role_permission` (
-  `role` varchar(255) NOT NULL,
-  `permission` int(11) unsigned DEFAULT '0',
-  
-  FOREIGN KEY (`role`) REFERENCES `user_role`(`role_id`) ,
-  FOREIGN KEY (`permission`) REFERENCES `permission`(`id`) ,
-  PRIMARY KEY(`role`, `permission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `image` (
   `id` int(11) unsigned AUTO_INCREMENT,
@@ -186,8 +159,8 @@ CREATE TABLE IF NOT EXISTS `house` (
   `is_room_rent` tinyint(1) unsigned DEFAULT '0',
   `cost` int(11) unsigned DEFAULT '0',
   `available` tinyint(1) unsigned DEFAULT '0',
-  `image_path_as_json_string_list` text NOT NULL,
-  `otherInfo` text NOT NULL,
+  `image_path_as_json_string_list` text  ,
+  `otherInfo` text  ,
 
   `user` int(11) unsigned DEFAULT '0',
   `type` int(11) unsigned DEFAULT '0',
@@ -244,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `personal_detail` (
   `email` varchar(50) DEFAULT '',
   `phone_number_1` varchar(50) DEFAULT '',
   `phone_number_2` varchar(50) DEFAULT '',
-  `others` text NOT NULL,
+  `others` text  ,
 
   `user` int(11) unsigned DEFAULT '0',
   `type` int(11) unsigned DEFAULT '0',
@@ -275,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `room` (
   `toilet` tinyint(1) unsigned DEFAULT '0',
   `kitchen` tinyint(1) unsigned DEFAULT '0',
   `available` tinyint(1) unsigned DEFAULT '0',
-  `image_path_as_json_string_list` text NOT NULL,
+  `image_path_as_json_string_list` text  ,
 
   `size` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
@@ -301,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
-  `content` text NOT NULL,
+  `content` text  ,
 
   `user` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
