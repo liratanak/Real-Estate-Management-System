@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UserRole
  *
  * @ORM\Table(name="user_role")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="RealEstate\Repository\UserRoleRepository")
  */
 class UserRole
 {
@@ -24,7 +24,7 @@ class UserRole
     /**
      * @var boolean
      *
-     * @ORM\Column(name="default", type="boolean", nullable=false)
+     * @ORM\Column(name="default", type="boolean", nullable=true)
      */
     private $default;
 
@@ -38,21 +38,6 @@ class UserRole
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Permission", inversedBy="role")
-     * @ORM\JoinTable(name="role_permission",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="role", referencedColumnName="role_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="permission", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $permission;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="RealEstate\Entity\User", mappedBy="role")
      */
     private $user;
@@ -62,7 +47,6 @@ class UserRole
      */
     public function __construct()
     {
-        $this->permission = new \Doctrine\Common\Collections\ArrayCollection();
         $this->user = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
@@ -121,39 +105,6 @@ class UserRole
     public function getParent()
     {
         return $this->parent;
-    }
-
-    /**
-     * Add permission
-     *
-     * @param \RealEstate\Entity\Permission $permission
-     * @return UserRole
-     */
-    public function addPermission(\RealEstate\Entity\Permission $permission)
-    {
-        $this->permission[] = $permission;
-    
-        return $this;
-    }
-
-    /**
-     * Remove permission
-     *
-     * @param \RealEstate\Entity\Permission $permission
-     */
-    public function removePermission(\RealEstate\Entity\Permission $permission)
-    {
-        $this->permission->removeElement($permission);
-    }
-
-    /**
-     * Get permission
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPermission()
-    {
-        return $this->permission;
     }
 
     /**

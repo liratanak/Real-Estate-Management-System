@@ -136,7 +136,7 @@ class PersonalDetail
     /**
      * @var string
      *
-     * @ORM\Column(name="others", type="text", nullable=false)
+     * @ORM\Column(name="others", type="text", nullable=true)
      */
     private $others;
 

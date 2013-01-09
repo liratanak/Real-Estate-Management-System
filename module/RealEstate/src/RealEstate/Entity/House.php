@@ -101,14 +101,14 @@ class House
     /**
      * @var string
      *
-     * @ORM\Column(name="image_path_as_json_string_list", type="text", nullable=false)
+     * @ORM\Column(name="image_path_as_json_string_list", type="text", nullable=true)
      */
     private $imagePathAsJsonStringList;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="otherInfo", type="text", nullable=false)
+     * @ORM\Column(name="otherInfo", type="text", nullable=true)
      */
     private $otherinfo;
 

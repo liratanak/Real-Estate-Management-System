@@ -115,7 +115,7 @@ class Room
     /**
      * @var string
      *
-     * @ORM\Column(name="image_path_as_json_string_list", type="text", nullable=false)
+     * @ORM\Column(name="image_path_as_json_string_list", type="text", nullable=true)
      */
     private $imagePathAsJsonStringList;
 
