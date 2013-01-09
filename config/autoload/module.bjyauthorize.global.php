@@ -63,7 +63,8 @@ return array(
 		),
 		/* Currently, only controller and route guards exist
 		 */
-		'guards' => array(
+		'guards-disabled' => array(
+//		'guards' => array(
 			/* If this guard is specified here (i.e. it is enabled), it will block
 			 * access to all controllers and actions unless they are specified here.
 			 * You may omit the 'action' index to allow access to the entire controller
@@ -73,13 +74,14 @@ return array(
 				array('controller' => 'index', 'action' => 'stuff', 'roles' => array('user')),
 				array('controller' => 'zfcuser', 'roles' => array()),
 				array('controller' => 'zfcuseradmin', 'roles' => array()),
+				array('controller' => 'houseList', 'roles' => array()),
+				 
 			// Below is the default index action used by the [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
 			// array('controller' => 'Application\Controller\Index', 'roles' => array('guest', 'user')),
 			),
-			
-			/* If this guard is specified here (i.e. it is enabled), it will block
-			 * access to all routes unless they are specified here.
-			 */
+		/* If this guard is specified here (i.e. it is enabled), it will block
+		 * access to all routes unless they are specified here.
+		 */
 //			'BjyAuthorize\Guard\Route' => array(
 //				array('route' => 'zfcuser', 'roles' => array('user')),
 //				array('route' => 'zfcuser/logout', 'roles' => array('user')),

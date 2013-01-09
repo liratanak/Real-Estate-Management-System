@@ -1,90 +1,98 @@
+<?php var_dump($houses) ?>
+<div id="colum-right">
+	<div id="slid-show">
+		<img src="../picture/slid-show-img.png" alt=""/>
 
-
-
-	<div id="colum-right">
-		<div id="slid-show">
-			<img src="../picture/slid-show-img.png" alt=""/>
-
+	</div>
+	<div class="datable">
+		<div class="conten-head">
+			<ul>
+				<li><a href="#">Flate</a></li>
+				<li><a class="active" href="#">Hotel</a></li>
+			</ul>
+			<input  class="search-box" type="text"/>
 		</div>
-		<div class="datable">
-			<div class="conten-head">
-				<ul>
-					<li><a href="#">Flate</a></li>
-					<li><a class="active" href="#">Hotel</a></li>
-				</ul>
-				<input  class="search-box" type="text"/>
-			</div>
 
-			<?php
-			foreach ($houses as $house) {
+		<?php
+		foreach ($houses as $house) {
 			?>
 			<div class="element">
-				<a href="/house/<?php echo $house['uid'];?>"><img class="small-img" src="../picture/home.jpg" alt=""/></a>
+				<a href="/house/<?php echo $house['id']; ?>"><img class="small-img" src="../picture/home.jpg" alt=""/></a>
 				<div class="price-label">
-					<p>Price : <span class="price"><?php if($house['isRoomRent']==0){echo $house['houseCost'].'$';}elseif($house['isRoomRent']==1){echo $house['roomCostMin'].'$-'.$house['roomCostMax'].'$';} ?>/month</span></p>
-					<p>Post : <?php echo $house['lastModifiedTime'];?></p>
+					<p>Price : <span class="price"><?php
+		if ($house['isRoomRent'] == 0) {
+			echo $house['houseCost'] . '$';
+		} elseif ($house['isRoomRent'] == 1) {
+			echo $house['roomCostMin'] . '$-' . $house['roomCostMax'] . '$';
+		}
+		?>/month</span></p>
+					<p>Post : <?php echo $house['lastModifiedTime']; ?></p>
 				</div>
 				<div class="short-info">
-					<p>Address : N<sup>o</sup> <?php echo $house['house'].' / '.$house['street'].' / '.$house['vilage'].' / '.$house['district'].' / '.$house['quarter'].' / '.$house['city']; ?> </p>
-
-					<p>Type : <span class="room-type"><?php echo $house['Type']; if($house['isRoomRent']==1){ echo ' Have '.$house['NumberofRooms'].' rooms';} ?></span></p>
+					<p>Address : N<sup>o</sup> <?php echo $house['house'] . ' / ' . $house['street'] . ' / ' . $house['vilage'] . ' / ' . $house['district'] . ' / ' . $house['quarter'] . ' / ' . $house['city']; ?> </p>
+					<p>Type : <span class="room-type"><?php
+		echo $house['Type'];
+		if ($house['isRoomRent'] == 1) {
+			echo ' Have ' . $house['NumberofRooms'] . ' rooms';
+		}
+		?></span></p>
 
 
 				</div>
 				<div class="vote">Vote: <span>6</span></div>
 			</div>
-			<?php 
+	<?php
+}
+?>
+
+		<div>
+
+			<?php
+			echo ($totalResult['count']) . '</br>';
+//$pageNumber = 29;
+			$totalResult = 30;
+
+			$pageNumber;
+
+			if ($totalResult > 15) {
+				$next = true;
+				if ($pageNumber > 6 && $pageNumber < $totalResult - 4) {
+					$i = $pageNumber - 5;
+					$end1 = $pageNumber;
+					$end2 = $pageNumber + 5;
+					echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
+				} elseif ($pageNumber < 7) {
+					$i = 1;
+					$end1 = $pageNumber;
+					$end2 = 11;
+				} elseif ($pageNumber > $totalResult - 5) {
+					$i = $totalResult - 9;
+					$end1 = $pageNumber;
+					$end2 = $totalResult + 1;
+					$next = false;
+					echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
+				}
+				if ($pageNumber)
+					echo '-';
+				for ($i; $i < $end1; $i++) {
+					echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
+				}
+				echo '<a href="/view/' . $i . '">| ' . $i . ' |</a> - ';
+				$i++;
+				for ($i; $i < $end2; $i++) {
+					echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
+				}
+				if ($next == true) {
+					echo '<a href="/view/' . ($pageNumber + 1) . '">{NEXT}</a>';
+				}
+			} else {
+				
 			}
 			?>
 
-			<div>
-
-				<?php
-				echo ($totalResult['count']) . '</br>';
-//$pageNumber = 29;
-				$totalResult = 30;
-
-				$pageNumber;
-
-				if ($totalResult > 15) {
-					$next = true;
-					if ($pageNumber > 6 && $pageNumber < $totalResult - 4) {
-						$i = $pageNumber - 5;
-						$end1 = $pageNumber;
-						$end2 = $pageNumber + 5;
-						echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
-					} elseif ($pageNumber < 7) {
-						$i = 1;
-						$end1 = $pageNumber;
-						$end2 = 11;
-					} elseif ($pageNumber > $totalResult - 5) {
-						$i = $totalResult - 9;
-						$end1 = $pageNumber;
-						$end2 = $totalResult + 1;
-						$next = false;
-						echo '<a href="/view/' . ($pageNumber - 1) . '">{PREVIUOS}</a>';
-					}
-					if ($pageNumber)
-						echo '-';
-					for ($i; $i < $end1; $i++) {
-						echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
-					}
-					echo '<a href="/view/' . $i . '">| ' . $i . ' |</a> - ';
-					$i++;
-					for ($i; $i < $end2; $i++) {
-						echo '<a href="/view/' . $i . '">' . $i . '</a> - ';
-					}
-					if ($next == true) {
-						echo '<a href="/view/' . ($pageNumber + 1) . '">{NEXT}</a>';
-					}
-				} else {
-					
-				}
-				?>
-
-			</div>
-
 		</div>
+
 	</div>
+</div>
 </div>
 

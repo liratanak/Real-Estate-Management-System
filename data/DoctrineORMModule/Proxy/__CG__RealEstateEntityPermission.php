@@ -159,13 +159,13 @@ class Permission extends \RealEstate\Entity\Permission implements \Doctrine\ORM\
         return parent::getTitle();
     }
 
-    public function addRole(\RealEstate\Entity\Role $role)
+    public function addRole(\RealEstate\Entity\UserRole $role)
     {
         $this->__load();
         return parent::addRole($role);
     }
 
-    public function removeRole(\RealEstate\Entity\Role $role)
+    public function removeRole(\RealEstate\Entity\UserRole $role)
     {
         $this->__load();
         return parent::removeRole($role);

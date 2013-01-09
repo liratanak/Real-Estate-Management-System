@@ -87,7 +87,7 @@ class Permission
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\Role", mappedBy="permission")
+     * @ORM\ManyToMany(targetEntity="RealEstate\Entity\UserRole", mappedBy="permission")
      */
     private $role;
 
@@ -340,10 +340,10 @@ class Permission
     /**
      * Add role
      *
-     * @param \RealEstate\Entity\Role $role
+     * @param \RealEstate\Entity\UserRole $role
      * @return Permission
      */
-    public function addRole(\RealEstate\Entity\Role $role)
+    public function addRole(\RealEstate\Entity\UserRole $role)
     {
         $this->role[] = $role;
     
@@ -353,9 +353,9 @@ class Permission
     /**
      * Remove role
      *
-     * @param \RealEstate\Entity\Role $role
+     * @param \RealEstate\Entity\UserRole $role
      */
-    public function removeRole(\RealEstate\Entity\Role $role)
+    public function removeRole(\RealEstate\Entity\UserRole $role)
     {
         $this->role->removeElement($role);
     }

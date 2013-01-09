@@ -38,39 +38,16 @@ CREATE TABLE IF NOT EXISTS `user_role_linker` (
   `user_id` int(11) unsigned NOT NULL,
   `role_id` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
-  KEY `role_id` (`role_id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`role_id`) REFERENCES `user_role` (`role_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `rems`.`user` (`user_id`, `pid`, `hidden`, `disabled`, `deleted`, `created_time`, `created_user`, `last_modified_time`, `last_modified_user`, `valid_time_start`, `valid_time_end`, `username`, `password`, `email`, `last_login_time`) VALUES ('1', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', 'default', 'default', 'default', '0');
 
-CREATE TABLE IF NOT EXISTS `role` (
-  `id` int(11) unsigned AUTO_INCREMENT,
-  `pid` int(11) unsigned DEFAULT '0',
-  `hidden` tinyint(1) unsigned DEFAULT '0',
-  `disabled` tinyint(1) unsigned DEFAULT '0',
-  `deleted` tinyint(1) unsigned DEFAULT '0',
-  `created_time` int(11) unsigned DEFAULT '0',
-  `created_user` int(11) unsigned DEFAULT '0',
-  `last_modified_time` int(11) unsigned DEFAULT '0',
-  `last_modified_user` int(11) unsigned DEFAULT '0',
-  `valid_time_start` int(11) unsigned DEFAULT '0',
-  `valid_time_end` int(11) unsigned DEFAULT '0',
-
-  `title` varchar(64) DEFAULT '',
-
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
-
--- INSERT INTO `rems`.`role` (`id`, `pid`, `hidden`, `disabled`, `deleted`, `created_time`, `created_user`, `last_modified_time`, `last_modified_user`, `valid_time_start`, `valid_time_end`, `title`) VALUES ('1', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', 'default');
--- INSERT INTO `rems`.`user` (`id`, `pid`, `hidden`, `disabled`, `deleted`, `created_time`, `created_user`, `last_modified_time`, `last_modified_user`, `valid_time_start`, `valid_time_end`, `username`, `password`, `email`, `last_login_time`, `role`) VALUES ('1', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', 'default', 'default', 'default', '0', '1');
-
--- ALTER TABLE `user`
---   ADD CONSTRAINT `user_fk_1` FOREIGN KEY (`role`) REFERENCES `role` (`id`);
--- ALTER TABLE `role`
---   ADD CONSTRAINT `role_fk_1` FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`);
--- ALTER TABLE `role`
---   ADD CONSTRAINT `role_fk_2` FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`);
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_fk_1` FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`);
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_fk_2` FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`);
 
 CREATE TABLE IF NOT EXISTS `permission` (
   `id` int(11) unsigned AUTO_INCREMENT,
@@ -92,10 +69,10 @@ CREATE TABLE IF NOT EXISTS `permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `role_permission` (
-  `role` int(11) unsigned DEFAULT '0',
+  `role` varchar(255) NOT NULL,
   `permission` int(11) unsigned DEFAULT '0',
   
-  FOREIGN KEY (`role`) REFERENCES `role`(`id`) ,
+  FOREIGN KEY (`role`) REFERENCES `user_role`(`role_id`) ,
   FOREIGN KEY (`permission`) REFERENCES `permission`(`id`) ,
   PRIMARY KEY(`role`, `permission`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
