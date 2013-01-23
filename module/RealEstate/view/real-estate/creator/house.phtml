@@ -1,0 +1,25 @@
+The full URL to the current page is: <?php echo $this->absoluteUrl(); ?>
+<?php
+$form->prepare();
+$form->setAttribute('action', $this->url('home'));
+$form->setAttribute('method', 'post');
+?>
+
+<h1>Create house</h1>
+
+<?php echo $this->form()->openTag($form) ?>
+
+<?php foreach ($form as $element): ?>
+	<?php if (NULL !== $element->getLabel()): ?>
+		<dt><?php echo $this->formLabel($element) ?></dt>
+	<?php endif ?>
+	<?php if ($element instanceof Zend\Form\Element\Button): ?>
+		<dd><?php echo $this->formButton($element) ?></dd>
+	<?php elseif ($element instanceof Zend\Form\Element\Select): ?>
+		<dd><?php echo $this->formSelect($element) . $this->formElementErrors($element) ?></dd>
+	<?php else: ?>
+		<dd><?php echo $this->formInput($element) . $this->formElementErrors($element) ?></dd>
+	<?php endif ?>
+<?php endforeach ?>
+</dl>
+<?php echo $this->form()->closeTag() ?>

@@ -13,7 +13,7 @@ namespace RealEstate;
 return array(
 	'router' => array(
 		'routes' => array(
-			'housesList' => array(
+			'home' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
 					'route' => '/',
@@ -86,6 +86,16 @@ return array(
 					),
 				),
 			),
+			'ajax' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/ajax',
+					'defaults' => array(
+						'controller' => 'ajax',
+						'action' => 'ajax',
+					),
+				),
+			),
 			'create' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -135,6 +145,7 @@ return array(
 			'houseList' => 'RealEstate\Controller\HousesListController',
 			'search' => 'RealEstate\Controller\SearchController',
 			'creator' => 'RealEstate\Controller\CreatorController',
+			'ajax' => 'RealEstate\Controller\AjaxController',
 		),
 	),
 	'view_manager' => array(
@@ -144,13 +155,16 @@ return array(
 		'not_found_template' => 'error/404',
 		'exception_template' => 'error/index',
 		'template_map' => array(
-			'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+			'layout/layout' => __DIR__ . '/../view/layout/marketing-narrow.phtml',
 			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
 		),
 		'template_path_stack' => array(
 			__DIR__ . '/../view',
 		),
+	),
+	'module_layouts' => array(
+		'ZfcUserAdmin' => __DIR__ . '/../view/layout/layout.phtml',
 	),
 	// Doctrine config
 	'doctrine' => array(

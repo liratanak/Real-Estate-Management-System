@@ -5,14 +5,20 @@ namespace RealEstate\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class SearchController extends AbstractActionController {
+class AjaxController extends AbstractActionController {
 
-	public function indexAction() {
+	public function ajaxAction() {
+		$users = $this->getEntityManager()->getRepository('RealEstate\Entity\User')->findAll();
+		$json = array();
+		foreach ($users as $user) {
+			$json[] = $user->getUsername();
+		}
+		$this->layout('layout/ajax');
 		return new ViewModel(array(
-//					'user' => $this->getEntityManager()->find('RealEstate\Entity\User', 2),
+					'jsonData' => json_encode($json),
 				));
 	}
-
+	
 	/**
 	 * Entity manager instance
 	 *           

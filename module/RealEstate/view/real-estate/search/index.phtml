@@ -1,1 +1,29 @@
-<?php var_dump($user) ?>
+<a href="javascript:request()">CLICK to show user</a>
+<div id="options"></div>
+<script type="text/javascript">
+	function request(){
+		jQuery.ajax({
+			dataType: "json",
+			url: "<?php echo $this->url('ajax') ?>",
+			data: null,
+			beforeSend: function ( xhr ) {
+				console.log(xhr);
+			},
+			success : function (data){
+				
+			}
+		}).done(function(data){
+			console.log(data);
+			var select = '<select>';
+			jQuery.each(data, function(key, value) {
+				select += '<option value="'+key+'">'+value+'</option>';
+			});
+			select += '</select>';
+			jQuery('#options').append(select);
+		})
+		.fail(function() { console.log("error"); })
+		.always(function() { console.log("complete"); });
+ 
+		;
+	}
+</script>

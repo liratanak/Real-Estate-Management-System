@@ -16,6 +16,7 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use RealEstate\Model\House;
 use RealEstate\Model\HouseRepository;
+use RealEstate\View\Helper\AbsoluteUrl;
 
 class Module {
 
@@ -24,6 +25,17 @@ class Module {
 		$eventManager = $e->getApplication()->getEventManager();
 		$moduleRouteListener = new ModuleRouteListener();
 		$moduleRouteListener->attach($eventManager);
+
+
+		$e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
+					$controller = $e->getTarget();
+					$controllerClass = get_class($controller);
+					$moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
+					$config = $e->getApplication()->getServiceManager()->get('config');
+					if (isset($config['module_layouts'][$moduleNamespace])) {
+						$controller->layout($config['module_layouts'][$moduleNamespace]);
+					}
+				}, 100);
 	}
 
 	public function getConfig() {
@@ -57,6 +69,18 @@ class Module {
 				'namespaces' => array(
 					__NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
 				),
+			),
+		);
+	}
+
+	public function getViewHelperConfig() {
+		return array(
+			'factories' => array(
+				// the array key here is the name you will call the view helper by in your view scripts
+				'absoluteUrl' => function($sm) {
+					$locator = $sm->getServiceLocator(); // $sm is the view helper manager, so we need to fetch the main service manager
+					return new AbsoluteUrl($locator->get('Request'));
+				},
 			),
 		);
 	}

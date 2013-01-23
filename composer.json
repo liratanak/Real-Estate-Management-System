@@ -14,6 +14,7 @@
 		"zf-commons/zfc-base": "dev-master",
 		"zf-commons/zfc-user": "dev-master",
 		"zf-commons/zfc-user-doctrine-orm" : "dev-master",
+		"zf-commons/zfc-twig": "dev-master",
 		"heartsentwined/zf2-doctrine": "1.*"
     }
 }

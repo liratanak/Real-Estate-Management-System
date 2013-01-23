@@ -1,3 +1,3 @@
-doctrine-cli orm:convert-mapping annotation --from-database --namespace=RealEstate\Entity\ module\RealEstate\src --force
-doctrine-cli orm:generate-entities --generate-annotations=true module\RealEstate\src
-doctrine-cli orm:generate-proxies
+vendor\bin\doctrine-cli orm:convert-mapping annotation --from-database --namespace=RealEstate\Entity\ module\RealEstate\src --force
+vendor\bin\doctrine-cli orm:generate-entities --generate-annotations=true module\RealEstate\src
+vendor\bin\doctrine-cli orm:generate-proxies
