@@ -6,10 +6,16 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
+use Zend\Db\Adapter\Adapter;
 
 class HouseFilter implements InputFilterAwareInterface {
 
 	protected $inputFilter;
+	protected $adapter;
+
+	public function __construct($adapter = NULL) {
+		$this->adapter = $adapter;
+	}
 
 	public function setInputFilter(InputFilterInterface $inputFilter) {
 		throw new \Exception("Not used");
@@ -30,7 +36,7 @@ class HouseFilter implements InputFilterAwareInterface {
 					)));
 
 			$inputFilter->add($factory->createInput(array(
-						'name' => 'artist',
+						'name' => 'cost',
 						'required' => true,
 						'filters' => array(
 							array('name' => 'StripTags'),
@@ -42,26 +48,15 @@ class HouseFilter implements InputFilterAwareInterface {
 								'options' => array(
 									'encoding' => 'UTF-8',
 									'min' => 1,
-									'max' => 100,
+									'max' => 10,
 								),
 							),
-						),
-					)));
-
-			$inputFilter->add($factory->createInput(array(
-						'name' => 'title',
-						'required' => true,
-						'filters' => array(
-							array('name' => 'StripTags'),
-							array('name' => 'StringTrim'),
-						),
-						'validators' => array(
 							array(
-								'name' => 'StringLength',
+								'name' => 'Db\NoRecordExists',
 								'options' => array(
-									'encoding' => 'UTF-8',
-									'min' => 1,
-									'max' => 100,
+									'table' => 'house',
+									'field' => 'cost',
+									'adapter' => $this->adapter
 								),
 							),
 						),

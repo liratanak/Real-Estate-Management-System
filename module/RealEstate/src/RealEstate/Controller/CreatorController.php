@@ -15,18 +15,22 @@ class CreatorController extends AbstractActionController {
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$house = new \RealEstate\Entity\House();
-			$houseFilter = new \RealEstate\Form\Filter\HouseFilter();
+			$houseFilter = new \RealEstate\Form\Filter\HouseFilter($this->getServiceLocator()->get('db'));
 			
 			$form->setInputFilter($houseFilter->getInputFilter());
-			$form->setData($request->post());
+			$form->setData($request->getPost());
 			
 			if ($form->isValid()) {
-				$house->populate($form->getData());
+				$data = $request->getPost();
+				
+				var_dump($data);
+				
+				$house->setCost($data->cost);
 				
 				$this->getEntityManager()->persist($house);
 				$this->getEntityManager()->flush();
 
-				return $this->redirect()->toRoute('album');
+				var_dump($house);
 			}
 		}
 		return new ViewModel(array(

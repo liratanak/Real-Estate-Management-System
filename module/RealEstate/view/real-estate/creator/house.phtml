@@ -1,7 +1,7 @@
 The full URL to the current page is: <?php echo $this->absoluteUrl(); ?>
 <?php
 $form->prepare();
-$form->setAttribute('action', $this->url('home'));
+$form->setAttribute('action', $this->url('create/action' , array('action'=>'house')));
 $form->setAttribute('method', 'post');
 ?>
 

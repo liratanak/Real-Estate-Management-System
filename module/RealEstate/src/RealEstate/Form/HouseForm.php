@@ -13,20 +13,13 @@ class HouseForm extends Form {
 		$this->setAttribute('method', 'post');
 
 		$this->add(array(
-			'name' => 'artist',
+			'name' => 'cost',
+			'options' => array(
+				'label' => 'Cost',
+			),
 			'attributes' => array(
 				'type' => 'text',
 				'label' => 'Artist',
-			),
-		));
-
-		$this->add(array(
-			'name' => 'title',
-			'options' => array(
-				'label' => 'Title',
-			),
-			'attributes' => array(
-				'type' => 'text',
 			),
 		));
 
