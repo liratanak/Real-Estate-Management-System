@@ -5,6 +5,7 @@
  */
 chdir(dirname(__DIR__));
 define("MAIN_MODULE_NAME", 'RealEstate');
+define("APP_PATH", dirname(__DIR__));
 // Setup autoloading
 require 'init_autoloader.php';
 
