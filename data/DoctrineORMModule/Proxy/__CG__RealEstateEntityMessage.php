@@ -159,6 +159,18 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
         return parent::getContent();
     }
 
+    public function setUnread($unread)
+    {
+        $this->__load();
+        return parent::setUnread($unread);
+    }
+
+    public function getUnread()
+    {
+        $this->__load();
+        return parent::getUnread();
+    }
+
     public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
     {
         $this->__load();
@@ -210,7 +222,7 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'content', 'createdUser', 'lastModifiedUser', 'fromuser', 'touser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'content', 'unread', 'createdUser', 'lastModifiedUser', 'fromuser', 'touser');
     }
 
     public function __clone()

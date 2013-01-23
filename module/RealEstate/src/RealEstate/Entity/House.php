@@ -108,9 +108,9 @@ class House
     /**
      * @var string
      *
-     * @ORM\Column(name="otherInfo", type="text", nullable=true)
+     * @ORM\Column(name="other_info", type="text", nullable=true)
      */
-    private $otherinfo;
+    private $otherInfo;
 
     /**
      * @var \RealEstate\Entity\User
@@ -461,26 +461,26 @@ class House
     }
 
     /**
-     * Set otherinfo
+     * Set otherInfo
      *
-     * @param string $otherinfo
+     * @param string $otherInfo
      * @return House
      */
-    public function setOtherinfo($otherinfo)
+    public function setOtherInfo($otherInfo)
     {
-        $this->otherinfo = $otherinfo;
+        $this->otherInfo = $otherInfo;
     
         return $this;
     }
 
     /**
-     * Get otherinfo
+     * Get otherInfo
      *
      * @return string 
      */
-    public function getOtherinfo()
+    public function getOtherInfo()
     {
-        return $this->otherinfo;
+        return $this->otherInfo;
     }
 
     /**

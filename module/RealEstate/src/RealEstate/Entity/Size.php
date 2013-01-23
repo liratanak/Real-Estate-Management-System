@@ -78,23 +78,23 @@ class Size
     private $validTimeEnd;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="width", type="integer", nullable=true)
+     * @ORM\Column(name="width", type="float", nullable=true)
      */
     private $width;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="height", type="integer", nullable=true)
+     * @ORM\Column(name="height", type="float", nullable=true)
      */
     private $height;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="length", type="integer", nullable=true)
+     * @ORM\Column(name="length", type="float", nullable=true)
      */
     private $length;
 
@@ -317,7 +317,7 @@ class Size
     /**
      * Set width
      *
-     * @param integer $width
+     * @param float $width
      * @return Size
      */
     public function setWidth($width)
@@ -330,7 +330,7 @@ class Size
     /**
      * Get width
      *
-     * @return integer 
+     * @return float 
      */
     public function getWidth()
     {
@@ -340,7 +340,7 @@ class Size
     /**
      * Set height
      *
-     * @param integer $height
+     * @param float $height
      * @return Size
      */
     public function setHeight($height)
@@ -353,7 +353,7 @@ class Size
     /**
      * Get height
      *
-     * @return integer 
+     * @return float 
      */
     public function getHeight()
     {
@@ -363,7 +363,7 @@ class Size
     /**
      * Set length
      *
-     * @param integer $length
+     * @param float $length
      * @return Size
      */
     public function setLength($length)
@@ -376,7 +376,7 @@ class Size
     /**
      * Get length
      *
-     * @return integer 
+     * @return float 
      */
     public function getLength()
     {

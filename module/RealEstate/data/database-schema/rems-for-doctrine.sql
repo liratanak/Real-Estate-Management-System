@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `address` (
   `quarter` varchar(70) DEFAULT '',
   `city` varchar(70) DEFAULT '',
 
-  `longitude` int(11) unsigned DEFAULT '0',
-  `latitude` int(11) unsigned DEFAULT '0',
+  `longitude` REAL(11,6) unsigned DEFAULT '0',
+  `latitude` REAL(11,6) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -124,9 +124,9 @@ CREATE TABLE IF NOT EXISTS `size` (
   FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
-  `width` int(11) unsigned DEFAULT '0',
-  `height` int(11) unsigned DEFAULT '0',
-  `length` int(11) unsigned DEFAULT '0',
+  `width` REAL(11,6) unsigned DEFAULT '0',
+  `height` REAL(11,6) unsigned DEFAULT '0',
+  `length` REAL(11,6) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `house` (
   `cost` int(11) unsigned DEFAULT '0',
   `available` tinyint(1) unsigned DEFAULT '0',
   `image_path_as_json_string_list` text  ,
-  `otherInfo` text  ,
+  `other_info` text  ,
 
   `user` int(11) unsigned DEFAULT '0',
   `type` int(11) unsigned DEFAULT '0',

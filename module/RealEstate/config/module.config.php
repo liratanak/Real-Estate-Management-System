@@ -164,7 +164,7 @@ return array(
 		),
 	),
 	'module_layouts' => array(
-		'ZfcUserAdmin' => __DIR__ . '/../view/layout/layout.phtml',
+		'ZfcUserAdmin' => __DIR__ . '/../view/layout/marketing-narrow.phtml',
 	),
 	// Doctrine config
 	'doctrine' => array(

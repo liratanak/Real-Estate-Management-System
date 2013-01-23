@@ -85,6 +85,13 @@ class Message
     private $content;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="unread", type="boolean", nullable=true)
+     */
+    private $unread;
+
+    /**
      * @var \RealEstate\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
@@ -341,6 +348,29 @@ class Message
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set unread
+     *
+     * @param boolean $unread
+     * @return Message
+     */
+    public function setUnread($unread)
+    {
+        $this->unread = $unread;
+    
+        return $this;
+    }
+
+    /**
+     * Get unread
+     *
+     * @return boolean 
+     */
+    public function getUnread()
+    {
+        return $this->unread;
     }
 
     /**

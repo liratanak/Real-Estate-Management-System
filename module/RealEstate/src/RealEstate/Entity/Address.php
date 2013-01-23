@@ -120,16 +120,16 @@ class Address
     private $city;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="longitude", type="integer", nullable=true)
+     * @ORM\Column(name="longitude", type="float", nullable=true)
      */
     private $longitude;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="latitude", type="integer", nullable=true)
+     * @ORM\Column(name="latitude", type="float", nullable=true)
      */
     private $latitude;
 
@@ -490,7 +490,7 @@ class Address
     /**
      * Set longitude
      *
-     * @param integer $longitude
+     * @param float $longitude
      * @return Address
      */
     public function setLongitude($longitude)
@@ -503,7 +503,7 @@ class Address
     /**
      * Get longitude
      *
-     * @return integer 
+     * @return float 
      */
     public function getLongitude()
     {
@@ -513,7 +513,7 @@ class Address
     /**
      * Set latitude
      *
-     * @param integer $latitude
+     * @param float $latitude
      * @return Address
      */
     public function setLatitude($latitude)
@@ -526,7 +526,7 @@ class Address
     /**
      * Get latitude
      *
-     * @return integer 
+     * @return float 
      */
     public function getLatitude()
     {

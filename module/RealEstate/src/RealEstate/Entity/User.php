@@ -143,26 +143,6 @@ class User implements UserInterface {
 	private $role;
 
 	/**
-	 * @var \RealEstate\Entity\User
-	 *
-	 * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="last_modified_user", referencedColumnName="user_id")
-	 * })
-	 */
-	private $lastModifiedUser;
-
-	/**
-	 * @var \RealEstate\Entity\User
-	 *
-	 * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="created_user", referencedColumnName="user_id")
-	 * })
-	 */
-	private $createdUser;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -524,27 +504,6 @@ class User implements UserInterface {
 	}
 
 	/**
-	 * Set lastModifiedUser
-	 *
-	 * @param \RealEstate\Entity\User $lastModifiedUser
-	 * @return User
-	 */
-	public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = null) {
-		$this->lastModifiedUser = $lastModifiedUser;
-
-		return $this;
-	}
-
-	/**
-	 * Get lastModifiedUser
-	 *
-	 * @return \RealEstate\Entity\User 
-	 */
-	public function getLastModifiedUser() {
-		return $this->lastModifiedUser;
-	}
-
-	/**
 	 * Set createdUser
 	 *
 	 * @param \RealEstate\Entity\User $createdUser
@@ -554,15 +513,6 @@ class User implements UserInterface {
 		$this->createdUser = $createdUser;
 
 		return $this;
-	}
-
-	/**
-	 * Get createdUser
-	 *
-	 * @return \RealEstate\Entity\User 
-	 */
-	public function getCreatedUser() {
-		return $this->createdUser;
 	}
 
 	public function getId() {

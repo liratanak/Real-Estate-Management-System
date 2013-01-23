@@ -22,15 +22,30 @@ class CreatorController extends AbstractActionController {
 			if ($form->isValid()) {
 				$data = $request->getPost();
 
-//				var_dump($data);
+				$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 
 				$house = new \RealEstate\Entity\House();
 				$houseType = new \RealEstate\Entity\HouseType();
+				$address = new \RealEstate\Entity\Address();
+				$size = new \RealEstate\Entity\Size();
+				
+				$house->setUser($user);
+				$house->setCreatedUser($user);
+				$house->setLastModifiedUser($user);
+				
+				$houseType->setCreatedUser($user);
+				$houseType->setLastModifiedUser($user);
+				
+				$address->setCreatedUser($user);
+				$address->setLastModifiedUser($user);
+				
+				$size->setCreatedUser($user);
+				$size->setLastModifiedUser($user);
 
 				$houseType->setTitle($data->houseType);
 				$this->save($houseType);
 
-				$address = new \RealEstate\Entity\Address();
+				
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
 				$address->setVilege($data->village);
@@ -41,12 +56,12 @@ class CreatorController extends AbstractActionController {
 				$address->setLongitude($data->longitude);
 				$this->save($address);
 
-				$size = new \RealEstate\Entity\Size();
+				
 				$size->setWidth($data->width);
 				$size->setHeight($data->height);
 				$size->setLength($data->lenght);
 				$this->save($size);
-				
+
 				$house->setCost($data->cost);
 				$house->setAddress($address);
 				$house->setType($houseType);
@@ -54,15 +69,22 @@ class CreatorController extends AbstractActionController {
 				$house->setAvailable($data->avaialbe);
 				$house->setIsRoomRent($data->haveRoomRent);
 				$house->setOtherinfo($data->other);
-				
+
 				$this->save($house);
-				
+
 //				var_dump($house);
-				
 			}
 		}
 		return new ViewModel(array(
 					'form' => $form
+				));
+	}
+
+	public function roomAction() {
+		
+		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
+		
+		return new ViewModel(array(
 				));
 	}
 

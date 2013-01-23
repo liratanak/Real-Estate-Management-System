@@ -75,24 +75,6 @@ class UserRole extends \RealEstate\Entity\UserRole implements \Doctrine\ORM\Prox
         return parent::getParent();
     }
 
-    public function addPermission(\RealEstate\Entity\Permission $permission)
-    {
-        $this->__load();
-        return parent::addPermission($permission);
-    }
-
-    public function removePermission(\RealEstate\Entity\Permission $permission)
-    {
-        $this->__load();
-        return parent::removePermission($permission);
-    }
-
-    public function getPermission()
-    {
-        $this->__load();
-        return parent::getPermission();
-    }
-
     public function addUser(\RealEstate\Entity\User $user)
     {
         $this->__load();
@@ -114,7 +96,7 @@ class UserRole extends \RealEstate\Entity\UserRole implements \Doctrine\ORM\Prox
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'roleId', 'default', 'parent', 'permission', 'user');
+        return array('__isInitialized__', 'roleId', 'default', 'parent', 'user');
     }
 
     public function __clone()

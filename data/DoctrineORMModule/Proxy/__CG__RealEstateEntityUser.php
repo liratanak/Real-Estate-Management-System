@@ -171,6 +171,30 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getPassword();
     }
 
+    public function setDisplayName($displayName)
+    {
+        $this->__load();
+        return parent::setDisplayName($displayName);
+    }
+
+    public function getDisplayName()
+    {
+        $this->__load();
+        return parent::getDisplayName();
+    }
+
+    public function setGender($gender)
+    {
+        $this->__load();
+        return parent::setGender($gender);
+    }
+
+    public function getGender()
+    {
+        $this->__load();
+        return parent::getGender();
+    }
+
     public function setEmail($email)
     {
         $this->__load();
@@ -193,18 +217,6 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getLastLoginTime();
-    }
-
-    public function setDisplayName($displayName)
-    {
-        $this->__load();
-        return parent::setDisplayName($displayName);
-    }
-
-    public function getDisplayName()
-    {
-        $this->__load();
-        return parent::getDisplayName();
     }
 
     public function setState($state)
@@ -237,34 +249,10 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getRole();
     }
 
-    public function setLastModifiedUser(\RealEstate\Entity\User $lastModifiedUser = NULL)
-    {
-        $this->__load();
-        return parent::setLastModifiedUser($lastModifiedUser);
-    }
-
-    public function getLastModifiedUser()
-    {
-        $this->__load();
-        return parent::getLastModifiedUser();
-    }
-
-    public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
-    {
-        $this->__load();
-        return parent::setCreatedUser($createdUser);
-    }
-
-    public function getCreatedUser()
-    {
-        $this->__load();
-        return parent::getCreatedUser();
-    }
-
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'userId', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'username', 'password', 'email', 'lastLoginTime', 'displayName', 'state', 'role', 'lastModifiedUser', 'createdUser');
+        return array('__isInitialized__', 'userId', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'username', 'password', 'displayName', 'gender', 'email', 'lastLoginTime', 'state', 'role');
     }
 
     public function __clone()

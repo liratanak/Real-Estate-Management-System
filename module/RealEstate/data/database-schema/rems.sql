@@ -163,9 +163,9 @@ CREATE TABLE IF NOT EXISTS `size` (
   FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
-  `width` int(11) unsigned DEFAULT '0',
-  `height` int(11) unsigned DEFAULT '0',
-  `length` int(11) unsigned DEFAULT '0',
+  `width` REAL(11,6) DEFAULT '0',
+  `height` REAL(11,6) unsigned DEFAULT '0',
+  `length` REAL(11,6) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

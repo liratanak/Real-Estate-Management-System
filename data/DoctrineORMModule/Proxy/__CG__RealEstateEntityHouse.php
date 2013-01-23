@@ -195,16 +195,16 @@ class House extends \RealEstate\Entity\House implements \Doctrine\ORM\Proxy\Prox
         return parent::getImagePathAsJsonStringList();
     }
 
-    public function setOtherinfo($otherinfo)
+    public function setOtherInfo($otherInfo)
     {
         $this->__load();
-        return parent::setOtherinfo($otherinfo);
+        return parent::setOtherInfo($otherInfo);
     }
 
-    public function getOtherinfo()
+    public function getOtherInfo()
     {
         $this->__load();
-        return parent::getOtherinfo();
+        return parent::getOtherInfo();
     }
 
     public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
@@ -282,7 +282,7 @@ class House extends \RealEstate\Entity\House implements \Doctrine\ORM\Proxy\Prox
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'isRoomRent', 'cost', 'available', 'imagePathAsJsonStringList', 'otherinfo', 'createdUser', 'lastModifiedUser', 'user', 'type', 'size', 'address');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'isRoomRent', 'cost', 'available', 'imagePathAsJsonStringList', 'otherInfo', 'createdUser', 'lastModifiedUser', 'user', 'type', 'size', 'address');
     }
 
     public function __clone()
