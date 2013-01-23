@@ -19,14 +19,31 @@ class HousesListController extends AbstractActionController {
 
 	protected $houseRepository;
 
+	public function listAction() {
+		$house = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
+//		var_dump($house);
+		if (is_array($house)) {
+			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($house));
+		} else {
+			$paginator = $house;
+		}
+
+
+		$paginator->setItemCountPerPage(10);
+		$paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
+		return new ViewModel(array(
+					'houses' => $paginator,
+				));
+	}
+
 	public function indexAction() {
 		return new ViewModel(array(
 					'houses' => $this->getHouseRepository()->listAll()
 				));
 	}
-	
-	public function onehouseAction(){
-		return array('one'=>$housesDoctrine = $this->getEntityManager()->find('RealEstate\Entity\House', 1));
+
+	public function onehouseAction() {
+		return array('one' => $housesDoctrine = $this->getEntityManager()->find('RealEstate\Entity\House', 1));
 	}
 
 	public function viewAction() {
@@ -35,7 +52,7 @@ class HousesListController extends AbstractActionController {
 		return new ViewModel(array(
 					'pageNumber' => $pnb, 'totalResult' => $tRes->current(),
 					'houses' => $this->getHouseRepository()->listAll(),
-			)
+						)
 		);
 	}
 
@@ -46,8 +63,8 @@ class HousesListController extends AbstractActionController {
 		}
 		return $this->houseRepository;
 	}
-	
-		/**
+
+	/**
 	 * Entity manager instance
 	 *           
 	 * @var Doctrine\ORM\EntityManager
@@ -67,6 +84,5 @@ class HousesListController extends AbstractActionController {
 		}
 		return $this->em;
 	}
-
 
 }

@@ -13,13 +13,23 @@ namespace RealEstate;
 return array(
 	'router' => array(
 		'routes' => array(
+			'house-list' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'options' => array(
+					'route' => '/page/[:p]',
+					'defaults' => array(
+						'controller' => 'houseList',
+						'action' => 'list',
+					),
+				),
+			),
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
 						'controller' => 'houseList',
-						'action' => 'view',
+						'action' => 'list',
 					),
 				),
 				'may_terminate' => true,

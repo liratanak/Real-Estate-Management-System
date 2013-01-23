@@ -249,6 +249,24 @@ class User extends \RealEstate\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getRole();
     }
 
+    public function setCreatedUser(\RealEstate\Entity\User $createdUser = NULL)
+    {
+        $this->__load();
+        return parent::setCreatedUser($createdUser);
+    }
+
+    public function getId()
+    {
+        $this->__load();
+        return parent::getId();
+    }
+
+    public function setId($id)
+    {
+        $this->__load();
+        return parent::setId($id);
+    }
+
 
     public function __sleep()
     {

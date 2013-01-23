@@ -56,7 +56,6 @@ class CreatorController extends AbstractActionController {
 				$address->setLongitude($data->longitude);
 				$this->save($address);
 
-				
 				$size->setWidth($data->width);
 				$size->setHeight($data->height);
 				$size->setLength($data->lenght);
