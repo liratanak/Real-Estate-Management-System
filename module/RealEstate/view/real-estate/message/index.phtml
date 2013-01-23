@@ -4,12 +4,42 @@
 
 <input type="hidden" id="mostRecentMessageTime" value="<?php echo $mostRecentMessageTime ?>"/>
 
-<?php
-foreach ($messages as $message) {
-	echo '<pre>';
-	echo $message->getFromUser()->getUsername() . '<br />';
-	echo $message->getTitle() . '<br />';
-	echo $message->getContent() . '<br />';
-	echo '</pre>';
-}
-?>
+<div id="messages">
+	<?php
+	foreach ($messages as $message) {
+		echo '<pre>';
+		echo $message->getFromUser()->getUsername() . '<br />';
+		echo $message->getTitle() . '<br />';
+		echo $message->getContent() . '<br />';
+		echo '</pre>';
+	}
+	?>
+</div>
+<div id="newMessage"></div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		setInterval(function() {
+			jQuery.ajax({
+				'url' : "<?php echo $this->url('message/action', array('action' => 'newMessageByAjax')) ?>",
+				'type' : 'post',
+				'data' : {'mostRecentMessageTime':jQuery('#mostRecentMessageTime').val()},
+				'success' : function(data){
+					var result = jQuery.parseJSON(data);
+					var messages = result.messages;
+					if(messages.length > 0){
+						jQuery.each(messages, function(index, message) {
+							var string = '<pre>';
+							string += message.from + '<br />' ;
+							string += message.title + '<br />' ;
+							string += message.content + '<br />' ;
+							string += '</pre>';
+							jQuery('#messages').prepend(string)
+						});
+					}
+					jQuery('#mostRecentMessageTime').val(result.newTime);
+				}
+			});
+		}, 1200);
+	});
+</script>

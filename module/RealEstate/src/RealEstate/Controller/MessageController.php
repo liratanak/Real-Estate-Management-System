@@ -13,21 +13,22 @@ class MessageController extends AbstractActionController {
 		}
 
 		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
-		
+
 		$messages = $this->getEntityManager()->getRepository('RealEstate\Entity\Message')->findBy(
 				array(
 			'toUser' => $user)
 				, array('lastModifiedTime' => 'DESC')
 		);
 
-		
-		
-		$query = $this->getEntityManager()->createQuery('SELECT MAX(m.lastModifiedTime) FROM RealEstate\Entity\Message m WHERE m.toUser = '.$user->getUserId().' ');
+
+
+		$query = $this->getEntityManager()->createQuery('SELECT MAX(m.lastModifiedTime) FROM RealEstate\Entity\Message m WHERE m.toUser = ' . $user->getUserId() . ' ');
 		$mostRecentMessageTimeArray = $query->getResult();
 
 		if (isset($mostRecentMessageTimeArray[0][1])) {
 			$mostRecentMessageTime = $mostRecentMessageTimeArray[0][1];
 		}
+
 		return new ViewModel(array(
 					'messages' => $messages,
 					'mostRecentMessageTime' => $mostRecentMessageTime
@@ -35,9 +36,48 @@ class MessageController extends AbstractActionController {
 	}
 
 	public function newMessageByAjaxAction() {
+
+		$mostRecentMessageTime = 0;
+		$messages = array();
+
+		if ($this->getRequest()->isXmlHttpRequest()) {
+
+			$data = $this->getRequest()->getPost();
+
+			$lastShownMessageTime = $data->mostRecentMessageTime;
+
+			$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
+
+			$query = $this->getEntityManager()->createQuery('SELECT MAX(m.lastModifiedTime) FROM RealEstate\Entity\Message m WHERE m.toUser = ' . $user->getUserId() . ' ');
+			$mostRecentMessageTimeArray = $query->getResult();
+
+			if (isset($mostRecentMessageTimeArray[0][1])) {
+				$mostRecentMessageTime = $mostRecentMessageTimeArray[0][1];
+			}
+
+			if ($lastShownMessageTime < $mostRecentMessageTime) {
+				$messages = $this->getEntityManager()->getRepository('RealEstate\Entity\Message')->findByLastModifiedTime($lastShownMessageTime, $user->getUserId());
+			}
+		}
 		
+		$messagesArray = array();
+		foreach ($messages as $key => $message) {
+			$messagesArray[$key] = array(
+				'from'  => $message->getFromUser()->getUsername(),
+				'title' => $message->getTitle(),
+				'content' => $message->getContent(),
+			);
+		}
+
+		$reslut = array(
+			'messages' => $messagesArray,
+			'newTime' => $mostRecentMessageTime,
+		);
+
+
 		$this->layout('layout/blank');
 		return new ViewModel(array(
+					'data' => json_encode($reslut),
 				));
 	}
 
