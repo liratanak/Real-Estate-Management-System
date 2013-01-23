@@ -1,7 +1,11 @@
 <?php
 
 foreach ($houses as $house) {
-	var_dump($house);
+	echo '<pre>';
+	echo $house->getCost() . '<br />';
+	echo $house->getType()->getTitle() . '<br />';
+	echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+	echo '</pre>';
 }
 ?>
 

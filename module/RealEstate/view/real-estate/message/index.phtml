@@ -1,0 +1,15 @@
+<a href="<?php echo $this->url('message/action', array('action' => 'new')) ?>" class="btn">New message</a>
+
+<hr />
+
+<input type="hidden" id="mostRecentMessageTime" value="<?php echo $mostRecentMessageTime ?>"/>
+
+<?php
+foreach ($messages as $message) {
+	echo '<pre>';
+	echo $message->getFromUser()->getUsername() . '<br />';
+	echo $message->getTitle() . '<br />';
+	echo $message->getContent() . '<br />';
+	echo '</pre>';
+}
+?>

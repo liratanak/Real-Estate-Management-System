@@ -78,9 +78,16 @@ class Message
     private $validTimeEnd;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="content", type="boolean", nullable=true)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
      */
     private $content;
 
@@ -116,20 +123,20 @@ class Message
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fromUser", referencedColumnName="user_id")
+     *   @ORM\JoinColumn(name="from_user", referencedColumnName="user_id")
      * })
      */
-    private $fromuser;
+    private $fromUser;
 
     /**
      * @var \RealEstate\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="toUser", referencedColumnName="user_id")
+     *   @ORM\JoinColumn(name="to_user", referencedColumnName="user_id")
      * })
      */
-    private $touser;
+    private $toUser;
 
 
 
@@ -328,9 +335,32 @@ class Message
     }
 
     /**
+     * Set title
+     *
+     * @param string $title
+     * @return Message
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set content
      *
-     * @param boolean $content
+     * @param string $content
      * @return Message
      */
     public function setContent($content)
@@ -343,7 +373,7 @@ class Message
     /**
      * Get content
      *
-     * @return boolean 
+     * @return string 
      */
     public function getContent()
     {
@@ -420,48 +450,48 @@ class Message
     }
 
     /**
-     * Set fromuser
+     * Set fromUser
      *
-     * @param \RealEstate\Entity\User $fromuser
+     * @param \RealEstate\Entity\User $fromUser
      * @return Message
      */
-    public function setFromuser(\RealEstate\Entity\User $fromuser = null)
+    public function setFromUser(\RealEstate\Entity\User $fromUser = null)
     {
-        $this->fromuser = $fromuser;
+        $this->fromUser = $fromUser;
     
         return $this;
     }
 
     /**
-     * Get fromuser
+     * Get fromUser
      *
      * @return \RealEstate\Entity\User 
      */
-    public function getFromuser()
+    public function getFromUser()
     {
-        return $this->fromuser;
+        return $this->fromUser;
     }
 
     /**
-     * Set touser
+     * Set toUser
      *
-     * @param \RealEstate\Entity\User $touser
+     * @param \RealEstate\Entity\User $toUser
      * @return Message
      */
-    public function setTouser(\RealEstate\Entity\User $touser = null)
+    public function setToUser(\RealEstate\Entity\User $toUser = null)
     {
-        $this->touser = $touser;
+        $this->toUser = $toUser;
     
         return $this;
     }
 
     /**
-     * Get touser
+     * Get toUser
      *
      * @return \RealEstate\Entity\User 
      */
-    public function getTouser()
+    public function getToUser()
     {
-        return $this->touser;
+        return $this->toUser;
     }
 }

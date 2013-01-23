@@ -106,6 +106,31 @@ return array(
 					),
 				),
 			),
+			'message' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/message',
+					'defaults' => array(
+						'controller' => 'message',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:action]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+								'action' => 'index'
+							)
+						)
+					),
+				),
+			),
 			'create' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -122,7 +147,7 @@ return array(
 						'options' => array(
 							'route' => '/[:action]',
 							'constraints' => array(
-								'entity' => '[a-zA-Z0-9_-]+'
+								'action' => '[a-zA-Z0-9_-]+'
 							),
 							'defaults' => array(
 								'action' => 'index'
@@ -156,6 +181,7 @@ return array(
 			'search' => 'RealEstate\Controller\SearchController',
 			'creator' => 'RealEstate\Controller\CreatorController',
 			'ajax' => 'RealEstate\Controller\AjaxController',
+			'message' => 'RealEstate\Controller\MessageController',
 		),
 	),
 	'view_manager' => array(

@@ -147,6 +147,18 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
         return parent::getValidTimeEnd();
     }
 
+    public function setTitle($title)
+    {
+        $this->__load();
+        return parent::setTitle($title);
+    }
+
+    public function getTitle()
+    {
+        $this->__load();
+        return parent::getTitle();
+    }
+
     public function setContent($content)
     {
         $this->__load();
@@ -195,34 +207,34 @@ class Message extends \RealEstate\Entity\Message implements \Doctrine\ORM\Proxy\
         return parent::getLastModifiedUser();
     }
 
-    public function setFromuser(\RealEstate\Entity\User $fromuser = NULL)
+    public function setFromUser(\RealEstate\Entity\User $fromUser = NULL)
     {
         $this->__load();
-        return parent::setFromuser($fromuser);
+        return parent::setFromUser($fromUser);
     }
 
-    public function getFromuser()
+    public function getFromUser()
     {
         $this->__load();
-        return parent::getFromuser();
+        return parent::getFromUser();
     }
 
-    public function setTouser(\RealEstate\Entity\User $touser = NULL)
+    public function setToUser(\RealEstate\Entity\User $toUser = NULL)
     {
         $this->__load();
-        return parent::setTouser($touser);
+        return parent::setToUser($toUser);
     }
 
-    public function getTouser()
+    public function getToUser()
     {
         $this->__load();
-        return parent::getTouser();
+        return parent::getToUser();
     }
 
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'content', 'unread', 'createdUser', 'lastModifiedUser', 'fromuser', 'touser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'title', 'content', 'unread', 'createdUser', 'lastModifiedUser', 'fromUser', 'toUser');
     }
 
     public function __clone()

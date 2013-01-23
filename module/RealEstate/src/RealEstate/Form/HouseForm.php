@@ -19,7 +19,6 @@ class HouseForm extends Form {
 			),
 			'attributes' => array(
 				'type' => 'text',
-				'label' => 'Artist',
 			),
 		));
 

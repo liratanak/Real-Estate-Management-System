@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
-  `content` text  ,
+  `content` TEXT,
 
   `user` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
@@ -315,14 +315,15 @@ CREATE TABLE IF NOT EXISTS `message` (
   FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
   FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
 
-  `content` tinyint(1) unsigned DEFAULT '0',
+  `title` varchar(255) DEFAULT '',
+  `content` TEXT,
   `unread` tinyint(1) unsigned DEFAULT '1',
 
-  `fromUser` int(11) unsigned DEFAULT '0',
-  `toUser` int(11) unsigned DEFAULT '0',
+  `from_user` int(11) unsigned DEFAULT '0',
+  `to_user` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`fromUser`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`toUser`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`from_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`to_user`) REFERENCES `user` (`user_id`) ,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
