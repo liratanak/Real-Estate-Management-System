@@ -24,16 +24,7 @@ class HouseFilter implements InputFilterAwareInterface {
 	public function getInputFilter() {
 		if (!$this->inputFilter) {
 			$inputFilter = new InputFilter();
-
 			$factory = new InputFactory();
-
-			$inputFilter->add($factory->createInput(array(
-						'name' => 'id',
-						'required' => true,
-						'filters' => array(
-							array('name' => 'Int'),
-						),
-					)));
 
 			$inputFilter->add($factory->createInput(array(
 						'name' => 'cost',
@@ -43,24 +34,80 @@ class HouseFilter implements InputFilterAwareInterface {
 							array('name' => 'StringTrim'),
 						),
 						'validators' => array(
-							array(
-								'name' => 'StringLength',
-								'options' => array(
-									'encoding' => 'UTF-8',
-									'min' => 1,
-									'max' => 10,
-								),
-							),
-							array(
-								'name' => 'Db\NoRecordExists',
-								'options' => array(
-									'table' => 'house',
-									'field' => 'cost',
-									'adapter' => $this->adapter
-								),
-							),
+							array('name' => 'Digits')
 						),
 					)));
+
+			$inputFilter->add($factory->createInput(array(
+						'name' => 'houseType',
+						'required' => true,
+						'filters' => array(
+							array('name' => 'StripTags'),
+							array('name' => 'StringTrim'),
+						),
+						'validators' => array(
+						),
+					)));
+
+			$inputFilter->add($factory->createInput(array(
+						'name' => 'width',
+						'required' => true,
+						'filters' => array(
+							array('name' => 'StripTags'),
+							array('name' => 'StringTrim'),
+						),
+						'validators' => array(
+							array(
+								'name' => 'GreaterThan',
+								'options' => array(
+									'min' => 0
+								)
+							),
+						),
+							)
+					)
+			);
+
+			$inputFilter->add($factory->createInput(array(
+						'name' => 'height',
+						'required' => true,
+						'filters' => array(
+							array('name' => 'StripTags'),
+							array('name' => 'StringTrim'),
+						),
+						'validators' => array(
+							array(
+								'name' => 'GreaterThan',
+								'options' => array(
+									'min' => 0
+								)
+							),
+						),
+							)
+					)
+			);
+
+			$inputFilter->add($factory->createInput(array(
+						'name' => 'lenght',
+						'required' => true,
+						'filters' => array(
+							array('name' => 'StripTags'),
+							array('name' => 'StringTrim'),
+						),
+						'validators' => array(
+							array(
+								'name' => 'GreaterThan',
+								'options' => array(
+									'min' => 0
+								)
+							),
+						),
+							)
+					)
+			);
+
+
+
 
 			$this->inputFilter = $inputFilter;
 		}

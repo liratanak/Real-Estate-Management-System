@@ -1,3 +1,8 @@
 #content{
 	margin-top: 50px;
 }
+
+form dd label span {
+	display: inline-block;
+	width: 180px;
+}

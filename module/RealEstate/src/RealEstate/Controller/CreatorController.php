@@ -14,28 +14,61 @@ class CreatorController extends AbstractActionController {
 
 		$request = $this->getRequest();
 		if ($request->isPost()) {
-			$house = new \RealEstate\Entity\House();
 			$houseFilter = new \RealEstate\Form\Filter\HouseFilter($this->getServiceLocator()->get('db'));
-			
+
 			$form->setInputFilter($houseFilter->getInputFilter());
 			$form->setData($request->getPost());
-			
+
 			if ($form->isValid()) {
 				$data = $request->getPost();
-				
-				var_dump($data);
+
+//				var_dump($data);
+
+				$house = new \RealEstate\Entity\House();
+				$houseType = new \RealEstate\Entity\HouseType();
+
+				$houseType->setTitle($data->houseType);
+				$this->save($houseType);
+
+				$address = new \RealEstate\Entity\Address();
+				$address->setHouse($data->houseNumber);
+				$address->setStreet($data->street);
+				$address->setVilege($data->village);
+				$address->setDistrict($data->district);
+				$address->setQuarter($data->quarter);
+				$address->setCity($data->city);
+				$address->setLatitude($data->latitude);
+				$address->setLongitude($data->longitude);
+				$this->save($address);
+
+				$size = new \RealEstate\Entity\Size();
+				$size->setWidth($data->width);
+				$size->setHeight($data->height);
+				$size->setLength($data->lenght);
+				$this->save($size);
 				
 				$house->setCost($data->cost);
+				$house->setAddress($address);
+				$house->setType($houseType);
+				$house->setSize($size);
+				$house->setAvailable($data->avaialbe);
+				$house->setIsRoomRent($data->haveRoomRent);
+				$house->setOtherinfo($data->other);
 				
-				$this->getEntityManager()->persist($house);
-				$this->getEntityManager()->flush();
-
-				var_dump($house);
+				$this->save($house);
+				
+//				var_dump($house);
+				
 			}
 		}
 		return new ViewModel(array(
 					'form' => $form
 				));
+	}
+
+	private function save($entity) {
+		$this->getEntityManager()->persist($entity);
+		$this->getEntityManager()->flush();
 	}
 
 	/**
