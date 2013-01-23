@@ -8,35 +8,17 @@ use RealEstate\Entity\Group;
 
 class CreatorController extends AbstractActionController {
 
-	public function newAction() {
-		$entity = $this->params('entity');
-
-		return new ViewModel();
-	}
-
-	public function groupAction() {
-		$group = new Group();
+	public function houseAction() {
 		
-		$group->setTitle('Owner');
+		$house = new \RealEstate\Entity\House();
 		
-		var_dump($group);	
-		
-		$this->getEntityManager()->remove($group);
+		$this->getEntityManager()->persist($house);
 		$this->getEntityManager()->flush();
-		return new ViewModel();
-	}
-	
-	public function roleAction(){
-		$role = new \RealEstate\Entity\Role();
 		
-		
-		
-//		$this->getEntityManager()->persist($role);
-//		$this->getEntityManager()->flush();
-	}
-	
-	public function createRoleAction(){
-		
+		var_dump($house->getId());
+		return new ViewModel(array(
+			
+		));
 	}
 
 	/**
