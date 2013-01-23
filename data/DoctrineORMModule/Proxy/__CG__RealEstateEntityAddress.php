@@ -171,16 +171,16 @@ class Address extends \RealEstate\Entity\Address implements \Doctrine\ORM\Proxy\
         return parent::getStreet();
     }
 
-    public function setVilege($vilege)
+    public function setVillage($village)
     {
         $this->__load();
-        return parent::setVilege($vilege);
+        return parent::setVillage($village);
     }
 
-    public function getVilege()
+    public function getVillage()
     {
         $this->__load();
-        return parent::getVilege();
+        return parent::getVillage();
     }
 
     public function setDistrict($district)
@@ -270,7 +270,7 @@ class Address extends \RealEstate\Entity\Address implements \Doctrine\ORM\Proxy\
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'house', 'street', 'vilege', 'district', 'quarter', 'city', 'longitude', 'latitude', 'createdUser', 'lastModifiedUser');
+        return array('__isInitialized__', 'id', 'pid', 'hidden', 'disabled', 'deleted', 'createdTime', 'lastModifiedTime', 'validTimeStart', 'validTimeEnd', 'house', 'street', 'village', 'district', 'quarter', 'city', 'longitude', 'latitude', 'createdUser', 'lastModifiedUser');
     }
 
     public function __clone()

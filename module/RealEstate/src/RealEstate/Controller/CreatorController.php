@@ -48,7 +48,7 @@ class CreatorController extends AbstractActionController {
 				
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
-				$address->setVilege($data->village);
+				$address->setVillage($data->village);
 				$address->setDistrict($data->district);
 				$address->setQuarter($data->quarter);
 				$address->setCity($data->city);

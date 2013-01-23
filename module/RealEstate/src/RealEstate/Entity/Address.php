@@ -94,9 +94,9 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="vilege", type="string", length=70, nullable=true)
+     * @ORM\Column(name="village", type="string", length=70, nullable=true)
      */
-    private $vilege;
+    private $village;
 
     /**
      * @var string
@@ -396,26 +396,26 @@ class Address
     }
 
     /**
-     * Set vilege
+     * Set village
      *
-     * @param string $vilege
+     * @param string $village
      * @return Address
      */
-    public function setVilege($vilege)
+    public function setVillage($village)
     {
-        $this->vilege = $vilege;
+        $this->village = $village;
     
         return $this;
     }
 
     /**
-     * Get vilege
+     * Get village
      *
      * @return string 
      */
-    public function getVilege()
+    public function getVillage()
     {
-        return $this->vilege;
+        return $this->village;
     }
 
     /**

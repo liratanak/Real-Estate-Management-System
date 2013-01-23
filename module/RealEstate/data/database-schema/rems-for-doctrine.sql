@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `address` (
 
   `house` varchar(64) DEFAULT '',
   `street` varchar(64) DEFAULT '',
-  `vilege` varchar(70) DEFAULT '',
+  `village` varchar(70) DEFAULT '',
   `district` varchar(70) DEFAULT '',
   `quarter` varchar(70) DEFAULT '',
   `city` varchar(70) DEFAULT '',
