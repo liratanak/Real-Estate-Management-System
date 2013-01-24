@@ -10,6 +10,7 @@ class MessageController extends AbstractActionController {
 	public function indexAction() {
 		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
 			$this->redirect()->toRoute('zfcuser/login');
+			return;
 		}
 
 		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();

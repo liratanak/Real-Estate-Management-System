@@ -61,6 +61,26 @@ return array(
 					),
 				),
 			),
+			'details' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'options' => array(
+					'route' => '[/:username[/:propertyType[/:propertyId]]]',
+					'defaults' => array(
+						'controller' => 'details',
+						'action' => 'details',
+					),
+				),
+			),
+			'comment' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/comment',
+					'defaults' => array(
+						'controller' => 'comment',
+						'action' => 'comment',
+					),
+				),
+			),
 			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
@@ -182,6 +202,8 @@ return array(
 			'creator' => 'RealEstate\Controller\CreatorController',
 			'ajax' => 'RealEstate\Controller\AjaxController',
 			'message' => 'RealEstate\Controller\MessageController',
+			'details' => 'RealEstate\Controller\DetailsController',
+			'comment' => 'RealEstate\Controller\CommentController',
 		),
 	),
 	'view_manager' => array(

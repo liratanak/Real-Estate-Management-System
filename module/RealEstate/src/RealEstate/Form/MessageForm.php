@@ -9,7 +9,7 @@ class MessageForm extends Form {
 	public function __construct() {
 		parent::__construct();
 
-		$this->setName('house');
+		$this->setName('message');
 		$this->setAttribute('method', 'post');
 
 		$this->add(array(
@@ -42,7 +42,6 @@ class MessageForm extends Form {
 			'attributes' => array(
 			),
 		));
-
 
 		$this->add(array(
 			'name' => 'submit',

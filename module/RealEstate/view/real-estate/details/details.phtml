@@ -1,0 +1,55 @@
+<?php
+if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
+	foreach ($houses as $house) {
+		echo '<pre>';
+		echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
+		echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+		echo '</a>';
+		echo $house->getCost() . '<br />';
+		echo $house->getType()->getTitle() . '<br />';
+		echo '</pre>';
+	}
+} else if (NULL !== $oneHouse) {
+	echo '<pre>';
+	echo $oneHouse->getAddress()->getHouse() . ' ' . $oneHouse->getAddress()->getVillage() . '<br />';
+	echo $oneHouse->getCost() . '<br />';
+	echo $oneHouse->getType()->getTitle() . '<br />';
+	echo '</pre>';
+	
+	if(NULL !== $comments){
+		if(is_array($comments)){
+			foreach ($comments as $comment) {
+				echo $comment->getUser()->getUsername() . ' : ' . $comment->getContent() . '<br /><br />';
+			}
+		}
+	}
+
+	if (NULL !== $form) {
+		echo $user->getUsername() . ' ';
+		echo $this->formRow($form->get('content'));
+		echo $this->formRow($form->get('submit'));
+		?>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery('#commentButton').click(function(){
+					var commentContent = jQuery('#commentTextarea').val();
+					if('' !== commentContent && null !== commentContent){
+						jQuery.ajax({
+							url : "<?php echo $this->url('comment'); ?>",
+							type : "post",
+							data : {'houseId':"<?php echo $oneHouse->getId() ?>",'comment':commentContent},
+							success : function(data){
+								jQuery('#debug').html(data);
+								console.log(data);
+							}
+						});	
+					}
+				});
+			});
+		</script>
+		<?php
+	}
+}
+?>
+<div id="debug"></div>
