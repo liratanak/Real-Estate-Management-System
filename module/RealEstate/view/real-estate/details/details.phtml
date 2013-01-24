@@ -15,15 +15,20 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 	echo $oneHouse->getCost() . '<br />';
 	echo $oneHouse->getType()->getTitle() . '<br />';
 	echo '</pre>';
-	
-	if(NULL !== $comments){
-		if(is_array($comments)){
-			foreach ($comments as $comment) {
-				echo $comment->getUser()->getUsername() . ' : ' . $comment->getContent() . '<br /><br />';
+	?>
+	<div id="comments">
+		<?php
+		if (NULL !== $comments) {
+			if (is_array($comments)) {
+				foreach ($comments as $comment) {
+					echo $comment->getUser()->getUsername() . ' : ' . $comment->getContent() . '<br /><br />';
+				}
 			}
 		}
-	}
-
+		?>
+		<input type="hidden" id="mostRecentCommentTime" value="<?php echo $mostRecentCommentTime ?>"/>
+	</div>
+	<?php
 	if (NULL !== $form) {
 		echo $user->getUsername() . ' ';
 		echo $this->formRow($form->get('content'));
@@ -40,16 +45,37 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 							type : "post",
 							data : {'houseId':"<?php echo $oneHouse->getId() ?>",'comment':commentContent},
 							success : function(data){
-								jQuery('#debug').html(data);
-								console.log(data);
+								jQuery('#commentTextarea').val('');
 							}
 						});	
 					}
 				});
 			});
+																											
+			setInterval(function() {
+				jQuery.ajax({
+					url : "<?php echo $this->url('get-comments') ?>",
+					type : 'post',
+					data : {'mostRecentCommentTime':jQuery('#mostRecentCommentTime').val(), 'houseId':"<?php echo $oneHouse->getId() ?>"},
+					success : function(data){
+
+						var result = jQuery.parseJSON(data);
+						jQuery('#mostRecentCommentTime').val(result.newTime);
+						var comments = result.comments;
+						console.log(data);				
+						if(comments.length > 0){
+							jQuery.each(comments, function(index, comment) {
+								var string = '';
+								string += comment.username + ' : ' ;
+								string += comment.content + '<br /><br />' ;
+								jQuery('#comments').append(string);
+							});
+						}
+					}
+				});
+			}, 2500);
 		</script>
 		<?php
 	}
 }
 ?>
-<div id="debug"></div>

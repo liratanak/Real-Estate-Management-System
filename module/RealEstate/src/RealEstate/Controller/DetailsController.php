@@ -26,14 +26,24 @@ class DetailsController extends AbstractActionController {
 		$oneHouse = NULL;
 		$form = NULL;
 		$comments = NULL;
+		$mostRecentCommentTime = 0;
 		if (NULL !== $propertyType) {
 			if ('houses' === $propertyType || 'house' === $propertyType) {
 				$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findBy(array('user' => $user));
 
 				if (NULL !== $propertyId) {
-					$oneHouse = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findOneBy(array('id' => $propertyId));
+					$oneHouse = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findOneBy(array('id' => $propertyId, 'user' => $user));
 					$form = new \RealEstate\Form\CommentForm();
 					$comments = $this->getEntityManager()->getRepository('RealEstate\Entity\Comment')->findBy(array('house' => $oneHouse));
+
+					if (NULL !== $oneHouse) {
+						$query = $this->getEntityManager()->createQuery('SELECT MAX(c.lastModifiedTime) FROM RealEstate\Entity\Comment c WHERE c.house = ' . $oneHouse->getId() . ' ');
+						$mostRecentCommentTimeArray = $query->getResult();
+
+						if (isset($mostRecentCommentTimeArray[0][1])) {
+							$mostRecentCommentTime = $mostRecentCommentTimeArray[0][1];
+						}
+					}
 				}
 			}
 		}
@@ -43,7 +53,8 @@ class DetailsController extends AbstractActionController {
 					'houses' => $houses,
 					'oneHouse' => $oneHouse,
 					'form' => $form,
-					'comments' => $comments
+					'comments' => $comments,
+					'mostRecentCommentTime' => $mostRecentCommentTime,
 				));
 	}
 

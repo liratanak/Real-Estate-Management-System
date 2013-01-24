@@ -81,6 +81,16 @@ return array(
 					),
 				),
 			),
+			'get-comments' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/get-comments',
+					'defaults' => array(
+						'controller' => 'comment',
+						'action' => 'get',
+					),
+				),
+			),
 			'houses' => array(
 				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
