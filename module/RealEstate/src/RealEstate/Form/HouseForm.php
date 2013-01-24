@@ -62,7 +62,6 @@ class HouseForm extends Form {
 			),
 		));
 
-
 		$this->add(array(
 			'name' => 'houseNumber',
 			'type' => '\Zend\Form\Element\Text',

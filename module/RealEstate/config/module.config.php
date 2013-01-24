@@ -16,7 +16,7 @@ return array(
 			'house-list' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/page/[:p]',
+					'route' => '/page/[:p[/]]',
 					'defaults' => array(
 						'controller' => 'houseList',
 						'action' => 'list',
@@ -24,7 +24,7 @@ return array(
 				),
 			),
 			'home' => array(
-				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'type' => 'Zend\Mvc\Router\Http\Literal',
 				'options' => array(
 					'route' => '/',
 					'defaults' => array(
@@ -37,7 +37,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action]',
+							'route' => '/[:action[/]]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
@@ -49,7 +49,7 @@ return array(
 							'default' => array(
 								'type' => 'Zend\Mvc\Router\Http\Segment',
 								'options' => array(
-									'route' => '/[:pageNumber]',
+									'route' => '/[:pageNumber[/]]',
 									'constraints' => array(
 										'pageNumber' => '[0-9]*',
 									),
@@ -64,7 +64,7 @@ return array(
 			'details' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '[/:username[/:propertyType[/:propertyId]]]',
+					'route' => '[/:username[/:propertyType[/:propertyId[/]]]]',
 					'defaults' => array(
 						'controller' => 'details',
 						'action' => 'details',
@@ -72,9 +72,9 @@ return array(
 				),
 			),
 			'comment' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/comment',
+					'route' => '/comment[/]',
 					'defaults' => array(
 						'controller' => 'comment',
 						'action' => 'comment',
@@ -82,44 +82,39 @@ return array(
 				),
 			),
 			'get-comments' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/get-comments',
+					'route' => '/get-comments[/]',
 					'defaults' => array(
 						'controller' => 'comment',
 						'action' => 'get',
 					),
 				),
 			),
-			'houses' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+			'my' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/house',
+					'route' => '/my[/]',
 					'defaults' => array(
 						'controller' => 'house',
 						'action' => 'index',
 					),
 				),
-				'may_terminate' => true,
-				'child_routes' => array(
-					'houseUid' => array(
-						'type' => 'Zend\Mvc\Router\Http\Segment',
-						'options' => array(
-							'route' => '/[:houseUid]',
-							'constraints' => array(
-								'houseUid' => '[a-zA-Z0-9_-]+'
-							),
-							'defaults' => array(
-								'action' => 'viewDetail'
-							)
-						)
+				'houses' => array(
+					'type' => 'Zend\Mvc\Router\Http\Segment',
+					'options' => array(
+						'route' => '/houses[/:p[/]]',
+						'defaults' => array(
+							'controller' => 'house',
+							'action' => 'index',
+						),
 					),
 				),
 			),
 			'search' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/search',
+					'route' => '/search[/]',
 					'defaults' => array(
 						'controller' => 'search',
 						'action' => 'index',
@@ -127,9 +122,9 @@ return array(
 				),
 			),
 			'ajax' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/ajax',
+					'route' => '/ajax[/]',
 					'defaults' => array(
 						'controller' => 'ajax',
 						'action' => 'ajax',
@@ -137,9 +132,9 @@ return array(
 				),
 			),
 			'message' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/message',
+					'route' => '/message[/]',
 					'defaults' => array(
 						'controller' => 'message',
 						'action' => 'index',
@@ -150,7 +145,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action]',
+							'route' => '/[:action[/]]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
@@ -161,10 +156,32 @@ return array(
 					),
 				),
 			),
-			'create' => array(
-				'type' => 'Zend\Mvc\Router\Http\Literal',
+			'room' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/new',
+					'route' => '/room[/]',
+					'defaults' => array(
+						'controller' => 'room',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:action[/]]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+						),
+					),
+				),
+			),
+			'create' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'options' => array(
+					'route' => '/new[/]',
 					'defaults' => array(
 						'controller' => 'creator',
 						'action' => 'index',
@@ -175,7 +192,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action]',
+							'route' => '/[:action[/]]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
@@ -214,6 +231,7 @@ return array(
 			'message' => 'RealEstate\Controller\MessageController',
 			'details' => 'RealEstate\Controller\DetailsController',
 			'comment' => 'RealEstate\Controller\CommentController',
+			'room' => 'RealEstate\Controller\RoomController',
 		),
 	),
 	'view_manager' => array(

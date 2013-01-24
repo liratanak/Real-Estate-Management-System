@@ -11,7 +11,7 @@ class CommentController extends AbstractActionController {
 		$success = 0;
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			$data = $this->getRequest()->getPost();
-			$user = $user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
+			$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 
 			$comment = new \RealEstate\Entity\Comment();
 			$comment->setCreatedUser($user);

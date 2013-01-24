@@ -19,13 +19,29 @@ class HouseController extends AbstractActionController {
 	protected $houseRepository;
 
 	public function indexAction() {
-		return new ViewModel(array(
 
-						//ownself tell reporcetory to do this funtion
-			'houses' => $this->getHouseRepository()->findAll(),
-//			'action' => 'aaa'
+		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
+			$this->redirect()->toRoute('zfcuser/login');
+			return;
+		}
+
+		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
+		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findBy(array('user' => $user));
+
+		if (is_array($houses)) {
+			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($houses));
+		} else {
+			$paginator = $houses;
+		}
+
+		$paginator->setItemCountPerPage(10);
+		$paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
+
+		return new ViewModel(array(
+					'houses' => $paginator,
 				));
 	}
+
 	//manage all class name
 	public function getHouseRepository() {
 		if (!$this->houseRepository) {
@@ -35,25 +51,36 @@ class HouseController extends AbstractActionController {
 		return $this->houseRepository;
 	}
 
-	public function viewAction() {
+	public function viewDetailAction() {
 		$houseUid = $this->params('houseUid');
 		return new ViewModel(array(
-					'houseUid' => $houseUid,
-				));
-	}
-
-	public function rssAction() {
-
-	}
-
-		public function viewDetailAction(){
-			$houseUid = $this->params('houseUid');
-		return new ViewModel(array(
-						//ownself tell reporcetory to do this funtion
-			'house' => $this->getHouseRepository()->selectHouseById($houseUid)->current(),
+					//ownself tell reporcetory to do this funtion
+					'house' => $this->getHouseRepository()->selectHouseById($houseUid)->current(),
 //			'address' => $this->getHouseRepository()->selectAddressById($houseUid)->current(),
 //			'size' => $this->getHouseRepository()->selectSizeById($houseUid)->current(),
 //			'user' => $this->getHouseRepository()->selectUserById($houseUid)->current(),
-		));
+				));
 	}
+
+	/**
+	 * Entity manager instance
+	 *           
+	 * @var Doctrine\ORM\EntityManager
+	 */
+	protected $em;
+
+	/**
+	 * Returns an instance of the Doctrine entity manager loaded from the service 
+	 * locator
+	 * 
+	 * @return Doctrine\ORM\EntityManager
+	 */
+	public function getEntityManager() {
+		if (null === $this->em) {
+			$this->em = $this->getServiceLocator()
+					->get('doctrine.entitymanager.orm_default');
+		}
+		return $this->em;
+	}
+
 }

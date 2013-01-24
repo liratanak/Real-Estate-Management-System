@@ -21,7 +21,7 @@ class HousesListController extends AbstractActionController {
 
 	public function listAction() {
 		$house = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
-//		var_dump($house);
+
 		if (is_array($house)) {
 			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($house));
 		} else {
