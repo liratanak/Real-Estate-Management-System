@@ -64,7 +64,7 @@ return array(
 			'details' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '[/:username[/:propertyType[/:propertyId[/]]]]',
+					'route' => '/user/[:username[/:propertyType[/:propertyId[/]]]]',
 					'defaults' => array(
 						'controller' => 'details',
 						'action' => 'details',
@@ -131,6 +131,16 @@ return array(
 					),
 				),
 			),
+			'rate' => array(
+				'type' => 'Zend\Mvc\Router\Http\Literal',
+				'options' => array(
+					'route' => '/rate',
+					'defaults' => array(
+						'controller' => 'rate',
+						'action' => 'rate',
+					),
+				),
+			),
 			'message' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
@@ -159,7 +169,7 @@ return array(
 			'room' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/room[/]',
+					'route' => '/room',
 					'defaults' => array(
 						'controller' => 'room',
 						'action' => 'index',
@@ -170,9 +180,10 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action[/]]',
+							'route' => '/[:action/for/house[/:houseId]]',
 							'constraints' => array(
-								'action' => '[a-zA-Z0-9_-]+'
+								'action' => '[a-zA-Z0-9_-]+',
+								'houseId' => '[0-9]+'
 							),
 						),
 					),
@@ -232,6 +243,7 @@ return array(
 			'details' => 'RealEstate\Controller\DetailsController',
 			'comment' => 'RealEstate\Controller\CommentController',
 			'room' => 'RealEstate\Controller\RoomController',
+			'rate' => 'RealEstate\Controller\RateController',
 		),
 	),
 	'view_manager' => array(
@@ -242,7 +254,7 @@ return array(
 		'exception_template' => 'error/index',
 		'template_map' => array(
 			'layout/layout' => __DIR__ . '/../view/layout/marketing-narrow.phtml',
-			'error/404' => __DIR__ . '/../view/error/404.phtml',
+			'error/404' =>	__DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
 		),
 		'template_path_stack' => array(

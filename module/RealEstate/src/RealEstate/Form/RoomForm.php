@@ -13,6 +13,16 @@ class RoomForm extends Form {
 		$this->setAttribute('method', 'post');
 
 		$this->add(array(
+			'name' => 'houseId',
+			'type' => '\Zend\Form\Element\Hidden',
+			'options' => array(
+			),
+			'attributes' => array(
+			),
+		));
+
+
+		$this->add(array(
 			'name' => 'roomNumber',
 			'type' => '\Zend\Form\Element\Text',
 			'options' => array(
@@ -26,7 +36,7 @@ class RoomForm extends Form {
 			'name' => 'cost',
 			'type' => '\Zend\Form\Element\Text',
 			'options' => array(
-				'label' => 'Title',
+				'label' => 'Cost',
 			),
 			'attributes' => array(
 			),
@@ -98,8 +108,9 @@ class RoomForm extends Form {
 			),
 			'attributes' => array(
 				'type' => 'submit',
+				'id' => 'addRoom',
 				'class' => 'btn',
-				'value' => 'Send',
+				'value' => 'Add',
 			),
 		));
 	}

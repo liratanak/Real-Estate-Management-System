@@ -21,15 +21,18 @@ class HouseController extends AbstractActionController {
 	public function indexAction() {
 
 		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
-			$this->redirect()->toRoute('zfcuser/login');
-			return;
+			return $this->redirect()->toRoute('zfcuser/login');
 		}
 
 		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findBy(array('user' => $user));
 
+		$rooms = array();
 		if (is_array($houses)) {
 			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($houses));
+			foreach ($houses as $house) {
+				$rooms[$house->getId()] = $this->getEntityManager()->getRepository('RealEstate\Entity\Room')->findBy(array('house' => $house));
+			}
 		} else {
 			$paginator = $houses;
 		}
@@ -39,6 +42,7 @@ class HouseController extends AbstractActionController {
 
 		return new ViewModel(array(
 					'houses' => $paginator,
+					'rooms' => $rooms,
 				));
 	}
 

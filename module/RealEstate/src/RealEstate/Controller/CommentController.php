@@ -9,6 +9,7 @@ class CommentController extends AbstractActionController {
 
 	public function commentAction() {
 		$success = 0;
+		$user = NULL;
 		if ($this->getRequest()->isXmlHttpRequest()) {
 			$data = $this->getRequest()->getPost();
 			$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
@@ -24,8 +25,11 @@ class CommentController extends AbstractActionController {
 			$comment->setContent($data->comment);
 			$comment->setHouse($this->getEntityManager()->find('RealEstate\Entity\House', $data->houseId));
 
-			$this->getEntityManager()->persist($comment);
-			$this->getEntityManager()->flush();
+			if (NULL !== $user) {
+				$this->getEntityManager()->persist($comment);
+				$this->getEntityManager()->flush();
+				$success = 1;
+			}
 		}
 		$this->layout('layout/blank');
 		return new ViewModel(array(

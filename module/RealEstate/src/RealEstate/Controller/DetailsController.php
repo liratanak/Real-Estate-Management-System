@@ -7,6 +7,16 @@ use Zend\View\Model\ViewModel;
 
 class DetailsController extends AbstractActionController {
 
+	public function __construct() {
+		
+	}
+
+	public function init() {
+		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
+			return $this->redirect()->toRoute('zfcuser/login');
+		}
+	}
+
 	public function indexAction() {
 		return new ViewModel(array(
 				));
@@ -32,8 +42,10 @@ class DetailsController extends AbstractActionController {
 				$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findBy(array('user' => $user));
 
 				if (NULL !== $propertyId) {
+					if ($this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
+						$form = new \RealEstate\Form\CommentForm();
+					}
 					$oneHouse = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findOneBy(array('id' => $propertyId, 'user' => $user));
-					$form = new \RealEstate\Form\CommentForm();
 					$comments = $this->getEntityManager()->getRepository('RealEstate\Entity\Comment')->findBy(array('house' => $oneHouse));
 
 					if (NULL !== $oneHouse) {
@@ -49,7 +61,7 @@ class DetailsController extends AbstractActionController {
 		}
 
 		return new ViewModel(array(
-					'user' => $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity(),
+					'user' => $user,
 					'houses' => $houses,
 					'oneHouse' => $oneHouse,
 					'form' => $form,

@@ -20,10 +20,13 @@ class HousesListController extends AbstractActionController {
 	protected $houseRepository;
 
 	public function listAction() {
-		$house = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
-
-		if (is_array($house)) {
-			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($house));
+		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
+		$rooms = array();
+		if (is_array($houses)) {
+			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($houses));
+			foreach ($houses as $house) {
+				$rooms[$house->getId()] = $this->getEntityManager()->getRepository('RealEstate\Entity\Room')->findBy(array('house' => $house));
+			}
 		} else {
 			$paginator = $house;
 		}
@@ -33,6 +36,7 @@ class HousesListController extends AbstractActionController {
 		$paginator->setCurrentPageNumber($this->getEvent()->getRouteMatch()->getParam('p'));
 		return new ViewModel(array(
 					'houses' => $paginator,
+					'rooms' => $rooms,
 				));
 	}
 

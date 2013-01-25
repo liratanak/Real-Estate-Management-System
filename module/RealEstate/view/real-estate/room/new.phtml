@@ -1,6 +1,6 @@
 <?php
 $form->prepare();
-$form->setAttribute('action', $this->url('room/action', array('action' => 'new')));
+$form->setAttribute('action', $this->url('room/action', array('action' => 'new', 'houseId' => $houseId)));
 $form->setAttribute('method', 'post');
 ?>
 <?php echo $this->form()->openTag($form) ?>
@@ -10,3 +10,11 @@ $form->setAttribute('method', 'post');
 	<?php endforeach ?>
 </dl>
 <?php echo $this->form()->closeTag() ?>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('#addRoom').click(function(){
+			
+		});
+	});
+</script>

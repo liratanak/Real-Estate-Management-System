@@ -1,5 +1,4 @@
 <?php
-
 foreach ($houses as $house) {
 	echo '<pre>';
 	echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
@@ -7,7 +6,14 @@ foreach ($houses as $house) {
 	echo '</a>';
 	echo $house->getCost() . '<br />';
 	echo $house->getType()->getTitle() . '<br />';
-	echo '<a class="addRoom" href="' . $this->url('room/action', array('action' => 'new')) . '">Add room</a>';
+
+	if (0 < count($rooms[$house->getId()])) {
+		echo count($rooms[$house->getId()]) . ' rooms available';
+		foreach ($rooms[$house->getId()] as $room) {
+			echo '<br />' . $room->getCost() . ' (' . $room->getSize()->getWidth() . 'x' . $room->getSize()->getHeight() . 'x' . $room->getSize()->getLength() . ') ';
+		}
+	}
+	echo '<br /><a class="addRoom" href="' . $this->url('room/action', array('action' => 'new', 'houseId' => $house->getId())) . '">Add room</a>';
 
 	echo '</pre>';
 }
@@ -18,5 +24,5 @@ foreach ($houses as $house) {
 <link rel="stylesheet" href="/assets/css/colorbox.css" />
 <script src="/assets/js/jquery.colorbox.js"></script>
 <script type="text/javascript">
-	jQuery(".addRoom").colorbox();
+	//	jQuery(".addRoom").colorbox();
 </script>

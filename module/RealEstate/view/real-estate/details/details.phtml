@@ -2,7 +2,7 @@
 if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 	foreach ($houses as $house) {
 		echo '<pre>';
-		echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
+//		echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
 		echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
 		echo '</a>';
 		echo $house->getCost() . '<br />';
@@ -45,37 +45,44 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 							type : "post",
 							data : {'houseId':"<?php echo $oneHouse->getId() ?>",'comment':commentContent},
 							success : function(data){
-								jQuery('#commentTextarea').val('');
+								console.log(data);
+								if(1 == parseInt(data)){
+									jQuery('#commentTextarea').val('');
+									jQuery('#commentButton').val('Comment');
+								}else{
+									jQuery('#commentButton').val('CAN\'T ADD YOUR COMMENT');
+								}
 							}
 						});	
 					}
 				});
 			});
-																											
-			setInterval(function() {
-				jQuery.ajax({
-					url : "<?php echo $this->url('get-comments') ?>",
-					type : 'post',
-					data : {'mostRecentCommentTime':jQuery('#mostRecentCommentTime').val(), 'houseId':"<?php echo $oneHouse->getId() ?>"},
-					success : function(data){
-
-						var result = jQuery.parseJSON(data);
-						jQuery('#mostRecentCommentTime').val(result.newTime);
-						var comments = result.comments;
-						console.log(data);				
-						if(comments.length > 0){
-							jQuery.each(comments, function(index, comment) {
-								var string = '';
-								string += comment.username + ' : ' ;
-								string += comment.content + '<br /><br />' ;
-								jQuery('#comments').append(string);
-							});
-						}
-					}
-				});
-			}, 2500);
 		</script>
 		<?php
 	}
 }
 ?>
+<script type="text/javascript">
+	setInterval(function() {
+		jQuery.ajax({
+			url : "<?php echo $this->url('get-comments') ?>",
+			type : 'post',
+			data : {'mostRecentCommentTime':jQuery('#mostRecentCommentTime').val(), 'houseId':"<?php echo $oneHouse->getId() ?>"},
+			success : function(data){
+
+				var result = jQuery.parseJSON(data);
+				jQuery('#mostRecentCommentTime').val(result.newTime);
+				var comments = result.comments;
+				console.log(data);				
+				if(comments.length > 0){
+					jQuery.each(comments, function(index, comment) {
+						var string = '';
+						string += comment.username + ' : ' ;
+						string += comment.content + '<br /><br />' ;
+						jQuery('#comments').append(string);
+					});
+				}
+			}
+		});
+	}, 2500);
+</script>
