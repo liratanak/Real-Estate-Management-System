@@ -10,7 +10,7 @@ return array(
 		'ZfcUserDoctrineORM',
 		'ZfcAdmin',
 		'ZfcUserAdmin',
-		'GoogleMaps',
+//		'GoogleMaps',
 		'RealEstate',
 	),
 	'module_listener_options' => array(
