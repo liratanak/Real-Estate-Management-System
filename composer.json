@@ -15,6 +15,7 @@
 		"zf-commons/zfc-user": "dev-master",
 		"zf-commons/zfc-user-doctrine-orm" : "dev-master",
 		"zf-commons/zfc-twig": "dev-master",
+		"cderue/google-maps": "dev-master",
 		"heartsentwined/zf2-doctrine": "1.*"
     }
 }

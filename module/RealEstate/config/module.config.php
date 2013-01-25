@@ -100,16 +100,6 @@ return array(
 						'action' => 'index',
 					),
 				),
-				'houses' => array(
-					'type' => 'Zend\Mvc\Router\Http\Segment',
-					'options' => array(
-						'route' => '/houses[/:p[/]]',
-						'defaults' => array(
-							'controller' => 'house',
-							'action' => 'index',
-						),
-					),
-				),
 			),
 			'search' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
@@ -121,13 +111,13 @@ return array(
 					),
 				),
 			),
-			'ajax' => array(
+			'map' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/ajax[/]',
+					'route' => '/map[/]',
 					'defaults' => array(
-						'controller' => 'ajax',
-						'action' => 'ajax',
+						'controller' => 'map',
+						'action' => 'index',
 					),
 				),
 			),
@@ -192,7 +182,7 @@ return array(
 			'create' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/new[/]',
+					'route' => '/new',
 					'defaults' => array(
 						'controller' => 'creator',
 						'action' => 'index',
@@ -244,6 +234,7 @@ return array(
 			'comment' => 'RealEstate\Controller\CommentController',
 			'room' => 'RealEstate\Controller\RoomController',
 			'rate' => 'RealEstate\Controller\RateController',
+			'map' => 'RealEstate\Controller\MapController',
 		),
 	),
 	'view_manager' => array(

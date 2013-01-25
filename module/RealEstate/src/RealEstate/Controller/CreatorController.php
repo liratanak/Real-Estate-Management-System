@@ -9,6 +9,11 @@ class CreatorController extends AbstractActionController {
 
 	public function houseAction() {
 
+		if (!$this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->hasIdentity()) {
+			return $this->redirect()->toRoute('zfcuser/login');
+		}
+
+
 		$form = new \RealEstate\Form\HouseForm();
 		$form->get('submit')->setAttribute('label', 'Add');
 
@@ -28,24 +33,24 @@ class CreatorController extends AbstractActionController {
 				$houseType = new \RealEstate\Entity\HouseType();
 				$address = new \RealEstate\Entity\Address();
 				$size = new \RealEstate\Entity\Size();
-				
+
 				$house->setUser($user);
 				$house->setCreatedUser($user);
 				$house->setLastModifiedUser($user);
-				
+
 				$houseType->setCreatedUser($user);
 				$houseType->setLastModifiedUser($user);
-				
+
 				$address->setCreatedUser($user);
 				$address->setLastModifiedUser($user);
-				
+
 				$size->setCreatedUser($user);
 				$size->setLastModifiedUser($user);
 
 				$houseType->setTitle($data->houseType);
 				$this->save($houseType);
 
-				
+
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
 				$address->setVillage($data->village);
@@ -80,9 +85,9 @@ class CreatorController extends AbstractActionController {
 	}
 
 	public function roomAction() {
-		
+
 		$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
-		
+
 		return new ViewModel(array(
 				));
 	}
