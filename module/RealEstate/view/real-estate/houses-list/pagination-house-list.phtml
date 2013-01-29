@@ -9,7 +9,7 @@
 
         <!-- Previous page link -->
         <li<?php echo (isset($this->previous)) ? '' : ' class="disabled"'; ?>>
-            <a href="<?php echo $this->url('house-list', array('p' => $this->previous-9)); ?>">&lt; Previous 10</a>
+            <a href="<?php echo $this->url('house-list', array('p' => $this->previous)); ?>">&lt; Previous 10</a>
         </li>
 
         <!-- Numbered page links -->
@@ -21,7 +21,7 @@
 
         <!-- Next page link -->
         <li<?php echo (isset($this->next)) ? '' : ' class="disabled"'; ?>>
-            <a href="<?php echo $this->url('house-list', array('p' => $this->next+9)); ?>">Next 10 &gt;</a>
+            <a href="<?php echo $this->url('house-list', array('p' => $this->next)); ?>">Next 10 &gt;</a>
         </li>
 
         <!-- Last page link -->
