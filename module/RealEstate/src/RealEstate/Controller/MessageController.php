@@ -23,6 +23,7 @@ class MessageController extends AbstractActionController {
 
 
 		$query = $this->getEntityManager()->createQuery('SELECT MAX(m.lastModifiedTime) FROM RealEstate\Entity\Message m WHERE m.toUser = ' . $user->getUserId() . ' ');
+		$mostRecentMessageTime = 0;
 		$mostRecentMessageTimeArray = $query->getResult();
 
 		if (isset($mostRecentMessageTimeArray[0][1])) {
