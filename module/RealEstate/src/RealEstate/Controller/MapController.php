@@ -9,7 +9,13 @@ use GoogleMaps\Request as MapRequest;
 class MapController extends AbstractActionController {
 
 	public function indexAction() {
-		$this->layout('layout/map');
+		return new ViewModel(array(
+				));
+	}
+
+	public function showAction() {
+		$this->layout('layout/blank');
+		$this->getResponse()->getHeaders()->addHeaders(array('Content-type' => 'text/xml'));
 		return new ViewModel(array(
 				));
 	}

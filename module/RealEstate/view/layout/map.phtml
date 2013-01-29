@@ -26,7 +26,8 @@
 				var infoWindow = new google.maps.InfoWindow;
 
 				// Change this depending on the name of your PHP file
-				downloadUrl("/phpsqlajax_expectedoutput.xml", function(data) {
+				downloadUrl("<?php echo $this->url('map/action',array('action'=>'show')) ?>", function(data) {
+					console.log(data);
 					var xml = data.responseXML;
 					var markers = xml.documentElement.getElementsByTagName("marker");
 					for (var i = 0; i < markers.length; i++) {
@@ -79,7 +80,6 @@
 	</head>
 
 	<body onload="load()">
-		<?php echo $this->content; ?>
+		<div id="map" style="width: 500px; height: 300px"></div>
 	</body>
 </html>
-
