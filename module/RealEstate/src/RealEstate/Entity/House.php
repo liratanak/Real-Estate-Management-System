@@ -99,6 +99,20 @@ class House
     private $available;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="positive_rate_number", type="integer", nullable=true)
+     */
+    private $positiveRateNumber;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="negative_rate_number", type="integer", nullable=true)
+     */
+    private $negativeRateNumber;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="image_path_as_json_string_list", type="text", nullable=true)
@@ -435,6 +449,52 @@ class House
     public function getAvailable()
     {
         return $this->available;
+    }
+
+    /**
+     * Set positiveRateNumber
+     *
+     * @param integer $positiveRateNumber
+     * @return House
+     */
+    public function setPositiveRateNumber($positiveRateNumber)
+    {
+        $this->positiveRateNumber = $positiveRateNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get positiveRateNumber
+     *
+     * @return integer 
+     */
+    public function getPositiveRateNumber()
+    {
+        return $this->positiveRateNumber;
+    }
+
+    /**
+     * Set negativeRateNumber
+     *
+     * @param integer $negativeRateNumber
+     * @return House
+     */
+    public function setNegativeRateNumber($negativeRateNumber)
+    {
+        $this->negativeRateNumber = $negativeRateNumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get negativeRateNumber
+     *
+     * @return integer 
+     */
+    public function getNegativeRateNumber()
+    {
+        return $this->negativeRateNumber;
     }
 
     /**
