@@ -3,6 +3,7 @@
 <hr />
 
 <input type="hidden" id="mostRecentMessageTime" value="<?php echo $mostRecentMessageTime ?>"/>
+<input type="hidden" id="isSendToServer" value="1" />
 
 <div id="messages">
 	<?php
@@ -20,26 +21,34 @@
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		setInterval(function() {
-			jQuery.ajax({
-				'url' : "<?php echo $this->url('message/action', array('action' => 'newMessageByAjax')) ?>",
-				'type' : 'post',
-				'data' : {'mostRecentMessageTime':jQuery('#mostRecentMessageTime').val()},
-				'success' : function(data){
-					var result = jQuery.parseJSON(data);
-					var messages = result.messages;
-					if(messages.length > 0){
-						jQuery.each(messages, function(index, message) {
-							var string = '<pre>';
-							string += message.from + '<br />' ;
-							string += message.title + '<br />' ;
-							string += message.content + '<br />' ;
-							string += '</pre>';
-							jQuery('#messages').prepend(string)
-						});
+			if(1 == jQuery("#isSendToServer").val()){
+				jQuery.ajax({
+					'url' : "<?php echo $this->url('message/action', array('action' => 'newMessageByAjax')) ?>",
+					'type' : 'post',
+					'data' : {'mostRecentMessageTime':jQuery('#mostRecentMessageTime').val()},
+					'beforeSend' : function(){
+						jQuery("#isSendToServer").val(0);
+					},
+					'complete': function(){
+						jQuery("#isSendToServer").val(1);
+					},
+					'success' : function(data){
+						var result = jQuery.parseJSON(data);
+						var messages = result.messages;
+						if(messages.length > 0){
+							jQuery.each(messages, function(index, message) {
+								var string = '<pre>';
+								string += message.from + '<br />' ;
+								string += message.title + '<br />' ;
+								string += message.content + '<br />' ;
+								string += '</pre>';
+								jQuery('#messages').prepend(string)
+							});
+						}
+						jQuery('#mostRecentMessageTime').val(result.newTime);
 					}
-					jQuery('#mostRecentMessageTime').val(result.newTime);
-				}
-			});
-		}, 1200);
+				});
+			}
+		}, 2000);
 	});
 </script>

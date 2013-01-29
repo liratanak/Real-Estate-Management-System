@@ -9,22 +9,7 @@ use GoogleMaps\Request as MapRequest;
 class MapController extends AbstractActionController {
 
 	public function indexAction() {
-		$lat = 40.714224;
-		$lng = -73.961452;
-		$request = new MapRequest();
-
-		$latlng = array(
-			'lat' => $lat,
-			'lng' => $lng,
-		);
-		
-		$latLng = new \GoogleMaps\Resources\LatLng($latlng);
-
-		$request->setLatLng(new \GoogleMaps\Parameters\LatLngParameter($latLng));
-		$proxy = new \GoogleMaps\Geocoder();
-		$response = $proxy->geocode($request);
-
-		var_dump($response);
+		$this->layout('layout/map');
 		return new ViewModel(array(
 				));
 	}

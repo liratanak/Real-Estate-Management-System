@@ -28,6 +28,7 @@ class DetailsController extends AbstractActionController {
 		$username = $this->params('username');
 
 		$user = NULL;
+		$currentUser = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 		if (NULL !== $username) {
 			$user = $this->getEntityManager()->getRepository('RealEstate\Entity\User')->findOneBy(array('username' => $username));
 		}
@@ -62,6 +63,7 @@ class DetailsController extends AbstractActionController {
 
 		return new ViewModel(array(
 					'user' => $user,
+					'currentUser' => $currentUser,
 					'houses' => $houses,
 					'oneHouse' => $oneHouse,
 					'form' => $form,

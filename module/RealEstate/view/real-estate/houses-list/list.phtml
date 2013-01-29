@@ -4,6 +4,7 @@ foreach ($houses as $house) {
 	echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
 	echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
 	echo '</a>';
+	echo $house->getUser()->getEmail();
 	echo $house->getCost() . '<br />';
 	echo $house->getType()->getTitle() . '<br />';
 	echo '<br />';
