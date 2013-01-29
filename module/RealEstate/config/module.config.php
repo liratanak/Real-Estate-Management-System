@@ -149,7 +149,7 @@ return array(
 			'message' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/message[/]',
+					'route' => '/message',
 					'defaults' => array(
 						'controller' => 'message',
 						'action' => 'index',
@@ -160,7 +160,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action[/]]',
+							'route' => '[/][:action[/]]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
