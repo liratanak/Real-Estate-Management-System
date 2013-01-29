@@ -148,6 +148,8 @@ CREATE TABLE IF NOT EXISTS `house` (
   `is_room_rent` tinyint(1) unsigned DEFAULT '0',
   `cost` int(11) unsigned DEFAULT '0',
   `available` tinyint(1) unsigned DEFAULT '0',
+  `positive_rate_number` int(11) unsigned DEFAULT '0',
+  `negative_rate_number` int(11) unsigned DEFAULT '0',
   `image_path_as_json_string_list` text  ,
   `other_info` text  ,
 
