@@ -16,7 +16,12 @@ foreach ($houses as $house) {
 	}
 	?>
 
-	<div id="messageError" class="alert alert-error" style="display: none;">Error</div>
+	<div class="btn-group">
+		<button class="btn" id="ratePositive"><?php echo $house->getPositiveRateNumber() ?></button>
+		<button class="btn" id="rateNegative"><?php echo $house->getNegativeRateNumber() ?></button>
+	</div>
+
+	<div id="message"></div>
 
 	<form method="post" onsubmit="return false;">
 		<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
@@ -51,7 +56,20 @@ foreach ($houses as $house) {
 					
 				},
 				'error' : function(){
-					jQuery('#messageError').show();
+					jQuery('#message').html('<div class="alert alert-error">ERROR</div>');
+				},
+				'success': function(data){
+					var result =  jQuery.parseJSON(data);
+					console.log(result);
+					if(result.already){
+						jQuery('#message').html('<div class="alert alert-block">ALEADY</div>');
+					}
+					if(!result.loggedin){
+						jQuery('#message').html('<div class="alert alert-block">YOU MUST LOGGIN TO VOTE, <a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></div>');
+					}
+					jQuery('#ratePositive').html(result.positive);
+					jQuery('#rateNegative').html(result.negative);
+					
 				}
 			});
 			console.log(houseId);
