@@ -15,8 +15,22 @@ class MapController extends AbstractActionController {
 
 	public function showAction() {
 		$this->layout('layout/blank');
+
+		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
+
+		$xmlString = '<markers>';
+		foreach ($houses as $house) {
+			$xmlString .= '<marker name="' . $house->getCost()
+					. '" address="' . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getStreet() . '" '
+					. 'lat="' . $house->getAddress()->getLatitude() . '" '
+					. 'lng="' . $house->getAddress()->getLongitude() . '" '
+					. 'type="' . $house->getType()->getTitle() . '" />';
+		}
+		$xmlString .= '</markers>';
+
 		$this->getResponse()->getHeaders()->addHeaders(array('Content-type' => 'text/xml'));
 		return new ViewModel(array(
+					'xml' => $xmlString,
 				));
 	}
 

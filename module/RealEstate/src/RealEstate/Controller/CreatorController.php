@@ -15,7 +15,6 @@ class CreatorController extends AbstractActionController {
 
 
 		$form = new \RealEstate\Form\HouseForm();
-		$form->get('submit')->setAttribute('label', 'Add');
 
 		$request = $this->getRequest();
 		if ($request->isPost()) {
@@ -32,7 +31,7 @@ class CreatorController extends AbstractActionController {
 				$house = new \RealEstate\Entity\House();
 				$houseType = new \RealEstate\Entity\HouseType();
 				$address = new \RealEstate\Entity\Address();
-				$size = new \RealEstate\Entity\Size();
+//				$size = new \RealEstate\Entity\Size();
 
 				$house->setUser($user);
 				$house->setCreatedUser($user);
@@ -44,8 +43,8 @@ class CreatorController extends AbstractActionController {
 				$address->setCreatedUser($user);
 				$address->setLastModifiedUser($user);
 
-				$size->setCreatedUser($user);
-				$size->setLastModifiedUser($user);
+//				$size->setCreatedUser($user);
+//				$size->setLastModifiedUser($user);
 
 				$houseType->setTitle($data->houseType);
 				$this->save($houseType);
@@ -61,22 +60,22 @@ class CreatorController extends AbstractActionController {
 				$address->setLongitude($data->longitude);
 				$this->save($address);
 
-				$size->setWidth($data->width);
-				$size->setHeight($data->height);
-				$size->setLength($data->lenght);
-				$this->save($size);
+//				$size->setWidth($data->width);
+//				$size->setHeight($data->height);
+//				$size->setLength($data->lenght);
+//				$this->save($size);
 
 				$house->setCost($data->cost);
 				$house->setAddress($address);
 				$house->setType($houseType);
-				$house->setSize($size);
+//				$house->setSize($size);
 				$house->setAvailable($data->avaialbe);
 				$house->setIsRoomRent($data->haveRoomRent);
 				$house->setOtherinfo($data->other);
 
 				$this->save($house);
-
-//				var_dump($house);
+				
+				$this->redirect()->toRoute('home');
 			}
 		}
 		return new ViewModel(array(

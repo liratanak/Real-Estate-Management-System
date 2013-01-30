@@ -15,7 +15,7 @@ class HouseForm extends Form {
 		$this->add(array(
 			'name' => 'cost',
 			'options' => array(
-				'label' => 'Cost',
+				'label' => 'Cost (៛)',
 			),
 			'attributes' => array(
 				'type' => 'text',
@@ -33,34 +33,44 @@ class HouseForm extends Form {
 		));
 
 		$this->add(array(
-			'name' => 'width',
-			'type' => '\Zend\Form\Element\Text',
+			'name' => 'image',
+			'type' => '\Zend\Form\Element\File',
 			'options' => array(
-				'label' => 'Width',
+				'label' => 'Image',
 			),
 			'attributes' => array(
 			),
 		));
 
-		$this->add(array(
-			'name' => 'height',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'Height',
-			),
-			'attributes' => array(
-			),
-		));
-
-		$this->add(array(
-			'name' => 'lenght',
-			'type' => '\Zend\Form\Element\Text',
-			'options' => array(
-				'label' => 'Lenght',
-			),
-			'attributes' => array(
-			),
-		));
+//		$this->add(array(
+//			'name' => 'width',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'Width',
+//			),
+//			'attributes' => array(
+//			),
+//		));
+//
+//		$this->add(array(
+//			'name' => 'height',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'Height',
+//			),
+//			'attributes' => array(
+//			),
+//		));
+//
+//		$this->add(array(
+//			'name' => 'lenght',
+//			'type' => '\Zend\Form\Element\Text',
+//			'options' => array(
+//				'label' => 'Lenght',
+//			),
+//			'attributes' => array(
+//			),
+//		));
 
 		$this->add(array(
 			'name' => 'houseNumber',
@@ -165,6 +175,8 @@ class HouseForm extends Form {
 				'label' => 'Longitude',
 			),
 			'attributes' => array(
+				'id' => 'longitude',
+				'readonly' => 'readonly',
 			),
 		));
 
@@ -175,30 +187,8 @@ class HouseForm extends Form {
 				'label' => 'Latitude',
 			),
 			'attributes' => array(
-			),
-		));
-
-
-		$this->add(array(
-			'name' => 'image',
-			'type' => '\Zend\Form\Element\File',
-			'options' => array(
-				'label' => 'Image',
-			),
-			'attributes' => array(
-			),
-		));
-
-
-		$this->add(array(
-			'name' => 'submit',
-			'options' => array(
-			),
-			'attributes' => array(
-				'type' => 'submit',
-				'class' => 'btn',
-				'value' => 'Add',
-				'id' => 'submitbutton',
+				'id' => 'latitude',
+				'readonly' => 'readonly',
 			),
 		));
 	}

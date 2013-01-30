@@ -49,62 +49,62 @@ class HouseFilter implements InputFilterAwareInterface {
 						),
 					)));
 
-			$inputFilter->add($factory->createInput(array(
-						'name' => 'width',
-						'required' => true,
-						'filters' => array(
-							array('name' => 'StripTags'),
-							array('name' => 'StringTrim'),
-						),
-						'validators' => array(
-							array(
-								'name' => 'GreaterThan',
-								'options' => array(
-									'min' => 0
-								)
-							),
-						),
-							)
-					)
-			);
-
-			$inputFilter->add($factory->createInput(array(
-						'name' => 'height',
-						'required' => true,
-						'filters' => array(
-							array('name' => 'StripTags'),
-							array('name' => 'StringTrim'),
-						),
-						'validators' => array(
-							array(
-								'name' => 'GreaterThan',
-								'options' => array(
-									'min' => 0
-								)
-							),
-						),
-							)
-					)
-			);
-
-			$inputFilter->add($factory->createInput(array(
-						'name' => 'lenght',
-						'required' => true,
-						'filters' => array(
-							array('name' => 'StripTags'),
-							array('name' => 'StringTrim'),
-						),
-						'validators' => array(
-							array(
-								'name' => 'GreaterThan',
-								'options' => array(
-									'min' => 0
-								)
-							),
-						),
-							)
-					)
-			);
+//			$inputFilter->add($factory->createInput(array(
+//						'name' => 'width',
+//						'required' => true,
+//						'filters' => array(
+//							array('name' => 'StripTags'),
+//							array('name' => 'StringTrim'),
+//						),
+//						'validators' => array(
+//							array(
+//								'name' => 'GreaterThan',
+//								'options' => array(
+//									'min' => 0
+//								)
+//							),
+//						),
+//							)
+//					)
+//			);
+//
+//			$inputFilter->add($factory->createInput(array(
+//						'name' => 'height',
+//						'required' => true,
+//						'filters' => array(
+//							array('name' => 'StripTags'),
+//							array('name' => 'StringTrim'),
+//						),
+//						'validators' => array(
+//							array(
+//								'name' => 'GreaterThan',
+//								'options' => array(
+//									'min' => 0
+//								)
+//							),
+//						),
+//							)
+//					)
+//			);
+//
+//			$inputFilter->add($factory->createInput(array(
+//						'name' => 'lenght',
+//						'required' => true,
+//						'filters' => array(
+//							array('name' => 'StripTags'),
+//							array('name' => 'StringTrim'),
+//						),
+//						'validators' => array(
+//							array(
+//								'name' => 'GreaterThan',
+//								'options' => array(
+//									'min' => 0
+//								)
+//							),
+//						),
+//							)
+//					)
+//			);
 
 
 
