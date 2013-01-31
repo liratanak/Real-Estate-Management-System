@@ -1,3 +1,17 @@
+<form class="form-search">
+	<div class="input-prepend">
+		<button type="submit" class="btn">Search</button>
+		<input id="searchInput" type="text" class="span8 search-query">
+	</div>
+</form>
+
+<script type="text/javascript" src="/assets/js/jquery.liveSearch.js"></script>
+<script type="text/javascript">
+	jQuery('#searchInput').liveSearch({
+		url: "<?php echo $this->url('search') ?>/"
+	});
+</script>
+
 <?php
 foreach ($houses as $house) {
 	echo '<div class="well">';
