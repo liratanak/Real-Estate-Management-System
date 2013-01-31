@@ -1,21 +1,23 @@
-<div class="navbar-form" style="padding: 10px;height:400px;overflow: scroll;border: solid #5bc0de 2px;border-radius: 15px;">
-	<small>Result for : <?php echo $term ?></small>
-	<table class="table table-bordered">
-		<tbody>
-			<?php
-			for ($i = 0; $i < 10; $i++) {
-				foreach ($houses as $house) {
-					echo '<tr>';
-					echo '<td>';
-					echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-					echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
-					echo '</a>';
-					echo $house->getCost() . ' ៛/month';
-					echo '</td>';
-					echo '</tr>';
+<div style="padding: 10px;border: solid #5bc0de 2px;border-radius: 15px;">
+	<div class="navbar-form" style="padding: 10px;height:400px;overflow: scroll;">
+		<small>Result for : <?php echo $term ?></small>
+		<table class="table table-bordered">
+			<tbody>
+				<?php
+				for ($i = 0; $i < 10; $i++) {
+					foreach ($houses as $house) {
+						echo '<tr>';
+						echo '<td>';
+						echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
+						echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+						echo '</a>';
+						echo $house->getCost() . ' ៛/month';
+						echo '</td>';
+						echo '</tr>';
+					}
 				}
-			}
-			?>
-		</tbody>
-	</table>
+				?>
+			</tbody>
+		</table>
+	</div>
 </div>
