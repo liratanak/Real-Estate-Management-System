@@ -16,24 +16,26 @@ foreach ($houses as $house) {
 	}
 	?>
 
-	<div class="btn-group">
-		<button class="btn" id="ratePositive"><?php echo $house->getPositiveRateNumber() ?></button>
-		<button class="btn" id="rateNegative"><?php echo $house->getNegativeRateNumber() ?></button>
+	<div>
+		<div class="btn-group">
+			<button class="btn ratePositive"><?php echo ($house->getPositiveRateNumber() > 0) ? $house->getPositiveRateNumber() : 0 ?></button>
+			<button class="btn rateNegative"><?php echo ($house->getNegativeRateNumber() > 0) ? $house->getNegativeRateNumber() : 0 ?></button>
+		</div>
+
+		<div class="message"></div>
+
+		<form method="post" onsubmit="return false;">
+			<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+			<input type="hidden" name="rate" class="rateValue" value="1" />
+			<input type="submit" class="btn rateButton" value="UP" />
+		</form>
+
+		<form method="post" onsubmit="return false;">
+			<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+			<input type="hidden" name="rate" class="rateValue" value="0" />
+			<input type="submit" class="btn rateButton" value="DOWN" />
+		</form>
 	</div>
-
-	<div id="message"></div>
-
-	<form method="post" onsubmit="return false;">
-		<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
-		<input type="hidden" name="rate" class="rateValue" value="1" />
-		<input type="submit" class="btn rateButton" value="UP" />
-	</form>
-
-	<form method="post" onsubmit="return false;">
-		<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
-		<input type="hidden" name="rate" class="rateValue" value="0" />
-		<input type="submit" class="btn rateButton" value="DOWN" />
-	</form>
 
 	<?php
 	echo '</div>';
@@ -47,7 +49,9 @@ foreach ($houses as $house) {
 		jQuery('.rateButton').click(function(){
 			var houseId = jQuery(this).parent().find(".houseId").val();
 			var rateValue = jQuery(this).parent().find(".rateValue").val();
-			
+			var message = jQuery(this).parent().parent().find('.message');
+			var ratePositive = jQuery(this).parent().parent().find('.ratePositive');
+			var rateNegative = jQuery(this).parent().parent().find('.rateNegative');
 			jQuery.ajax({
 				'url' : "<?php echo $this->url('rate') ?>",
 				'type' : "POST",
@@ -56,20 +60,29 @@ foreach ($houses as $house) {
 					
 				},
 				'error' : function(){
-					jQuery('#message').html('<div class="alert alert-error">ERROR</div>');
+					message.html('<div class="alert alert-error">ERROR</div>');
 				},
 				'success': function(data){
 					var result =  jQuery.parseJSON(data);
 					console.log(result);
 					if(result.already){
-						jQuery('#message').html('<div class="alert alert-block">ALEADY</div>');
+						console.log(jQuery(this));
+						message.html('<div class="alert alert-block">ALEADY</div>');
 					}
 					if(!result.loggedin){
-						jQuery('#message').html('<div class="alert alert-block">YOU MUST LOGGIN TO VOTE, <a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></div>');
+						message.html('<div class="alert alert-block">YOU MUST LOGGIN TO VOTE, <a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></div>');
 					}
-					jQuery('#ratePositive').html(result.positive);
-					jQuery('#rateNegative').html(result.negative);
+					if(null == (result.positive)){
+						ratePositive.html('0');
+					}else{
+						ratePositive.html(result.positive);
+					}
 					
+					if(null == (result.negative)){
+						rateNegative.html('0');
+					}else{
+						rateNegative.html(result.negative);
+					}
 				}
 			});
 			console.log(houseId);
