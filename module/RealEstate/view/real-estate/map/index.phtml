@@ -199,38 +199,51 @@
 	var infoWindow = new google.maps.InfoWindow();
 	var infoBoxArray = [];
 	function loadMap() {
-		navigator.geolocation.getCurrentPosition(function(position){
-			var lat = position.coords.latitude;
-			var lng = position.coords.longitude;
-			
-			var map = new google.maps.Map(document.getElementById("map"), {
-				center: new google.maps.LatLng(lat, lng),
-				zoom: 14,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			});
+		var lat = null;
+		var lng = null;
 		
-			// Change this depending on the name of your PHP file
-			downloadUrl("<?php echo $this->url('map/action', array('action' => 'show')) ?>", function(data) {
-				var xml = data.responseXML;
-				var markers = xml.documentElement.getElementsByTagName("marker");
-				for (var i = 0; i < markers.length; i++) {
-					var name = markers[i].getAttribute("name");
-					var address = markers[i].getAttribute("address");
-					var type = markers[i].getAttribute("type");
-					var point = new google.maps.LatLng(
-					parseFloat(markers[i].getAttribute("lat")),
-					parseFloat(markers[i].getAttribute("lng")));
-					var html = "<b>" + name + "</b> <br/>" + address;
-					var icon = customIcons[type] || {};
-					var marker = new google.maps.Marker({
-						map: map,
-						position: point,
-						icon: icon.icon,
-						shadow: icon.shadow
-					});
-					bindInfoWindow(marker, map, infoWindow, html);
-				}
-			});
+		navigator.geolocation.getCurrentPosition(function(position){
+			lat = position.coords.latitude;
+			lng = position.coords.longitude;
+			console.log(lat);
+			console.log(lng);
+		});
+		
+		if(null == lat){
+			lat = 11.570696416360889;
+		}
+		
+		if(null == lng){
+			lng = 104.89734779752325;
+		}
+		
+		var map = new google.maps.Map(document.getElementById("map"), {
+			center: new google.maps.LatLng(lat, lng),
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		
+		// Change this depending on the name of your PHP file
+		downloadUrl("<?php echo $this->url('map/action', array('action' => 'show')) ?>", function(data) {
+			var xml = data.responseXML;
+			var markers = xml.documentElement.getElementsByTagName("marker");
+			for (var i = 0; i < markers.length; i++) {
+				var name = markers[i].getAttribute("name");
+				var address = markers[i].getAttribute("address");
+				var type = markers[i].getAttribute("type");
+				var point = new google.maps.LatLng(
+				parseFloat(markers[i].getAttribute("lat")),
+				parseFloat(markers[i].getAttribute("lng")));
+				var html = "<b>" + name + "</b> <br/>" + address;
+				var icon = customIcons[type] || {};
+				var marker = new google.maps.Marker({
+					map: map,
+					position: point,
+					icon: icon.icon,
+					shadow: icon.shadow
+				});
+				bindInfoWindow(marker, map, infoWindow, html);
+			}
 		});
 	}
 
