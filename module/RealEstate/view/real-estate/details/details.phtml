@@ -53,7 +53,7 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 									jQuery('#commentButton').val('CAN\'T ADD YOUR COMMENT');
 								}
 							}
-						});	
+						});
 					}
 				});
 			});
@@ -73,7 +73,7 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 				var result = jQuery.parseJSON(data);
 				jQuery('#mostRecentCommentTime').val(result.newTime);
 				var comments = result.comments;
-				console.log(data);				
+				console.log(data);
 				if(comments.length > 0){
 					jQuery.each(comments, function(index, comment) {
 						var string = '';
@@ -84,5 +84,5 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 				}
 			}
 		});
-	}, 2500);
+	}, 5000);
 </script>
