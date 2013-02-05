@@ -18,6 +18,14 @@ body {
 	margin: 30px 0;
 }
 
+.ratePositive{
+	color: seagreen;
+}
+
+.rateNegative {
+	color: red;
+}
+
 #jquery-live-search{
 	background-color: whitesmoke;
 }

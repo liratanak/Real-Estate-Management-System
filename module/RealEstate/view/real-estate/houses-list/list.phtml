@@ -17,55 +17,56 @@
 foreach ($houses as $house) {
 
 
-    echo '<div class="well element">';
-    echo '
+	echo '<div class="well element">';
+	echo '
         <div class="small-img">
         <img  src="" alt="" />
         </div>
     ';
-    echo '<div class="short-info">';
-    echo '<a class="addr" href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-    echo "Address : " . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
-    echo '</a>';
+	echo '<div class="short-info">';
+	echo '<a class="addr" href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
+	echo "Address : " . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+	echo '</a>';
 
-    echo '<p class="type"> Type : ' . $house->getType()->getTitle() . '</p>';
+	echo '<p class="type"> Type : ' . $house->getType()->getTitle() . '</p>';
 
-    if (0 < count($rooms[$house->getId()])) {
-        echo count($rooms[$house->getId()]) . ' rooms available';
-        foreach ($rooms[$house->getId()] as $room) {
-            echo '<br />' . $room->getCost() . ' (' . $room->getSize()->getWidth() . 'x' . $room->getSize()->getHeight() . 'x' . $room->getSize()->getLength() . ') ';
-        }
-    }
-    echo '</div>';
-    echo '<div class="price-info">';
-    echo '<p class="price"> Price : ' . $house->getCost() . '/month</p>';
-    echo '<p class="post-date">Post : 03-Feb-2013</p>';
-    echo '</div>';
-    ?>
+	if (0 < count($rooms[$house->getId()])) {
+		echo count($rooms[$house->getId()]) . ' rooms available';
+		foreach ($rooms[$house->getId()] as $room) {
+			echo '<br />' . $room->getCost() . ' (' . $room->getSize()->getWidth() . 'x' . $room->getSize()->getHeight() . 'x' . $room->getSize()->getLength() . ') ';
+		}
+	}
+	echo '</div>';
+	echo '<div class="price-info">';
+	echo '<p class="price">' . $house->getCost() . ' ៛/month</p>';
+	echo '<p class="post-date">updated : <small class="timeago" title="' . date("d/M/y H:i:s", $house->getLastModifiedTime()) . '"></small></p>';
+	echo '</div>';
+	?>
 
 
+	<div>
+		<div class="btn-group">
+			<form class="ratD" method="post" onsubmit="return false;">
+				<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+				<input type="hidden" name="rate" class="rateValue" value="0" />
+				<button class="btn rateButton"><i class="icon-thumbs-down"></i></button>
+			</form>
+			
+			<button class="btn rateNegative"><?php echo ($house->getNegativeRateNumber() > 0) ? '-' . $house->getNegativeRateNumber() : 0 ?></button>
+			<button class="btn ratePositive"><?php echo ($house->getPositiveRateNumber() > 0) ? $house->getPositiveRateNumber() : 0 ?></button>
 
-    <div class="btn-group">
-        <form class="ratD" method="post" onsubmit="return false;">
-            <input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
-            <input type="hidden" name="rate" class="rateValue" value="0" />
-            <input type="submit" class="btn" value="DOWN" />
-        </form>
-        <button class="btn ratePositive"><?php echo ($house->getPositiveRateNumber() > 0) ? $house->getPositiveRateNumber() : 0 ?></button>
-        <button class="btn rateNegative"><?php echo ($house->getNegativeRateNumber() > 0) ? $house->getNegativeRateNumber() : 0 ?></button>
+			<form class="rateU" method="post" onsubmit="return false;">
+				<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+				<input type="hidden" name="rate" class="rateValue" value="1" />
+				<button class="btn rateButton"><i class="icon-thumbs-up"></i></button>
+			</form>
 
-        <form class="rateU" method="post" onsubmit="return false;">
-            <input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
-            <input type="hidden" name="rate" class="rateValue" value="1" />
-            <input type="submit" class="btn" value="UP" />
-        </form>
+		</div>
 
-    </div>
-
-    <div class="message"></div>
-
-    <?php
-    echo '</div>';
+		<div class="message"></div>
+	</div>
+	<?php
+	echo '</div>';
 }
 ?>
 
@@ -73,10 +74,12 @@ foreach ($houses as $house) {
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
+		jQuery(".timeago").timeago();
+		
         jQuery('.rateButton').click(function(){
             var houseId = jQuery(this).parent().find(".houseId").val();
             var rateValue = jQuery(this).parent().find(".rateValue").val();
-            var message = jQuery(this).parent().parent().find('.message');
+            var message = jQuery(this).parent().parent().parent().find('.message');
             var ratePositive = jQuery(this).parent().parent().find('.ratePositive');
             var rateNegative = jQuery(this).parent().parent().find('.rateNegative');
             jQuery.ajax({
@@ -108,7 +111,7 @@ foreach ($houses as $house) {
 					if(null == (result.negative)){
 						rateNegative.html('0');
 					}else{
-						rateNegative.html(result.negative);
+						rateNegative.html("-" + result.negative);
 					}
 					
 				}
