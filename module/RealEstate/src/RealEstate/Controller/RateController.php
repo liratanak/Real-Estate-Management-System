@@ -41,6 +41,9 @@ class RateController extends AbstractActionController {
 				} else {
 					$data['already'] = TRUE;
 				}
+			}
+			
+			if (NULL != $house) {
 				$data['positive'] = $house->getPositiveRateNumber();
 				$data['negative'] = $house->getNegativeRateNumber();
 			}

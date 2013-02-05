@@ -105,15 +105,16 @@ foreach ($houses as $house) {
                         ratePositive.html(result.positive);
                     }
 					
-                    if(null == (result.negative)){
-                        rateNegative.html('0');
-                    }else{
-                        rateNegative.html(result.negative);
-                    }
-                }
-            });
-            console.log(houseId);
-            console.log(rateValue);
-        });
-    });
+					if(null == (result.negative)){
+						rateNegative.html('0');
+					}else{
+						rateNegative.html(result.negative);
+					}
+					
+				}
+			});
+			console.log(houseId);
+			console.log(rateValue);
+		});
+	});
 </script>
