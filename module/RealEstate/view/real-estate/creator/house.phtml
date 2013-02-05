@@ -6,9 +6,106 @@ $form->setAttribute('action', $this->url('create/action', array('action' => 'hou
 $form->setAttribute('method', 'post');
 ?>
 <?php echo $this->form()->openTag($form) ?>
+
 <dl>
 	<?php foreach ($form as $element): ?>
 		<dd><?php echo $this->formRow($element) ?></dd>
 	<?php endforeach ?>
 </dl>
+<div id="map_canvas" style="width:100%; height:300px"></div>
+<br /><br />
+<input class="btn btn-large btn-success" type="submit" value="Add" />
 <?php echo $this->form()->closeTag() ?>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkB1TsoIYZew4q0Cfb1X0RkI-iTbDzWsg&sensor=false"></script>
+<script type="text/javascript">
+	var map;
+	var housePosition;
+	var markersArray = [];
+	
+	var geocoder;
+	var infowindow = new google.maps.InfoWindow();
+	var marker;
+	
+	
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+	
+		navigator.geolocation.getCurrentPosition(function(position){
+			var lat = position.coords.latitude;
+			var lng = position.coords.longitude;
+			
+			var myLatlng = new google.maps.LatLng(lat,lng);
+			var mapOptions = {
+				zoom: 14,
+				center: myLatlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+			google.maps.event.addListener(map, 'click', function(event) {
+				var lat = event.latLng.lat();
+				var lng = event.latLng.lng();
+				var latlng = new google.maps.LatLng(lat, lng);
+				geocoder.geocode({'latLng': latlng}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						if (results[1]) {
+							marker = new google.maps.Marker({
+								position: latlng,
+								map: map,
+								icon: '/glyphicons/glyphicons_020_home.png'
+							});
+							markersArray.push(marker);
+							console.log(results);
+							infowindow.setContent(results[1].formatted_address);
+							infowindow.open(map, marker);
+						}
+					} else {
+						alert("Geocoder failed due to: " + status);
+					}
+				});
+			});
+
+			google.maps.event.addListener(map, 'click', function(event) {
+				housePosition = new google.maps.Marker({
+					position: event.latLng,
+					title:"Your house",
+					icon: '/glyphicons/glyphicons_020_home.png'
+				});
+				markersArray.push(housePosition);
+				
+				if (markersArray) {
+					for (i in markersArray) {
+						markersArray[i].setMap(null);
+					}
+				}
+				
+				housePosition.setMap(map);
+				
+				console.log(event);
+				console.log(event.latLng.lat());
+				console.log(event.latLng.lng());
+				jQuery('#latitude').val(event.latLng.lat());
+				jQuery('#longitude').val(event.latLng.lng());
+			});
+			
+			var image = '/glyphicons/glyphicons_003_user.png'
+			var userPosition = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				title:"Your current location",
+				icon: 'http://maps.google.com/mapfiles/arrow.png'
+			});
+			
+			
+		});
+	}
+
+	function placeMarker(location) {
+		
+	}
+	
+	jQuery(document).ready(function(){
+		initialize();
+	});
+</script>

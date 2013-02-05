@@ -1,12 +1,34 @@
+<form class="form-search">
+    <div class="input-prepend">
+        <button type="submit" class="btn">Search</button>
+        <input id="searchInput" type="text" class="span8 search-query">
+    </div>
+</form>
+
+<script type="text/javascript" src="/assets/js/jquery.liveSearch.js"></script>
+<script type="text/javascript">
+    jQuery('#searchInput').liveSearch({
+        url: "<?php echo $this->url('search') ?>/"
+    });
+</script>
+
+
 <?php
 foreach ($houses as $house) {
-	echo '<pre>';
-	echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-	echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+
+
+	echo '<div class="well element">';
+	echo '
+        <div class="small-img">
+        <img  src="" alt="" />
+        </div>
+    ';
+	echo '<div class="short-info">';
+	echo '<a class="addr" href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
+	echo "Address : " . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
 	echo '</a>';
-	echo $house->getCost() . '<br />';
-	echo $house->getType()->getTitle() . '<br />';
-	echo '<br />';
+
+	echo '<p class="type"> Type : ' . $house->getType()->getTitle() . '</p>';
 
 	if (0 < count($rooms[$house->getId()])) {
 		echo count($rooms[$house->getId()]) . ' rooms available';
@@ -14,28 +36,88 @@ foreach ($houses as $house) {
 			echo '<br />' . $room->getCost() . ' (' . $room->getSize()->getWidth() . 'x' . $room->getSize()->getHeight() . 'x' . $room->getSize()->getLength() . ') ';
 		}
 	}
+	echo '</div>';
+	echo '<div class="price-info">';
+	echo '<p class="price">' . $house->getCost() . ' ៛/month</p>';
+	echo '<p class="post-date">updated : <small class="timeago" title="' . date("d/M/y H:i:s", $house->getLastModifiedTime()) . '"></small></p>';
+	echo '</div>';
+	?>
 
 
-//	echo '<button class="btn rateButton">+</button>';
-//	echo '<button class="btn rateButton">-</button>';
+	<div>
+		<div class="btn-group">
+			<form class="ratD" method="post" onsubmit="return false;">
+				<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+				<input type="hidden" name="rate" class="rateValue" value="0" />
+				<button class="btn rateButton"><i class="icon-thumbs-down"></i></button>
+			</form>
+			
+			<button class="btn rateNegative"><?php echo ($house->getNegativeRateNumber() > 0) ? '-' . $house->getNegativeRateNumber() : 0 ?></button>
+			<button class="btn ratePositive"><?php echo ($house->getPositiveRateNumber() > 0) ? $house->getPositiveRateNumber() : 0 ?></button>
 
-	echo '</pre>';
+			<form class="rateU" method="post" onsubmit="return false;">
+				<input type="hidden" name="houseId" class="houseId" value="<?php echo $house->getId() ?>" />
+				<input type="hidden" name="rate" class="rateValue" value="1" />
+				<button class="btn rateButton"><i class="icon-thumbs-up"></i></button>
+			</form>
+
+		</div>
+
+		<div class="message"></div>
+	</div>
+	<?php
+	echo '</div>';
 }
 ?>
 
 <?php echo $this->paginationControl($houses, 'Sliding', 'real-estate/houses-list/pagination-house-list.phtml'); ?>
 
 <script type="text/javascript">
-	jQuery(document).ready(function(){
-		jQuery('.rateButton').click(function(){
-			jQuery.ajax({
-				url: "<?php echo $this->url('rate') ?>",
-				type: "post",
-				data: jQuery(this).val(),
-				success: function(){
-					console.log("SUCCESS");
+    jQuery(document).ready(function(){
+		jQuery(".timeago").timeago();
+		
+        jQuery('.rateButton').click(function(){
+            var houseId = jQuery(this).parent().find(".houseId").val();
+            var rateValue = jQuery(this).parent().find(".rateValue").val();
+            var message = jQuery(this).parent().parent().parent().find('.message');
+            var ratePositive = jQuery(this).parent().parent().find('.ratePositive');
+            var rateNegative = jQuery(this).parent().parent().find('.rateNegative');
+            jQuery.ajax({
+                'url' : "<?php echo $this->url('rate') ?>",
+                'type' : "POST",
+                'data' : {"houseId" : houseId, "rateValue" : rateValue},
+                'beforeSend' : function(){
+					
+                },
+                'error' : function(){
+                    message.html('<div class="alert alert-error">ERROR</div>');
+                },
+                'success': function(data){
+                    var result =  jQuery.parseJSON(data);
+                    console.log(result);
+                    if(result.already){
+                        console.log(jQuery(this));
+                        message.html('<div class="alert alert-block">ALEADY</div>');
+                    }
+                    if(!result.loggedin){
+                        message.html('<div class="alert alert-block">YOU MUST LOGGIN TO VOTE, <a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></div>');
+                    }
+                    if(null == (result.positive)){
+                        ratePositive.html('0');
+                    }else{
+                        ratePositive.html(result.positive);
+                    }
+					
+					if(null == (result.negative)){
+						rateNegative.html('0');
+					}else{
+						rateNegative.html("-" + result.negative);
+					}
+					
 				}
 			});
+			console.log(houseId);
+			console.log(rateValue);
 		});
 	});
 </script>

@@ -1,0 +1,310 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle($this->translate('Realestate'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- Le styles -->
+        <?php // echo $this->headLink()->prependStylesheet('/assets/css/bootstrap.min.css') ?>
+        <?php // echo $this->headLink()->prependStylesheet('/assets/css/bootstrap-responsive.min.css') ?>
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons -->
+<!--        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="../assets/ico/favicon.png">-->
+        
+        <link rel="stylesheet" type="text/css" media="all" href="/assets/css/layout.css" />
+
+
+        <script src="/assets/js/jquery-1.9.0.min.js" type="text/javascript"></script>
+
+        <?php // echo $this->headLink()->prependStylesheet('/assets/css/main-style.css') ?>
+    </head>
+
+
+
+
+
+    <body>
+        
+<!--        <div id="head">
+            <div id="logo">
+                <img src="../picture/logo.png" alt=""/>
+            </div>
+            <div id="Hnav">
+                <ul>
+                    <li class="active"><a class="active" href="#home">Home</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+
+            </div>
+        </div>-->
+
+
+        <div class="masthead" id="head">
+            <div id="logo">
+                <img src="/assets/images/logo.png" alt=""/>
+            </div>
+            <div id="Hnav">
+                <ul class="nav nav-tabs nav-pills pull-right">
+                    <li><a href="<?php echo $this->url('home') ?>">Home</a></li>
+                    <li><a href="<?php echo $this->url('map') ?>">Map</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">House<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->url('create/action', array('action' => 'house')) ?>">Create</a></li>
+                            <li><a href="<?php echo $this->url('my') ?>">My houses</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">User<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->url('message') ?>">Message</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></li>
+                            <li><a href="<?php echo $this->url('zfcuser/logout') ?>">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->url('zfcadmin/zfcuseradmin/list') ?>">List users</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 class="muted">Realestate</h3>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+       <!--Content-->
+        <div id="main-content">
+            <div id="colum-left">
+                <div class="category">
+                    <h2>Category</h2>
+                    <ul>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+
+                    </ul>
+                </div>
+                <div class="category">
+                    <h2>Category</h2>
+                    <ul>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="info-img">
+                    <img src="picture/info-img.png" alt=""/>
+                </div>
+                <div class="info-img">
+                    <img src="picture/info-img.png" alt=""/>
+                </div>
+            </div>
+
+
+            <div id="colum-right">
+                
+                
+                
+                
+                <div id="slid-show">
+                    <img src="picture/slid-show-img.png" alt=""/>
+
+                </div>
+                
+                <div class="datable">
+                    <div class="conten-head">
+                        <ul>
+                            <li><a href="#">Flate</a></li>
+                            <li><a class="active" href="#">Hotel</a></li>
+                        </ul>
+                        <input  class="search-box" type="text"/>
+                    </div>
+                    <?php echo $this->content; ?>
+                    <div class="element">
+                        <img class="small-img" src="picture/home.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+                    <div class="element">
+                        <img class="small-img" src="picture/home2.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+                    <div class="element">
+                        <img class="small-img" src="picture/home3.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+                    <div class="element">
+                        <img class="small-img" src="picture/room1.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+                    <div class="element">
+                        <img class="small-img" src="picture/room2.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+                    <div class="element">
+                        <img class="small-img" src="picture/room3.jpg" alt=""/>
+                        <div class="price-label">
+                            <p>Price : <span class="price">40$/month</span></p>
+                            <p>Post : 21-Dec-2012</p>
+                        </div>
+                        <div class="short-info">
+                            <p>Address : N<sup>o</sup> 415 Street 907 Toul Sangke ReuseyKeo, Phom penh</p>
+
+                            <p>Type : <span class="room-type">Room Have 4 rooms</span></p>
+
+
+                        </div>
+                        <div class="vote">Vote: <span>6</span></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+            <!--Footer-->
+        <div id="footer">
+            <div id="footer-nav">
+                <ul>
+                    <li class="active"><a  class="active" href="#home">Home &nbsp; |</a></li>
+                    <li><a href="#news">News &nbsp; |</a></li>
+                    <li><a href="#contact">Contact &nbsp; |</a></li>
+                    <li><a href="#about">About &nbsp; |</a></li>
+                    <li><a href="#news">News &nbsp; |</a></li>
+                    <li><a href="#contact">Contact &nbsp; |</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+
+            </div>
+            <p> Copyright<sup>&copy;</sup> by BST Web best solution team.</p>
+        </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- Le javascript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/assets/js/bootstrap-transition.js"></script>
+    <script src="/assets/js/bootstrap-alert.js"></script>
+    <script src="/assets/js/bootstrap-modal.js"></script>
+    <script src="/assets/js/bootstrap-dropdown.js"></script>
+    <script src="/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="/assets/js/bootstrap-tab.js"></script>
+    <script src="/assets/js/bootstrap-tooltip.js"></script>
+    <script src="/assets/js/bootstrap-popover.js"></script>
+    <script src="/assets/js/bootstrap-button.js"></script>
+    <script src="/assets/js/bootstrap-collapse.js"></script>
+    <script src="/assets/js/bootstrap-carousel.js"></script>
+    <script src="/assets/js/bootstrap-typeahead.js"></script>
+            
+            
+    </body>
+
+
+    
+
+
+</html>

@@ -9,23 +9,28 @@ use GoogleMaps\Request as MapRequest;
 class MapController extends AbstractActionController {
 
 	public function indexAction() {
-		$lat = 40.714224;
-		$lng = -73.961452;
-		$request = new MapRequest();
-
-		$latlng = array(
-			'lat' => $lat,
-			'lng' => $lng,
-		);
-		
-		$latLng = new \GoogleMaps\Resources\LatLng($latlng);
-
-		$request->setLatLng(new \GoogleMaps\Parameters\LatLngParameter($latLng));
-		$proxy = new \GoogleMaps\Geocoder();
-		$response = $proxy->geocode($request);
-
-		var_dump($response);
 		return new ViewModel(array(
+				));
+	}
+
+	public function showAction() {
+		$this->layout('layout/blank');
+
+		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
+
+		$xmlString = '<markers>';
+		foreach ($houses as $house) {
+			$xmlString .= '<marker name="' . $house->getCost() . ' ៛/month'
+					. '" address="' . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getStreet() . '" '
+					. 'lat="' . $house->getAddress()->getLatitude() . '" '
+					. 'lng="' . $house->getAddress()->getLongitude() . '" '
+					. 'type="' . $house->getType()->getTitle() . '" />';
+		}
+		$xmlString .= '</markers>';
+
+		$this->getResponse()->getHeaders()->addHeaders(array('Content-type' => 'text/xml'));
+		return new ViewModel(array(
+					'xml' => $xmlString,
 				));
 	}
 

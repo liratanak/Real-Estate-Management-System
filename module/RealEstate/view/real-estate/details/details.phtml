@@ -27,10 +27,11 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 		}
 		?>
 		<input type="hidden" id="mostRecentCommentTime" value="<?php echo $mostRecentCommentTime ?>"/>
+		<input type="hidden" id="isSendToServer" value="1" />
 	</div>
 	<?php
 	if (NULL !== $form) {
-		echo $user->getUsername() . ' ';
+		echo $currentUser->getUsername() . ' ';
 		echo $this->formRow($form->get('content'));
 		echo $this->formRow($form->get('submit'));
 		?>
@@ -41,10 +42,10 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 					var commentContent = jQuery('#commentTextarea').val();
 					if('' !== commentContent && null !== commentContent){
 						jQuery.ajax({
-							url : "<?php echo $this->url('comment'); ?>",
-							type : "post",
-							data : {'houseId':"<?php echo $oneHouse->getId() ?>",'comment':commentContent},
-							success : function(data){
+							'url' : "<?php echo $this->url('comment'); ?>",
+							'type' : "post",
+							'data' : {'houseId':"<?php echo $oneHouse->getId() ?>",'comment':commentContent},
+							'success' : function(data){
 								console.log(data);
 								if(1 == parseInt(data)){
 									jQuery('#commentTextarea').val('');
@@ -53,7 +54,7 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 									jQuery('#commentButton').val('CAN\'T ADD YOUR COMMENT');
 								}
 							}
-						});
+						});	
 					}
 				});
 			});
@@ -64,25 +65,32 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
 ?>
 <script type="text/javascript">
 	setInterval(function() {
-		jQuery.ajax({
-			url : "<?php echo $this->url('get-comments') ?>",
-			type : 'post',
-			data : {'mostRecentCommentTime':jQuery('#mostRecentCommentTime').val(), 'houseId':"<?php echo $oneHouse->getId() ?>"},
-			success : function(data){
-
-				var result = jQuery.parseJSON(data);
-				jQuery('#mostRecentCommentTime').val(result.newTime);
-				var comments = result.comments;
-				console.log(data);
-				if(comments.length > 0){
-					jQuery.each(comments, function(index, comment) {
-						var string = '';
-						string += comment.username + ' : ' ;
-						string += comment.content + '<br /><br />' ;
-						jQuery('#comments').append(string);
-					});
+		if(1 == jQuery("#isSendToServer").val()){
+			jQuery.ajax({
+				'url' : "<?php echo $this->url('get-comments') ?>",
+				'type' : 'post',
+				'data' : {'mostRecentCommentTime':jQuery('#mostRecentCommentTime').val(), 'houseId':"<?php echo $oneHouse->getId() ?>"},
+				'beforeSend' : function(){
+					jQuery("#isSendToServer").val(0);
+				},
+				'complete': function(){
+					jQuery("#isSendToServer").val(1);
+				},
+				'success' : function(data){
+					var result = jQuery.parseJSON(data);
+					jQuery('#mostRecentCommentTime').val(result.newTime);
+					var comments = result.comments;
+					console.log(data);				
+					if(comments.length > 0){
+						jQuery.each(comments, function(index, comment) {
+							var string = '';
+							string += comment.username + ' : ' ;
+							string += comment.content + '<br /><br />' ;
+							jQuery('#comments').append(string);
+						});
+					}
 				}
-			}
-		});
-	}, 5000);
+			});
+		}
+	}, 2500);
 </script>

@@ -104,20 +104,47 @@ return array(
 			'search' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/search[/]',
+					'route' => '/search',
 					'defaults' => array(
 						'controller' => 'search',
 						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '/[:term]',
+							'constraints' => array(
+								'term' => '[\/\ \%a-zA-Z0-9_-]+'
+							),
+						)
 					),
 				),
 			),
 			'map' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/map[/]',
+					'route' => '/map',
 					'defaults' => array(
 						'controller' => 'map',
 						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '[/][:action]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+								'action' => 'index'
+							)
+						)
 					),
 				),
 			),
@@ -134,7 +161,7 @@ return array(
 			'message' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
-					'route' => '/message[/]',
+					'route' => '/message',
 					'defaults' => array(
 						'controller' => 'message',
 						'action' => 'index',
@@ -145,7 +172,7 @@ return array(
 					'action' => array(
 						'type' => 'Zend\Mvc\Router\Http\Segment',
 						'options' => array(
-							'route' => '/[:action[/]]',
+							'route' => '[/][:action[/]]',
 							'constraints' => array(
 								'action' => '[a-zA-Z0-9_-]+'
 							),
@@ -245,7 +272,7 @@ return array(
 		'exception_template' => 'error/index',
 		'template_map' => array(
 			'layout/layout' => __DIR__ . '/../view/layout/marketing-narrow.phtml',
-			'error/404' =>	__DIR__ . '/../view/error/404.phtml',
+			'error/404' => __DIR__ . '/../view/error/404.phtml',
 			'error/index' => __DIR__ . '/../view/error/index.phtml',
 		),
 		'template_path_stack' => array(

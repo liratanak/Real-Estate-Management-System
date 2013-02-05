@@ -25,7 +25,10 @@ class HousesListController extends AbstractActionController {
 		if (is_array($houses)) {
 			$paginator = new \Zend\Paginator\Paginator(new \Zend\Paginator\Adapter\ArrayAdapter($houses));
 			foreach ($houses as $house) {
+				// SELECT * FROM room WHERE house = $house
 				$rooms[$house->getId()] = $this->getEntityManager()->getRepository('RealEstate\Entity\Room')->findBy(array('house' => $house));
+			
+				
 			}
 		} else {
 			$paginator = $house;

@@ -18,6 +18,19 @@ body {
 	margin: 30px 0;
 }
 
+.ratePositive{
+	color: seagreen;
+}
+
+.rateNegative {
+	color: red;
+}
+
+#jquery-live-search{
+	background-color: whitesmoke;
+}
+
+
 /* Main marketing message and sign up button */
 .jumbotron {
 	margin: 60px 0;

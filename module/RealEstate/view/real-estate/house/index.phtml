@@ -13,7 +13,7 @@ foreach ($houses as $house) {
 			echo '<br />' . $room->getCost() . ' (' . $room->getSize()->getWidth() . 'x' . $room->getSize()->getHeight() . 'x' . $room->getSize()->getLength() . ') ';
 		}
 	}
-	echo '<br /><a class="addRoom" href="' . $this->url('room/action', array('action' => 'new', 'houseId' => $house->getId())) . '">Add room</a>';
+	echo '<br /><a class="addRoom btn" href="' . $this->url('room/action', array('action' => 'new', 'houseId' => $house->getId())) . '">Add room</a>';
 
 	echo '</pre>';
 }
