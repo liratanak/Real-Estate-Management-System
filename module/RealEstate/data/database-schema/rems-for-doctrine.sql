@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `image` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `original_file_name` varchar(255) DEFAULT '',
   `path` varchar(255) DEFAULT '',
@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `address` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `house` varchar(64) DEFAULT '',
   `street` varchar(64) DEFAULT '',
@@ -98,8 +98,8 @@ CREATE TABLE IF NOT EXISTS `house_type` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `title` varchar(50) DEFAULT '',
 
@@ -118,8 +118,8 @@ CREATE TABLE IF NOT EXISTS `size` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `width` REAL(11,6) unsigned DEFAULT '0',
   `height` REAL(11,6) unsigned DEFAULT '0',
@@ -139,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `house` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `is_room_rent` tinyint(1) unsigned DEFAULT '0',
   `cost` int(11) unsigned DEFAULT '0',
@@ -155,10 +155,10 @@ CREATE TABLE IF NOT EXISTS `house` (
   `size` int(11) unsigned DEFAULT '0',
   `address` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`type`) REFERENCES `house_type`(`id`) ,
-  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ,
-  FOREIGN KEY (`address`) REFERENCES `address`(`id`) ,
+  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`type`) REFERENCES `house_type`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`address`) REFERENCES `address`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -175,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `personal_type` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `title` varchar(50) DEFAULT '',
   PRIMARY KEY (`id`)
@@ -194,8 +194,8 @@ CREATE TABLE IF NOT EXISTS `personal_detail` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `firstname` varchar(50) DEFAULT '',
   `lastname` varchar(50) DEFAULT '',
@@ -210,8 +210,8 @@ CREATE TABLE IF NOT EXISTS `personal_detail` (
   `user` int(11) unsigned DEFAULT '0',
   `type` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`type`) REFERENCES `personal_type`(`id`) ,
+  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`type`) REFERENCES `personal_type`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -228,8 +228,8 @@ CREATE TABLE IF NOT EXISTS `room` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `room_number` int(11) unsigned DEFAULT '0',
   `cost` int(11) unsigned DEFAULT '0',
@@ -241,8 +241,8 @@ CREATE TABLE IF NOT EXISTS `room` (
   `size` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ,
-  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ,
+  FOREIGN KEY (`size`) REFERENCES `size`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -259,16 +259,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `content` TEXT,
 
   `user` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ,
+  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -285,16 +285,16 @@ CREATE TABLE IF NOT EXISTS `rate` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`)  ON DELETE CASCADE ON UPDATE CASCADE,
 
   `value` tinyint(1) unsigned DEFAULT '0',
 
   `user` int(11) unsigned DEFAULT '0',
   `house` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ,
+  FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`house`) REFERENCES `house`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -311,8 +311,8 @@ CREATE TABLE IF NOT EXISTS `message` (
   `last_modified_user` int(11) unsigned DEFAULT '0',
   `valid_time_start` int(11) unsigned DEFAULT '0',
   `valid_time_end` int(11) unsigned DEFAULT '0',
-  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`created_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`last_modified_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   `title` varchar(255) DEFAULT '',
   `content` TEXT,
@@ -321,8 +321,8 @@ CREATE TABLE IF NOT EXISTS `message` (
   `from_user` int(11) unsigned DEFAULT '0',
   `to_user` int(11) unsigned DEFAULT '0',
 
-  FOREIGN KEY (`from_user`) REFERENCES `user` (`user_id`) ,
-  FOREIGN KEY (`to_user`) REFERENCES `user` (`user_id`) ,
+  FOREIGN KEY (`from_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`to_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

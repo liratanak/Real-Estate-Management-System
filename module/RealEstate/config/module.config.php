@@ -183,6 +183,31 @@ return array(
 					),
 				),
 			),
+			'house-type' => array(
+				'type' => 'Zend\Mvc\Router\Http\Segment',
+				'options' => array(
+					'route' => '/house-type',
+					'defaults' => array(
+						'controller' => 'houseType',
+						'action' => 'index',
+					),
+				),
+				'may_terminate' => true,
+				'child_routes' => array(
+					'action' => array(
+						'type' => 'Zend\Mvc\Router\Http\Segment',
+						'options' => array(
+							'route' => '[/][:action[/]]',
+							'constraints' => array(
+								'action' => '[a-zA-Z0-9_-]+'
+							),
+							'defaults' => array(
+								'action' => 'index'
+							)
+						)
+					),
+				),
+			),
 			'room' => array(
 				'type' => 'Zend\Mvc\Router\Http\Segment',
 				'options' => array(
@@ -262,6 +287,7 @@ return array(
 			'room' => 'RealEstate\Controller\RoomController',
 			'rate' => 'RealEstate\Controller\RateController',
 			'map' => 'RealEstate\Controller\MapController',
+			'houseType' => 'RealEstate\Controller\HouseTypeController',
 		),
 	),
 	'view_manager' => array(

@@ -31,9 +31,10 @@ class CreatorController extends AbstractActionController {
 				$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 
 				$house = new \RealEstate\Entity\House();
-				$houseType = new \RealEstate\Entity\HouseType();
+				
 				$address = new \RealEstate\Entity\Address();
-//				$size = new \RealEstate\Entity\Size();
+
+				$houseType = $this->getEntityManager()->find('RealEstate\Entity\HouseType', $data->houseType );
 
 				$house->setCreatedTime(time());
 				$house->setLastModifiedTime(time());
@@ -47,9 +48,6 @@ class CreatorController extends AbstractActionController {
 
 				$address->setCreatedUser($user);
 				$address->setLastModifiedUser($user);
-
-				$houseType->setTitle($data->houseType);
-				$this->save($houseType);
 
 
 				$address->setHouse($data->houseNumber);
