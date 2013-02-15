@@ -24,11 +24,12 @@ class HouseForm extends Form {
 
 		$this->add(array(
 			'name' => 'houseType',
+			'type' => '\Zend\Form\Element\Select',
 			'options' => array(
-				'type' => 'text',
 				'label' => 'House type',
 			),
 			'attributes' => array(
+				'class' => 'select'
 			),
 		));
 

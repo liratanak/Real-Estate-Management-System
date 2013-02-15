@@ -16,6 +16,8 @@ class CreatorController extends AbstractActionController {
 
 		$form = new \RealEstate\Form\HouseForm();
 
+		$form->get('houseType')->setValueOptions($this->getEntityManager()->getRepository('RealEstate\Entity\HouseType')->getOptions());
+		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$houseFilter = new \RealEstate\Form\Filter\HouseFilter($this->getServiceLocator()->get('db'));
