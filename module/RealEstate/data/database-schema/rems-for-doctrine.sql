@@ -79,10 +79,7 @@ CREATE TABLE IF NOT EXISTS `address` (
 
   `house` varchar(64) DEFAULT '',
   `street` varchar(64) DEFAULT '',
-  `village` varchar(70) DEFAULT '',
-  `district` varchar(70) DEFAULT '',
-  `quarter` varchar(70) DEFAULT '',
-  `city` varchar(70) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
 
   `longitude` REAL(11,6) unsigned DEFAULT '0',
   `latitude` REAL(11,6) unsigned DEFAULT '0',

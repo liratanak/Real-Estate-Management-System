@@ -26,7 +26,7 @@ class HouseForm extends Form {
 			'name' => 'houseType',
 			'type' => '\Zend\Form\Element\Select',
 			'options' => array(
-				'label' => 'House type',
+				'label' => 'Type',
 			),
 			'attributes' => array(
 				'class' => 'select'
@@ -42,37 +42,6 @@ class HouseForm extends Form {
 			'attributes' => array(
 			),
 		));
-
-//		$this->add(array(
-//			'name' => 'width',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'Width',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-//
-//		$this->add(array(
-//			'name' => 'height',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'Height',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-//
-//		$this->add(array(
-//			'name' => 'lenght',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'Lenght',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-
 		$this->add(array(
 			'name' => 'houseNumber',
 			'type' => '\Zend\Form\Element\Text',
@@ -93,70 +62,17 @@ class HouseForm extends Form {
 			),
 		));
 
-
-//		$this->add(array(
-//			'name' => 'village',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'Village',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-//
-//		$this->add(array(
-//			'name' => 'district',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'District',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-//
-//
-//		$this->add(array(
-//			'name' => 'quarter',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'Quarter',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-//
-//		$this->add(array(
-//			'name' => 'city',
-//			'type' => '\Zend\Form\Element\Text',
-//			'options' => array(
-//				'label' => 'City',
-//			),
-//			'attributes' => array(
-//			),
-//		));
-
-
 		$this->add(array(
-			'name' => 'avaialbe',
-			'type' => '\Zend\Form\Element\Checkbox',
+			'name' => 'address',
+			'type' => '\Zend\Form\Element\Text',
 			'options' => array(
-				'label' => 'Available',
+				'label' => 'Address',
 			),
 			'attributes' => array(
+				'class' => 'address',
+				'id' => 'address'
 			),
 		));
-
-
-		$this->add(array(
-			'name' => 'haveRoomRent',
-			'type' => '\Zend\Form\Element\Checkbox',
-			'options' => array(
-				'label' => 'Rooms',
-			),
-			'attributes' => array(
-			),
-		));
-
 
 		$this->add(array(
 			'name' => 'other',

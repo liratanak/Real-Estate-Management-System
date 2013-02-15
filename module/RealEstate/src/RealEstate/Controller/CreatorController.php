@@ -48,32 +48,21 @@ class CreatorController extends AbstractActionController {
 				$address->setCreatedUser($user);
 				$address->setLastModifiedUser($user);
 
-//				$size->setCreatedUser($user);
-//				$size->setLastModifiedUser($user);
-
 				$houseType->setTitle($data->houseType);
 				$this->save($houseType);
 
 
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
-				$address->setVillage($data->village);
-				$address->setDistrict($data->district);
-				$address->setQuarter($data->quarter);
-				$address->setCity($data->city);
+				$address->setAddress($data->address);
 				$address->setLatitude($data->latitude);
 				$address->setLongitude($data->longitude);
 				$this->save($address);
 
-//				$size->setWidth($data->width);
-//				$size->setHeight($data->height);
-//				$size->setLength($data->lenght);
-//				$this->save($size);
-
 				$house->setCost($data->cost);
 				$house->setAddress($address);
 				$house->setType($houseType);
-//				$house->setSize($size);
+
 				$house->setAvailable($data->avaialbe);
 				$house->setIsRoomRent($data->haveRoomRent);
 				$house->setOtherinfo($data->other);

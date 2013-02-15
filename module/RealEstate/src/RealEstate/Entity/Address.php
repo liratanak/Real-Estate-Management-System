@@ -94,30 +94,9 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="village", type="string", length=70, nullable=true)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
-    private $village;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="district", type="string", length=70, nullable=true)
-     */
-    private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="quarter", type="string", length=70, nullable=true)
-     */
-    private $quarter;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=70, nullable=true)
-     */
-    private $city;
+    private $address;
 
     /**
      * @var float
@@ -396,95 +375,26 @@ class Address
     }
 
     /**
-     * Set village
+     * Set address
      *
-     * @param string $village
+     * @param string $address
      * @return Address
      */
-    public function setVillage($village)
+    public function setAddress($address)
     {
-        $this->village = $village;
+        $this->address = $address;
     
         return $this;
     }
 
     /**
-     * Get village
+     * Get address
      *
      * @return string 
      */
-    public function getVillage()
+    public function getAddress()
     {
-        return $this->village;
-    }
-
-    /**
-     * Set district
-     *
-     * @param string $district
-     * @return Address
-     */
-    public function setDistrict($district)
-    {
-        $this->district = $district;
-    
-        return $this;
-    }
-
-    /**
-     * Get district
-     *
-     * @return string 
-     */
-    public function getDistrict()
-    {
-        return $this->district;
-    }
-
-    /**
-     * Set quarter
-     *
-     * @param string $quarter
-     * @return Address
-     */
-    public function setQuarter($quarter)
-    {
-        $this->quarter = $quarter;
-    
-        return $this;
-    }
-
-    /**
-     * Get quarter
-     *
-     * @return string 
-     */
-    public function getQuarter()
-    {
-        return $this->quarter;
-    }
-
-    /**
-     * Set city
-     *
-     * @param string $city
-     * @return Address
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return string 
-     */
-    public function getCity()
-    {
-        return $this->city;
+        return $this->address;
     }
 
     /**
