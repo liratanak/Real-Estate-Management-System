@@ -70,7 +70,9 @@ class HouseForm extends Form {
 			),
 			'attributes' => array(
 				'class' => 'address',
-				'id' => 'address'
+				'readonly' => 'readonly',
+				'id' => 'address',
+				'title' => 'Double click to edit manualy'
 			),
 		));
 
@@ -78,7 +80,7 @@ class HouseForm extends Form {
 			'name' => 'other',
 			'type' => '\Zend\Form\Element\Textarea',
 			'options' => array(
-				'label' => 'Other Info',
+				'label' => '',
 			),
 			'attributes' => array(
 			),

@@ -37,6 +37,18 @@
 	var marker;
 	
 	
+	jQuery(document).ready(function(){
+		initialize();
+	});
+	
+	jQuery('#address').dblclick(function(){
+		jQuery(this).removeAttr("readonly");
+	});
+	
+	jQuery('#address').blur(function(){
+		jQuery(this).attr("readonly", true);
+	});
+	
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
 	
@@ -78,9 +90,6 @@
 							map: map,
 							icon: '/glyphicons/glyphicons_020_home.png'
 						});
-						
-//						infowindow.setContent(results[1].formatted_address);
-//						infowindow.open(map, marker);
 						
 						markersArray.push(marker);
 						if (infoBoxArray) {
@@ -136,12 +145,34 @@
 			
 	}
 
-	function placeMarker(location) {
-		
-	}
-	
-	jQuery(document).ready(function(){
-		initialize();
+</script>
+
+<!-- TinyMCE -->
+<script type="text/javascript" src="/tinymce/tiny_mce.js"></script>
+<script type="text/javascript">
+	tinyMCE.init({
+		// General options
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "pagebreak,style,layer,table,advlink,emotions,iespell,insertdatetime,preview,searchreplace,print,paste,directionality,noneditable,visualchars,xhtmlxtras,template,wordcount,advlist"
 	});
 </script>
+<style>
+	.defaultSkin table
+	/*.defualtSkin tbody, */
+	/*.defaultSkin a, */
+	/*.defaultSkin img, */
+	/*.defaultSkin tr, */
+	/*.defaultSkin div*/
+	/*.defaultSkin td*/
+	/*.defaulfSkin span*/
+	/*.defaultSkin *,*/
+	/*.defaltSkin .mceText*/
+	{
+		background: none repeat scroll 0 0 #ffffff;
+	}
+
+</style>
+<!-- /TinyMCE -->
+
 </div>
