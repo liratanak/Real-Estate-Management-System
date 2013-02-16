@@ -16,6 +16,8 @@ class CreatorController extends AbstractActionController {
 
 		$form = new \RealEstate\Form\HouseForm();
 
+		$form->get('houseType')->setValueOptions($this->getEntityManager()->getRepository('RealEstate\Entity\HouseType')->getOptions());
+		
 		$request = $this->getRequest();
 		if ($request->isPost()) {
 			$houseFilter = new \RealEstate\Form\Filter\HouseFilter($this->getServiceLocator()->get('db'));
@@ -29,9 +31,10 @@ class CreatorController extends AbstractActionController {
 				$user = $this->getServiceLocator()->get('zfcuser_user_service')->getAuthService()->getIdentity();
 
 				$house = new \RealEstate\Entity\House();
-				$houseType = new \RealEstate\Entity\HouseType();
+				
 				$address = new \RealEstate\Entity\Address();
-//				$size = new \RealEstate\Entity\Size();
+
+				$houseType = $this->getEntityManager()->find('RealEstate\Entity\HouseType', $data->houseType );
 
 				$house->setCreatedTime(time());
 				$house->setLastModifiedTime(time());
@@ -46,32 +49,18 @@ class CreatorController extends AbstractActionController {
 				$address->setCreatedUser($user);
 				$address->setLastModifiedUser($user);
 
-//				$size->setCreatedUser($user);
-//				$size->setLastModifiedUser($user);
-
-				$houseType->setTitle($data->houseType);
-				$this->save($houseType);
-
 
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
-				$address->setVillage($data->village);
-				$address->setDistrict($data->district);
-				$address->setQuarter($data->quarter);
-				$address->setCity($data->city);
+				$address->setAddress($data->address);
 				$address->setLatitude($data->latitude);
 				$address->setLongitude($data->longitude);
 				$this->save($address);
 
-//				$size->setWidth($data->width);
-//				$size->setHeight($data->height);
-//				$size->setLength($data->lenght);
-//				$this->save($size);
-
 				$house->setCost($data->cost);
 				$house->setAddress($address);
 				$house->setType($houseType);
-//				$house->setSize($size);
+
 				$house->setAvailable($data->avaialbe);
 				$house->setIsRoomRent($data->haveRoomRent);
 				$house->setOtherinfo($data->other);

@@ -1,0 +1,22 @@
+<a href="<?php echo $this->url('house-type/action', array('action' => 'add')) ?>" class="btn">Add</a>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Type</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ($houseTypes as $type) {
+			echo '<tr>';
+			echo '<td>' . $type->getId() . '</td>';
+			echo '<td>' . $type->getTitle() . '</td>';
+			echo '<td><a class="btn" href="#">Edit</a><a class="btn" href="#">Delete</a></td>';
+			echo '</tr>';
+		}
+		?>
+	</tbody>
+</table>
