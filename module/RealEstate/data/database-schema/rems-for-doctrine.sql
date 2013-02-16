@@ -148,7 +148,8 @@ CREATE TABLE IF NOT EXISTS `house` (
   `positive_rate_number` int(11) unsigned DEFAULT '0',
   `negative_rate_number` int(11) unsigned DEFAULT '0',
   `image_path_as_json_string_list` text  ,
-  `other_info` text  ,
+  `other_info` text ,
+  `search_term` text ,
 
   `user` int(11) unsigned DEFAULT '0',
   `type` int(11) unsigned DEFAULT '0',

@@ -53,6 +53,9 @@ class CreatorController extends AbstractActionController {
 				$address->setHouse($data->houseNumber);
 				$address->setStreet($data->street);
 				$address->setAddress($data->address);
+				
+				$house->setSearchTerm($data->houseNumber . ', ' . $houseType->getTitle() . ', ' . $data->street . ', ' . $data->address);
+				
 				$address->setLatitude($data->latitude);
 				$address->setLongitude($data->longitude);
 				$this->save($address);

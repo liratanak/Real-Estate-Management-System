@@ -127,6 +127,13 @@ class House
     private $otherInfo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="search_term", type="text", nullable=true)
+     */
+    private $searchTerm;
+
+    /**
      * @var \RealEstate\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="RealEstate\Entity\User")
@@ -541,6 +548,29 @@ class House
     public function getOtherInfo()
     {
         return $this->otherInfo;
+    }
+
+    /**
+     * Set searchTerm
+     *
+     * @param string $searchTerm
+     * @return House
+     */
+    public function setSearchTerm($searchTerm)
+    {
+        $this->searchTerm = $searchTerm;
+    
+        return $this;
+    }
+
+    /**
+     * Get searchTerm
+     *
+     * @return string 
+     */
+    public function getSearchTerm()
+    {
+        return $this->searchTerm;
     }
 
     /**
