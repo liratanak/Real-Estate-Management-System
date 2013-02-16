@@ -24,10 +24,13 @@
 </script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkB1TsoIYZew4q0Cfb1X0RkI-iTbDzWsg&sensor=false"></script>
+<script type="text/javascript" src="/assets/js/map.info.box.js"></script>
+
 <script type="text/javascript">
 	var map;
 	var housePosition;
 	var markersArray = [];
+	var infoBoxArray = new Array();
 	
 	var geocoder;
 	var infowindow = new google.maps.InfoWindow();
@@ -75,10 +78,24 @@
 							map: map,
 							icon: '/glyphicons/glyphicons_020_home.png'
 						});
+						
+//						infowindow.setContent(results[1].formatted_address);
+//						infowindow.open(map, marker);
+						
 						markersArray.push(marker);
-						console.log(results);
-						infowindow.setContent(results[1].formatted_address);
-						infowindow.open(map, marker);
+						if (infoBoxArray) {
+							for (i in infoBoxArray) {
+								infoBoxArray[i].setMap(null);
+							}
+						}
+						
+						infoBoxArray = new Array();
+						
+						infoBoxArray.push(new InfoBox({
+							latlng: marker.getPosition(), 
+							map: map,
+							content: results[1].formatted_address
+						}));
 						
 						jQuery('#address').val(results[1].formatted_address);
 					}
@@ -104,10 +121,7 @@
 			}
 				
 			housePosition.setMap(map);
-				
-			console.log(event);
-			console.log(event.latLng.lat());
-			console.log(event.latLng.lng());
+
 			jQuery('#latitude').val(event.latLng.lat());
 			jQuery('#longitude').val(event.latLng.lng());
 		});
