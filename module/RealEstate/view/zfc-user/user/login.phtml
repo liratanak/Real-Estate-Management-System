@@ -2,29 +2,38 @@
 $form = $this->loginForm;
 $form->prepare();
 $form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('class', '');
 $form->setAttribute('method', 'post');
 ?>
 
 <?php echo $this->form()->openTag($form) ?>
+	<div class="control-group">
+		<div class="control-label">
+			<?php echo $this->formLabel($form->get('identity')) ?>
+		</div>
+		<div class="controls">
+			<?php echo $this->formInput($form->get('identity')) ?>
+		</div>
+    </div>
+    <div class="control-group">
+		<div class="control-label"><?php echo $this->formLabel($form->get('credential')) ?></div>
+		<div class="controls">
+			<?php echo $this->formInput($form->get('credential')) ?>
+		</div>
+    </div>
+    <div class="control-group">
+<!--		<div class="controls btn">-->
+			<?php $form->get('submit')->setAttribute('class','btn'); ?>
+			<?php echo $this->formButton($form->get('submit')) ?>
+<!--		</div>-->
+    </div>
 
-    <dl class="zend_form">
-        <?php echo $this->formElementErrors($form->get('identity')) ?>
-
-        <dt><?php echo $this->formLabel($form->get('identity')) ?></dt>
-        <dd><?php echo $this->formInput($form->get('identity')) ?></dd>
-
-        <dt><?php echo $this->formLabel($form->get('credential')) ?></dt>
-        <dd><?php echo $this->formInput($form->get('credential')) ?></dd>
-
-        <?php if ($this->redirect): ?>
-            <input type="hidden" name="redirect" value="<?php echo $this->redirect ?>" />
-        <?php endif ?>
-
-        <dd><?php echo $this->formButton($form->get('submit')) ?></dd>
-    </dl>
+<?php if ($this->redirect): ?>
+	<input type="hidden" name="redirect" value="<?php echo $this->redirect ?>" />
+<?php endif ?>
 
 <?php echo $this->form()->closeTag() ?>
 
 <?php if ($this->enableRegistration) : ?>
-Not registered? <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>">Sign up!</a>
+	Not registered? <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect=' . $this->redirect : '') ?>">Sign up!</a>
 <?php endif; ?>
