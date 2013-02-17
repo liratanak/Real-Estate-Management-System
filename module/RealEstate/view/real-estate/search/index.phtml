@@ -6,11 +6,13 @@
 				<?php
 				for ($i = 0; $i < 10; $i++) {
 					foreach ($houses as $house) {
+						//show houses which search
 						echo '<tr>';
 						echo '<td>';
 						echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-						echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getVillage() . '<br />';
+						echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getStreet() . '<br />';
 						echo '</a>';
+						echo $house->getAddress()->getAddress() . '<br />';
 						echo $house->getCost() . ' ៛/month';
 						echo '</td>';
 						echo '</tr>';

@@ -10,8 +10,10 @@ class SearchController extends AbstractActionController {
 	public function indexAction() {
 		$searchTerm = $this->params('term');
 
-		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->findAll();
+		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->search($searchTerm);
 
+		var_dump($houses);
+		
 		$this->layout('layout/blank');
 		return new ViewModel(array(
 					'houses' => $houses,

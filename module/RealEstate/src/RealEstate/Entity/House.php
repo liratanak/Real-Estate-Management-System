@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * House
  *
  * @ORM\Table(name="house")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="RealEstate\Repository\HouseRepository")
  */
 class House
 {
@@ -125,6 +125,13 @@ class House
      * @ORM\Column(name="other_info", type="text", nullable=true)
      */
     private $otherInfo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="search_term", type="text", nullable=true)
+     */
+    private $searchTerm;
 
     /**
      * @var \RealEstate\Entity\User
@@ -541,6 +548,29 @@ class House
     public function getOtherInfo()
     {
         return $this->otherInfo;
+    }
+
+    /**
+     * Set searchTerm
+     *
+     * @param string $searchTerm
+     * @return House
+     */
+    public function setSearchTerm($searchTerm)
+    {
+        $this->searchTerm = $searchTerm;
+    
+        return $this;
+    }
+
+    /**
+     * Get searchTerm
+     *
+     * @return string 
+     */
+    public function getSearchTerm()
+    {
+        return $this->searchTerm;
     }
 
     /**
