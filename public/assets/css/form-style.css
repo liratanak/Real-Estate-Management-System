@@ -1,0 +1,28 @@
+/*
+    Document   : form-style
+    Created on : Feb 6, 2013, 1:38:56 PM
+    Author     : CnPisit
+    Description:
+    Purpose of the stylesheet follows.
+*/
+
+
+.form-horizontal ul li {
+	color: red;
+	position: absolute;
+	left: 235px;
+	top: 5px;
+	list-style: none;
+}
+.form-horizontal div div{
+	position: relative;
+}
+
+.form-horizontal div p{
+	height: 20px;
+	padding-bottom: 15px;
+}
+/*.form-horizontal div {
+	height: 20px;
+	padding-bottom: 15px;
+}*/
