@@ -16,7 +16,7 @@ $form->setAttribute('class', 'form-horizontal');
     <div class="control-group">
     <?php foreach ($form as $element): ?>
         <?php if (!$element instanceof Zend\Form\Element\Button): ?>
-            <div><?php echo $this->formLabel($element) ?></div>
+			<div><?php echo $this->formLabel($element) ?></div>
         <?php endif ?>
         <?php if ($element instanceof Zend\Form\Element\Button): ?>
 			<?php $element->setAttribute('class','btn')?>
