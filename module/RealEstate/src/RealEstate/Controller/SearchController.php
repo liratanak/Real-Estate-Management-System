@@ -9,7 +9,7 @@ class SearchController extends AbstractActionController {
 
 	public function indexAction() {
 		$searchTerm = $this->params('term');
-		var_dump($searchTerm);
+		
 		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->search($searchTerm);
 		
 		$this->layout('layout/blank');
