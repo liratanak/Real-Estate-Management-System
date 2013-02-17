@@ -6,6 +6,7 @@
 				<?php
 				for ($i = 0; $i < 10; $i++) {
 					foreach ($houses as $house) {
+						//show houses which search
 						echo '<tr>';
 						echo '<td>';
 						echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
