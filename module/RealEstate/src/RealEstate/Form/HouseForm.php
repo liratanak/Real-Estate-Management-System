@@ -63,28 +63,29 @@ class HouseForm extends Form {
 		));
 
 		$this->add(array(
+			'name' => 'other',
+			'type' => '\Zend\Form\Element\Textarea',
+			'options' => array(
+				'label' => '',
+			),
+			'attributes' => array(
+			),
+		));
+
+		$this->add(array(
 			'name' => 'address',
 			'type' => '\Zend\Form\Element\Text',
 			'options' => array(
 				'label' => 'Address',
 			),
 			'attributes' => array(
-				'class' => 'address',
-				'id' => 'address'
+				'class' => 'address input-xlarge',
+				'readonly' => 'readonly',
+				'id' => 'address',
+				'title' => 'Double click to edit manualy'
 			),
 		));
-
-		$this->add(array(
-			'name' => 'other',
-			'type' => '\Zend\Form\Element\Textarea',
-			'options' => array(
-				'label' => 'Other Info',
-			),
-			'attributes' => array(
-			),
-		));
-
-
+		
 		$this->add(array(
 			'name' => 'longitude',
 			'type' => '\Zend\Form\Element\Text',
