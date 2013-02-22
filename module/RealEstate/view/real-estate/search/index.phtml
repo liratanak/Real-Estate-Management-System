@@ -28,7 +28,7 @@
 						echo '<tr>';
 						echo '<td>';
 						echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-						echo hl($house->getAddress()->getHouse(), $terms) . ', ' . hl($house->getAddress()->getStreet(), $terms) . '<br />';
+						echo 'Nº'.hl($house->getAddress()->getHouse(), $terms) . ', ' . hl($house->getAddress()->getStreet(), $terms) . '<br />';
 						echo '</a>';
 						echo hl($house->getAddress()->getAddress().' ', $terms) . '<br />';
 						echo 'Price : '.hl($house->getCost(), $terms) . ' ៛/month <br />';

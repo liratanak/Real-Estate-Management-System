@@ -1,4 +1,4 @@
-<div id="thumbnail">
+<!--<div id="thumbnail">
     
     <div class="thumImgSmall">
         <img/>
@@ -7,7 +7,7 @@
         <img/>
         
     </div>
-</div>
+</div>-->
 
 <?php
 if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
@@ -28,6 +28,10 @@ if (NULL === $oneHouse && NULL !== $houses && NULL !== $user) {
     echo 'Price : ' . $oneHouse->getCost() . '<br />';
     echo 'Type : ' . $oneHouse->getType()->getTitle() . '<br />';
     echo '</pre>';
+	echo '<pre>';
+	echo 'Additional information : <br />';
+	echo $oneHouse->getOtherInfo();
+	echo '</pre>';
     ?>
 <div id="comments">
     <?php
