@@ -21,7 +21,8 @@ class MapController extends AbstractActionController {
 		$xmlString = '<markers>';
 		foreach ($houses as $house) {
 			$xmlString .= '<marker name="' . $house->getCost() . ' ៛/month'
-					. '" address="' . $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getStreet() . '" '
+					. '" address="' . $house->getAddress()->getHouse() . ', ' . $house->getAddress()->getStreet() . ', '
+					. $house->getAddress()->getAddress() . '" '
 					. 'lat="' . $house->getAddress()->getLatitude() . '" '
 					. 'lng="' . $house->getAddress()->getLongitude() . '" '
 					. 'type="' . $house->getType()->getTitle() . '" />';
