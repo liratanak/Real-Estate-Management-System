@@ -29,11 +29,11 @@ foreach ($houses as $house) {
 
 
 	echo '<div class="well element">';
-	echo '
-        <div class="small-img">
-        <img  src="" alt="" />
-        </div>
-    ';
+//	echo '
+//        <div class="small-img">
+//        <img  src="" alt="" />
+//        </div>
+//    ';
 	echo '<div class="short-info">';
 	echo '<a class="addr" href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
 	echo $house->getAddress()->getHouse() . ' ' . $house->getAddress()->getStreet() . '<br />';
@@ -57,6 +57,10 @@ foreach ($houses as $house) {
 	?>
 
 
+	<br />
+	<br />
+	<br />
+	<br />
 	<div>
 		<div class="btn-group">
 			<form class="ratD" method="post" onsubmit="return false;">
