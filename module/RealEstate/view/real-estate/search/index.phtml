@@ -1,39 +1,48 @@
 <div style="padding: 10px;border: solid #5bc0de 2px;border-radius: 15px;">
 	<div class="navbar-form" style="padding: 10px;height:400px;overflow: scroll;">
 		<small>Result for : <?php echo $term ?></small>
-		<?php if(count($houses)>0){ ?>
-		<table class="table table-bordered">
-			<tbody>
-				<?php
+		<?php if (count($houses) > 0) { ?>
+			<table class="table table-bordered">
+				<tbody>
+					<?php
 
-				function hl($inp, $words) { // inp phrase, word pattern
-					$replace = array_flip(array_flip($words)); // remove duplicates
-					$pattern = array();
-					foreach ($replace as $k => $fword) {
-						$pattern[] = '/(.?)(' . $fword . ')(.?)/i';
-						$replace[$k] = "$1<b>$2</b>$3";
+					function hl($inp, $words) { // inp phrase, word pattern
+						$replace = array_flip(array_flip($words)); // remove duplicates
+						$pattern = array();
+						foreach ($replace as $k => $fword) {
+							if (!preg_match('/\//', $fword)) {
+								$pattern[] = '/([^<]|.?)(' . $fword . ')([^>])/i';
+								$replace[$k] = "$1<b>$2</b>$3";
+							}
+						}
+						return preg_replace($pattern, $replace, $inp);
 					}
-					return preg_replace($pattern, $replace, $inp);
-				}
 
-				$terms = explode(' ', $term);
+					$terms = explode(' ', $term);
+					for($i = 0 ; $i < count($terms) ; $i++){
+						if($terms[$i]=='/'){
+							unset($terms[$i]);
+						}
+					}
 					foreach ($houses as $house) {
 						echo '<tr>';
 						echo '<td>';
 						echo '<a href="' . $this->url('details', array('username' => $house->getCreatedUser()->getUsername(), 'propertyType' => 'house', 'propertyId' => $house->getId())) . '">';
-						echo preg_replace('/' . $term . '/i', '<b>' . $term . '</b>', $house->getAddress()->getHouse()) . ', ' . preg_replace('/' . $term . '/i', '<b>' . $term . '</b>', $house->getAddress()->getStreet()) . '<br />';
+						echo hl($house->getAddress()->getHouse(), $terms) . ', ' . hl($house->getAddress()->getStreet(), $terms) . '<br />';
 						echo '</a>';
-						echo hl($house->getAddress()->getAddress(), $terms) . '<br />';
-						echo preg_replace('/' . $term . '/i', '<b>' . $term . '</b>', $house->getCost()) . ' ៛/month';
+						echo hl($house->getAddress()->getAddress().' ', $terms) . '<br />';
+						echo 'Price : '.hl($house->getCost(), $terms) . ' ៛/month <br />';
+						echo 'Type : '.hl($house->getType()->getTitle().' ',$terms);
 						echo '</td>';
 						echo '</tr>';
 					}
-				?>
-			</tbody>
-		</table>
-		<?php }else{
-					echo '<br>NOT FOUND';
-				}
-				?>
+					?>
+				</tbody>
+			</table>
+		<?php
+		} else {
+			echo '<br>NOT FOUND';
+		}
+		?>
 	</div>
 </div>

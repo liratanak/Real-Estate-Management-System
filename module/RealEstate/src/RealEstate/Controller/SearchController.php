@@ -8,8 +8,8 @@ use Zend\View\Model\ViewModel;
 class SearchController extends AbstractActionController {
 
 	public function indexAction() {
-		$searchTerm = $this->params('term');
-		
+		$searchTerm = trim($this->params('term'));
+
 		$houses = $this->getEntityManager()->getRepository('RealEstate\Entity\House')->search($searchTerm);
 		
 		$this->layout('layout/blank');
