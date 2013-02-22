@@ -33,15 +33,15 @@ class HouseForm extends Form {
 			),
 		));
 
-		$this->add(array(
-			'name' => 'image',
-			'type' => '\Zend\Form\Element\File',
-			'options' => array(
-				'label' => 'Image',
-			),
-			'attributes' => array(
-			),
-		));
+//		$this->add(array(
+//			'name' => 'image',
+//			'type' => '\Zend\Form\Element\File',
+//			'options' => array(
+//				'label' => 'Image',
+//			),
+//			'attributes' => array(
+//			),
+//		));
 		$this->add(array(
 			'name' => 'houseNumber',
 			'type' => '\Zend\Form\Element\Text',
